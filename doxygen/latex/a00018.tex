@@ -1,0 +1,181 @@
+\hypertarget{a00018}{}\section{puzzler\+:\+:Matrix\+Exponent\+Puzzle Class Reference}
+\label{a00018}\index{puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}}
+
+
+{\ttfamily \#include $<$matrix\+\_\+exponent.\+hpp$>$}
+
+Inheritance diagram for puzzler\+:\+:Matrix\+Exponent\+Puzzle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{a00018}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::string \hyperlink{a00018_a06712fc62c3e8f410b9bee3f2b17c2eb}{Name} () const override
+\begin{DoxyCompactList}\small\item\em Unique name for the puzzle. \end{DoxyCompactList}\item 
+virtual std\+::shared\+\_\+ptr$<$ \hyperlink{a00009}{Input} $>$ \hyperlink{a00018_a00f7f772f504c8bde8b900fd5c893153}{Create\+Input} (\hyperlink{a00008}{I\+Log} $\ast$, int scale) const override
+\begin{DoxyCompactList}\small\item\em Create input with difficulty scale. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00018_ad941df5fabd37a9971f41c6921bce75d}{Reference\+Execute} (\hyperlink{a00008}{I\+Log} $\ast$log, const \hyperlink{a00015}{Matrix\+Exponent\+Input} $\ast$p\+Input, \hyperlink{a00016}{Matrix\+Exponent\+Output} $\ast$p\+Output) const overridefinal
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static uint32\+\_\+t \hyperlink{a00018_ab83b17457d8a10da866c6890e38a1fcb}{Step} (uint32\+\_\+t x)
+\item 
+static uint32\+\_\+t \hyperlink{a00018_ad77226d5fdcc9bcc4c8313a487fe4dfc}{Mul} (uint32\+\_\+t a, uint32\+\_\+t \hyperlink{a00039_a2fa551895933fae935a0a6b87282241d}{b})
+\item 
+static uint32\+\_\+t \hyperlink{a00018_a5e05e049126b016b7034fbb03ae9612e}{Add} (uint32\+\_\+t a, uint32\+\_\+t \hyperlink{a00039_a2fa551895933fae935a0a6b87282241d}{b})
+\item 
+static std\+::vector$<$ uint32\+\_\+t $>$ \hyperlink{a00018_a56361e961200b007b1bf8391e18cab45}{Matrix\+Create} (unsigned n, uint32\+\_\+t seed)
+\item 
+static std\+::vector$<$ uint32\+\_\+t $>$ \hyperlink{a00018_afe55ea8a6a53747443c9cc9e073f2797}{Matrix\+Identity} (unsigned n)
+\item 
+static std\+::vector$<$ uint32\+\_\+t $>$ \hyperlink{a00018_a46ba901f5d71d576e538a0a8fe8cc787}{Matrix\+Mul} (unsigned n, std\+::vector$<$ uint32\+\_\+t $>$ a, std\+::vector$<$ uint32\+\_\+t $>$ \hyperlink{a00039_a2fa551895933fae935a0a6b87282241d}{b})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 69 of file matrix\+\_\+exponent.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00018_a5e05e049126b016b7034fbb03ae9612e}{}\index{puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}!Add@{Add}}
+\index{Add@{Add}!puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}}
+\subsubsection[{Add}]{\setlength{\rightskip}{0pt plus 5cm}static uint32\+\_\+t puzzler\+::\+Matrix\+Exponent\+Puzzle\+::\+Add (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{a, }
+\item[{uint32\+\_\+t}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}\label{a00018_a5e05e049126b016b7034fbb03ae9612e}
+
+
+Definition at line 88 of file matrix\+\_\+exponent.\+hpp.
+
+\hypertarget{a00018_a00f7f772f504c8bde8b900fd5c893153}{}\index{puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}!Create\+Input@{Create\+Input}}
+\index{Create\+Input@{Create\+Input}!puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}}
+\subsubsection[{Create\+Input}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::shared\+\_\+ptr$<${\bf Input}$>$ puzzler\+::\+Matrix\+Exponent\+Puzzle\+::\+Create\+Input (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Log} $\ast$}]{log, }
+\item[{int}]{scale}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{a00018_a00f7f772f504c8bde8b900fd5c893153}
+
+
+Create input with difficulty scale. 
+
+
+
+Implements \hyperlink{a00026_a1b68731801d378875d8e8a0068d35562}{puzzler\+::\+Puzzle}.
+
+
+
+Definition at line 159 of file matrix\+\_\+exponent.\+hpp.
+
+\hypertarget{a00018_a56361e961200b007b1bf8391e18cab45}{}\index{puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}!Matrix\+Create@{Matrix\+Create}}
+\index{Matrix\+Create@{Matrix\+Create}!puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}}
+\subsubsection[{Matrix\+Create}]{\setlength{\rightskip}{0pt plus 5cm}static std\+::vector$<$uint32\+\_\+t$>$ puzzler\+::\+Matrix\+Exponent\+Puzzle\+::\+Matrix\+Create (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{n, }
+\item[{uint32\+\_\+t}]{seed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}\label{a00018_a56361e961200b007b1bf8391e18cab45}
+
+
+Definition at line 94 of file matrix\+\_\+exponent.\+hpp.
+
+\hypertarget{a00018_afe55ea8a6a53747443c9cc9e073f2797}{}\index{puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}!Matrix\+Identity@{Matrix\+Identity}}
+\index{Matrix\+Identity@{Matrix\+Identity}!puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}}
+\subsubsection[{Matrix\+Identity}]{\setlength{\rightskip}{0pt plus 5cm}static std\+::vector$<$uint32\+\_\+t$>$ puzzler\+::\+Matrix\+Exponent\+Puzzle\+::\+Matrix\+Identity (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}\label{a00018_afe55ea8a6a53747443c9cc9e073f2797}
+
+
+Definition at line 106 of file matrix\+\_\+exponent.\+hpp.
+
+\hypertarget{a00018_a46ba901f5d71d576e538a0a8fe8cc787}{}\index{puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}!Matrix\+Mul@{Matrix\+Mul}}
+\index{Matrix\+Mul@{Matrix\+Mul}!puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}}
+\subsubsection[{Matrix\+Mul}]{\setlength{\rightskip}{0pt plus 5cm}static std\+::vector$<$uint32\+\_\+t$>$ puzzler\+::\+Matrix\+Exponent\+Puzzle\+::\+Matrix\+Mul (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{n, }
+\item[{std\+::vector$<$ uint32\+\_\+t $>$}]{a, }
+\item[{std\+::vector$<$ uint32\+\_\+t $>$}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}\label{a00018_a46ba901f5d71d576e538a0a8fe8cc787}
+
+
+Definition at line 115 of file matrix\+\_\+exponent.\+hpp.
+
+\hypertarget{a00018_ad77226d5fdcc9bcc4c8313a487fe4dfc}{}\index{puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}!Mul@{Mul}}
+\index{Mul@{Mul}!puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}}
+\subsubsection[{Mul}]{\setlength{\rightskip}{0pt plus 5cm}static uint32\+\_\+t puzzler\+::\+Matrix\+Exponent\+Puzzle\+::\+Mul (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{a, }
+\item[{uint32\+\_\+t}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}\label{a00018_ad77226d5fdcc9bcc4c8313a487fe4dfc}
+
+
+Definition at line 82 of file matrix\+\_\+exponent.\+hpp.
+
+\hypertarget{a00018_a06712fc62c3e8f410b9bee3f2b17c2eb}{}\index{puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}!Name@{Name}}
+\index{Name@{Name}!puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}}
+\subsubsection[{Name}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::string puzzler\+::\+Matrix\+Exponent\+Puzzle\+::\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{a00018_a06712fc62c3e8f410b9bee3f2b17c2eb}
+
+
+Unique name for the puzzle. 
+
+
+
+Implements \hyperlink{a00026_a38d988a8485d3a3e4699c1f609772373}{puzzler\+::\+Puzzle}.
+
+
+
+Definition at line 155 of file matrix\+\_\+exponent.\+hpp.
+
+\hypertarget{a00018_ad941df5fabd37a9971f41c6921bce75d}{}\index{puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}!Reference\+Execute@{Reference\+Execute}}
+\index{Reference\+Execute@{Reference\+Execute}!puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}}
+\subsubsection[{Reference\+Execute}]{\setlength{\rightskip}{0pt plus 5cm}void puzzler\+::\+Matrix\+Exponent\+Puzzle\+::\+Reference\+Execute (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Log} $\ast$}]{log, }
+\item[{const {\bf Matrix\+Exponent\+Input} $\ast$}]{p\+Input, }
+\item[{{\bf Matrix\+Exponent\+Output} $\ast$}]{p\+Output}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}\label{a00018_ad941df5fabd37a9971f41c6921bce75d}
+
+
+Implements \hyperlink{a00027_aed67f6b074b18cbf20019928acc65f26}{puzzler\+::\+Puzzle\+Base$<$ Matrix\+Exponent\+Input, Matrix\+Exponent\+Output $>$}.
+
+
+
+Definition at line 129 of file matrix\+\_\+exponent.\+hpp.
+
+\hypertarget{a00018_ab83b17457d8a10da866c6890e38a1fcb}{}\index{puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}!Step@{Step}}
+\index{Step@{Step}!puzzler\+::\+Matrix\+Exponent\+Puzzle@{puzzler\+::\+Matrix\+Exponent\+Puzzle}}
+\subsubsection[{Step}]{\setlength{\rightskip}{0pt plus 5cm}static uint32\+\_\+t puzzler\+::\+Matrix\+Exponent\+Puzzle\+::\+Step (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{x}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}\label{a00018_ab83b17457d8a10da866c6890e38a1fcb}
+
+
+Definition at line 75 of file matrix\+\_\+exponent.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/puzzler/puzzles/\hyperlink{a00131}{matrix\+\_\+exponent.\+hpp}\end{DoxyCompactItemize}

@@ -1,0 +1,108 @@
+\hypertarget{a00011}{}\section{puzzler\+:\+:Life\+Output Class Reference}
+\label{a00011}\index{puzzler\+::\+Life\+Output@{puzzler\+::\+Life\+Output}}
+
+
+{\ttfamily \#include $<$life.\+hpp$>$}
+
+Inheritance diagram for puzzler\+:\+:Life\+Output\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{a00011}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00011_a71c80815ebf258f53e0475fe1a7a9fb9}{Life\+Output} (const \hyperlink{a00026}{Puzzle} $\ast$puzzle, const \hyperlink{a00009}{Puzzle\+::\+Input} $\ast$input)
+\item 
+\hyperlink{a00011_a17407810d97dd22c92eaa02fec330cfd}{Life\+Output} (std\+::string format, std\+::string name, \hyperlink{a00025}{Persist\+Context} \&ctxt)
+\item 
+virtual void \hyperlink{a00011_ae48d78e050fda5544ba2be126df8e935}{Persist\+Impl} (\hyperlink{a00025}{Persist\+Context} \&conn) override
+\item 
+virtual bool \hyperlink{a00011_ab297f61abe511ad2f4e92376f66f9246}{Equals} (const \hyperlink{a00023_aa605318d3632c1b359c07745bdf17e83}{Output} $\ast$output) const override
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ bool $>$ \hyperlink{a00011_a305502dbf2764a90c34f3fa64c708d52}{state}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 45 of file life.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00011_a71c80815ebf258f53e0475fe1a7a9fb9}{}\index{puzzler\+::\+Life\+Output@{puzzler\+::\+Life\+Output}!Life\+Output@{Life\+Output}}
+\index{Life\+Output@{Life\+Output}!puzzler\+::\+Life\+Output@{puzzler\+::\+Life\+Output}}
+\subsubsection[{Life\+Output}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+Life\+Output\+::\+Life\+Output (
+\begin{DoxyParamCaption}
+\item[{const {\bf Puzzle} $\ast$}]{puzzle, }
+\item[{const {\bf Puzzle\+::\+Input} $\ast$}]{input}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00011_a71c80815ebf258f53e0475fe1a7a9fb9}
+
+
+Definition at line 51 of file life.\+hpp.
+
+\hypertarget{a00011_a17407810d97dd22c92eaa02fec330cfd}{}\index{puzzler\+::\+Life\+Output@{puzzler\+::\+Life\+Output}!Life\+Output@{Life\+Output}}
+\index{Life\+Output@{Life\+Output}!puzzler\+::\+Life\+Output@{puzzler\+::\+Life\+Output}}
+\subsubsection[{Life\+Output}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+Life\+Output\+::\+Life\+Output (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{format, }
+\item[{std\+::string}]{name, }
+\item[{{\bf Persist\+Context} \&}]{ctxt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00011_a17407810d97dd22c92eaa02fec330cfd}
+
+
+Definition at line 55 of file life.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00011_ab297f61abe511ad2f4e92376f66f9246}{}\index{puzzler\+::\+Life\+Output@{puzzler\+::\+Life\+Output}!Equals@{Equals}}
+\index{Equals@{Equals}!puzzler\+::\+Life\+Output@{puzzler\+::\+Life\+Output}}
+\subsubsection[{Equals}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool puzzler\+::\+Life\+Output\+::\+Equals (
+\begin{DoxyParamCaption}
+\item[{const {\bf Output} $\ast$}]{output}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{a00011_ab297f61abe511ad2f4e92376f66f9246}
+
+
+Definition at line 66 of file life.\+hpp.
+
+\hypertarget{a00011_ae48d78e050fda5544ba2be126df8e935}{}\index{puzzler\+::\+Life\+Output@{puzzler\+::\+Life\+Output}!Persist\+Impl@{Persist\+Impl}}
+\index{Persist\+Impl@{Persist\+Impl}!puzzler\+::\+Life\+Output@{puzzler\+::\+Life\+Output}}
+\subsubsection[{Persist\+Impl}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+Life\+Output\+::\+Persist\+Impl (
+\begin{DoxyParamCaption}
+\item[{{\bf Persist\+Context} \&}]{conn}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{a00011_ae48d78e050fda5544ba2be126df8e935}
+
+
+Implements \hyperlink{a00023_a6f38b053870861fd4afe8819174c4d3d}{puzzler\+::\+Puzzle\+::\+Output}.
+
+
+
+Definition at line 61 of file life.\+hpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00011_a305502dbf2764a90c34f3fa64c708d52}{}\index{puzzler\+::\+Life\+Output@{puzzler\+::\+Life\+Output}!state@{state}}
+\index{state@{state}!puzzler\+::\+Life\+Output@{puzzler\+::\+Life\+Output}}
+\subsubsection[{state}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$bool$>$ puzzler\+::\+Life\+Output\+::state}\label{a00011_a305502dbf2764a90c34f3fa64c708d52}
+
+
+Definition at line 49 of file life.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/puzzler/puzzles/\hyperlink{a00130}{life.\+hpp}\end{DoxyCompactItemize}

@@ -1,0 +1,191 @@
+\hypertarget{a00026}{}\section{puzzler\+:\+:Puzzle Class Reference}
+\label{a00026}\index{puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}}
+
+
+{\ttfamily \#include $<$puzzle.\+hpp$>$}
+
+Inheritance diagram for puzzler\+:\+:Puzzle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.926385cm]{a00026}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{a00009}{Input}
+\item 
+class \hyperlink{a00023}{Output}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::string \hyperlink{a00026_a38d988a8485d3a3e4699c1f609772373}{Name} () const =0
+\begin{DoxyCompactList}\small\item\em Unique name for the puzzle. \end{DoxyCompactList}\item 
+virtual std\+::shared\+\_\+ptr$<$ \hyperlink{a00009}{Input} $>$ \hyperlink{a00026_a1b68731801d378875d8e8a0068d35562}{Create\+Input} (\hyperlink{a00008}{I\+Log} $\ast$log, int scale) const =0
+\begin{DoxyCompactList}\small\item\em Create input with difficulty scale. \end{DoxyCompactList}\item 
+virtual std\+::shared\+\_\+ptr$<$ \hyperlink{a00009}{Input} $>$ \hyperlink{a00026_af149fa9c4de77128b9ab1cd8b345a88b}{Load\+Input} (\hyperlink{a00025}{Persist\+Context} \&ctxt) const =0
+\begin{DoxyCompactList}\small\item\em Load a previously generated input. \end{DoxyCompactList}\item 
+virtual std\+::shared\+\_\+ptr$<$ \hyperlink{a00009}{Input} $>$ \hyperlink{a00026_a4a9d6b572bf0544907eb8ff8ad83ffbd}{Load\+Input} (std\+::string format, std\+::string name, \hyperlink{a00025}{Persist\+Context} \&ctxt) const =0
+\item 
+virtual std\+::shared\+\_\+ptr$<$ \hyperlink{a00023}{Output} $>$ \hyperlink{a00026_a9765b5110fd1919a1c174187a51e674a}{Make\+Empty\+Output} (const \hyperlink{a00009}{Input} $\ast$input) const =0
+\begin{DoxyCompactList}\small\item\em Create a class that can hold instances of output. \end{DoxyCompactList}\item 
+virtual std\+::shared\+\_\+ptr$<$ \hyperlink{a00023}{Output} $>$ \hyperlink{a00026_a556927fbbbfebb310e41b5d7e5a128f3}{Load\+Output} (\hyperlink{a00025}{Persist\+Context} \&ctxt) const =0
+\begin{DoxyCompactList}\small\item\em Load a previously created output. \end{DoxyCompactList}\item 
+virtual std\+::shared\+\_\+ptr$<$ \hyperlink{a00023}{Output} $>$ \hyperlink{a00026_abb934b75edb00c1c9a9dd422ffd0d997}{Load\+Output} (std\+::string format, std\+::string name, \hyperlink{a00025}{Persist\+Context} \&ctxt) const =0
+\item 
+virtual void \hyperlink{a00026_a3f627a94d707e1ca2db52e61196aefe2}{Reference\+Execute} (\hyperlink{a00008}{I\+Log} $\ast$log, const \hyperlink{a00009}{Input} $\ast$p\+Input, \hyperlink{a00023}{Output} $\ast$p\+Output) const =0
+\begin{DoxyCompactList}\small\item\em \char`\"{}\+True\char`\"{} version of the solution. It may be slow, but will be correct \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00026_a702021085703421ec4997ef90cf41385}{Execute} (\hyperlink{a00008}{I\+Log} $\ast$log, const \hyperlink{a00009}{Input} $\ast$p\+Input, \hyperlink{a00023}{Output} $\ast$p\+Output) const =0
+\begin{DoxyCompactList}\small\item\em \char`\"{}\+Fast\char`\"{} version of the solution, provided by the user \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 12 of file puzzle.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00026_a1b68731801d378875d8e8a0068d35562}{}\index{puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}!Create\+Input@{Create\+Input}}
+\index{Create\+Input@{Create\+Input}!puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}}
+\subsubsection[{Create\+Input}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::shared\+\_\+ptr$<${\bf Input}$>$ puzzler\+::\+Puzzle\+::\+Create\+Input (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Log} $\ast$}]{log, }
+\item[{int}]{scale}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00026_a1b68731801d378875d8e8a0068d35562}
+
+
+Create input with difficulty scale. 
+
+
+
+Implemented in \hyperlink{a00035_a9ca775a43c427b61a6d0c8f365334596}{puzzler\+::\+String\+Search\+Puzzle}, \hyperlink{a00013_a941f2fedd6f853ab29a38a63408a2d7a}{puzzler\+::\+Life\+Puzzle}, \hyperlink{a00006_a35c646b7f525a92697fdacbdc3f4c556}{puzzler\+::\+Circuit\+Sim\+Puzzle}, \hyperlink{a00018_a00f7f772f504c8bde8b900fd5c893153}{puzzler\+::\+Matrix\+Exponent\+Puzzle}, and \hyperlink{a00022_a39ec41d191512d89f6baffd9a266a603}{puzzler\+::\+Option\+Explicit\+Puzzle}.
+
+\hypertarget{a00026_a702021085703421ec4997ef90cf41385}{}\index{puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}!Execute@{Execute}}
+\index{Execute@{Execute}!puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}}
+\subsubsection[{Execute}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+Puzzle\+::\+Execute (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Log} $\ast$}]{log, }
+\item[{const {\bf Input} $\ast$}]{p\+Input, }
+\item[{{\bf Output} $\ast$}]{p\+Output}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00026_a702021085703421ec4997ef90cf41385}
+
+
+\char`\"{}\+Fast\char`\"{} version of the solution, provided by the user 
+
+
+
+Implemented in \hyperlink{a00027_a47abc3006071967c9bfcd8f844667534}{puzzler\+::\+Puzzle\+Base$<$ T\+Input, T\+Output $>$}, \hyperlink{a00027_a47abc3006071967c9bfcd8f844667534}{puzzler\+::\+Puzzle\+Base$<$ Option\+Explicit\+Input, Option\+Explicit\+Output $>$}, \hyperlink{a00027_a47abc3006071967c9bfcd8f844667534}{puzzler\+::\+Puzzle\+Base$<$ Circuit\+Sim\+Input, Circuit\+Sim\+Output $>$}, \hyperlink{a00027_a47abc3006071967c9bfcd8f844667534}{puzzler\+::\+Puzzle\+Base$<$ Matrix\+Exponent\+Input, Matrix\+Exponent\+Output $>$}, \hyperlink{a00027_a47abc3006071967c9bfcd8f844667534}{puzzler\+::\+Puzzle\+Base$<$ Life\+Input, Life\+Output $>$}, and \hyperlink{a00027_a47abc3006071967c9bfcd8f844667534}{puzzler\+::\+Puzzle\+Base$<$ String\+Search\+Input, String\+Search\+Output $>$}.
+
+\hypertarget{a00026_af149fa9c4de77128b9ab1cd8b345a88b}{}\index{puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}!Load\+Input@{Load\+Input}}
+\index{Load\+Input@{Load\+Input}!puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}}
+\subsubsection[{Load\+Input}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::shared\+\_\+ptr$<${\bf Input}$>$ puzzler\+::\+Puzzle\+::\+Load\+Input (
+\begin{DoxyParamCaption}
+\item[{{\bf Persist\+Context} \&}]{ctxt}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00026_af149fa9c4de77128b9ab1cd8b345a88b}
+
+
+Load a previously generated input. 
+
+
+
+Implemented in \hyperlink{a00027_acaae615ba4ea5d3bbddfc9b2330ea81b}{puzzler\+::\+Puzzle\+Base$<$ T\+Input, T\+Output $>$}, \hyperlink{a00027_acaae615ba4ea5d3bbddfc9b2330ea81b}{puzzler\+::\+Puzzle\+Base$<$ Option\+Explicit\+Input, Option\+Explicit\+Output $>$}, \hyperlink{a00027_acaae615ba4ea5d3bbddfc9b2330ea81b}{puzzler\+::\+Puzzle\+Base$<$ Circuit\+Sim\+Input, Circuit\+Sim\+Output $>$}, \hyperlink{a00027_acaae615ba4ea5d3bbddfc9b2330ea81b}{puzzler\+::\+Puzzle\+Base$<$ Matrix\+Exponent\+Input, Matrix\+Exponent\+Output $>$}, \hyperlink{a00027_acaae615ba4ea5d3bbddfc9b2330ea81b}{puzzler\+::\+Puzzle\+Base$<$ Life\+Input, Life\+Output $>$}, and \hyperlink{a00027_acaae615ba4ea5d3bbddfc9b2330ea81b}{puzzler\+::\+Puzzle\+Base$<$ String\+Search\+Input, String\+Search\+Output $>$}.
+
+\hypertarget{a00026_a4a9d6b572bf0544907eb8ff8ad83ffbd}{}\index{puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}!Load\+Input@{Load\+Input}}
+\index{Load\+Input@{Load\+Input}!puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}}
+\subsubsection[{Load\+Input}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::shared\+\_\+ptr$<${\bf Input}$>$ puzzler\+::\+Puzzle\+::\+Load\+Input (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{format, }
+\item[{std\+::string}]{name, }
+\item[{{\bf Persist\+Context} \&}]{ctxt}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00026_a4a9d6b572bf0544907eb8ff8ad83ffbd}
+
+
+Implemented in \hyperlink{a00027_a865bb4b2d8c2fce2c515946801d51513}{puzzler\+::\+Puzzle\+Base$<$ T\+Input, T\+Output $>$}, \hyperlink{a00027_a865bb4b2d8c2fce2c515946801d51513}{puzzler\+::\+Puzzle\+Base$<$ Option\+Explicit\+Input, Option\+Explicit\+Output $>$}, \hyperlink{a00027_a865bb4b2d8c2fce2c515946801d51513}{puzzler\+::\+Puzzle\+Base$<$ Circuit\+Sim\+Input, Circuit\+Sim\+Output $>$}, \hyperlink{a00027_a865bb4b2d8c2fce2c515946801d51513}{puzzler\+::\+Puzzle\+Base$<$ Matrix\+Exponent\+Input, Matrix\+Exponent\+Output $>$}, \hyperlink{a00027_a865bb4b2d8c2fce2c515946801d51513}{puzzler\+::\+Puzzle\+Base$<$ Life\+Input, Life\+Output $>$}, and \hyperlink{a00027_a865bb4b2d8c2fce2c515946801d51513}{puzzler\+::\+Puzzle\+Base$<$ String\+Search\+Input, String\+Search\+Output $>$}.
+
+\hypertarget{a00026_a556927fbbbfebb310e41b5d7e5a128f3}{}\index{puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}!Load\+Output@{Load\+Output}}
+\index{Load\+Output@{Load\+Output}!puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}}
+\subsubsection[{Load\+Output}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::shared\+\_\+ptr$<${\bf Output}$>$ puzzler\+::\+Puzzle\+::\+Load\+Output (
+\begin{DoxyParamCaption}
+\item[{{\bf Persist\+Context} \&}]{ctxt}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00026_a556927fbbbfebb310e41b5d7e5a128f3}
+
+
+Load a previously created output. 
+
+
+
+Implemented in \hyperlink{a00027_a2fadbddb381c6c6d048ea86f0ddc3038}{puzzler\+::\+Puzzle\+Base$<$ T\+Input, T\+Output $>$}, \hyperlink{a00027_a2fadbddb381c6c6d048ea86f0ddc3038}{puzzler\+::\+Puzzle\+Base$<$ Option\+Explicit\+Input, Option\+Explicit\+Output $>$}, \hyperlink{a00027_a2fadbddb381c6c6d048ea86f0ddc3038}{puzzler\+::\+Puzzle\+Base$<$ Circuit\+Sim\+Input, Circuit\+Sim\+Output $>$}, \hyperlink{a00027_a2fadbddb381c6c6d048ea86f0ddc3038}{puzzler\+::\+Puzzle\+Base$<$ Matrix\+Exponent\+Input, Matrix\+Exponent\+Output $>$}, \hyperlink{a00027_a2fadbddb381c6c6d048ea86f0ddc3038}{puzzler\+::\+Puzzle\+Base$<$ Life\+Input, Life\+Output $>$}, and \hyperlink{a00027_a2fadbddb381c6c6d048ea86f0ddc3038}{puzzler\+::\+Puzzle\+Base$<$ String\+Search\+Input, String\+Search\+Output $>$}.
+
+\hypertarget{a00026_abb934b75edb00c1c9a9dd422ffd0d997}{}\index{puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}!Load\+Output@{Load\+Output}}
+\index{Load\+Output@{Load\+Output}!puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}}
+\subsubsection[{Load\+Output}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::shared\+\_\+ptr$<${\bf Output}$>$ puzzler\+::\+Puzzle\+::\+Load\+Output (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{format, }
+\item[{std\+::string}]{name, }
+\item[{{\bf Persist\+Context} \&}]{ctxt}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00026_abb934b75edb00c1c9a9dd422ffd0d997}
+
+
+Implemented in \hyperlink{a00027_a2209bbbda304dd748236d3b997116ca7}{puzzler\+::\+Puzzle\+Base$<$ T\+Input, T\+Output $>$}, \hyperlink{a00027_a2209bbbda304dd748236d3b997116ca7}{puzzler\+::\+Puzzle\+Base$<$ Option\+Explicit\+Input, Option\+Explicit\+Output $>$}, \hyperlink{a00027_a2209bbbda304dd748236d3b997116ca7}{puzzler\+::\+Puzzle\+Base$<$ Circuit\+Sim\+Input, Circuit\+Sim\+Output $>$}, \hyperlink{a00027_a2209bbbda304dd748236d3b997116ca7}{puzzler\+::\+Puzzle\+Base$<$ Matrix\+Exponent\+Input, Matrix\+Exponent\+Output $>$}, \hyperlink{a00027_a2209bbbda304dd748236d3b997116ca7}{puzzler\+::\+Puzzle\+Base$<$ Life\+Input, Life\+Output $>$}, and \hyperlink{a00027_a2209bbbda304dd748236d3b997116ca7}{puzzler\+::\+Puzzle\+Base$<$ String\+Search\+Input, String\+Search\+Output $>$}.
+
+\hypertarget{a00026_a9765b5110fd1919a1c174187a51e674a}{}\index{puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}!Make\+Empty\+Output@{Make\+Empty\+Output}}
+\index{Make\+Empty\+Output@{Make\+Empty\+Output}!puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}}
+\subsubsection[{Make\+Empty\+Output}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::shared\+\_\+ptr$<${\bf Output}$>$ puzzler\+::\+Puzzle\+::\+Make\+Empty\+Output (
+\begin{DoxyParamCaption}
+\item[{const {\bf Input} $\ast$}]{input}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00026_a9765b5110fd1919a1c174187a51e674a}
+
+
+Create a class that can hold instances of output. 
+
+
+
+Implemented in \hyperlink{a00027_a9bf8f206dc0b60425a8d13f814fad9af}{puzzler\+::\+Puzzle\+Base$<$ T\+Input, T\+Output $>$}, \hyperlink{a00027_a9bf8f206dc0b60425a8d13f814fad9af}{puzzler\+::\+Puzzle\+Base$<$ Option\+Explicit\+Input, Option\+Explicit\+Output $>$}, \hyperlink{a00027_a9bf8f206dc0b60425a8d13f814fad9af}{puzzler\+::\+Puzzle\+Base$<$ Circuit\+Sim\+Input, Circuit\+Sim\+Output $>$}, \hyperlink{a00027_a9bf8f206dc0b60425a8d13f814fad9af}{puzzler\+::\+Puzzle\+Base$<$ Matrix\+Exponent\+Input, Matrix\+Exponent\+Output $>$}, \hyperlink{a00027_a9bf8f206dc0b60425a8d13f814fad9af}{puzzler\+::\+Puzzle\+Base$<$ Life\+Input, Life\+Output $>$}, and \hyperlink{a00027_a9bf8f206dc0b60425a8d13f814fad9af}{puzzler\+::\+Puzzle\+Base$<$ String\+Search\+Input, String\+Search\+Output $>$}.
+
+\hypertarget{a00026_a38d988a8485d3a3e4699c1f609772373}{}\index{puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}!Name@{Name}}
+\index{Name@{Name}!puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}}
+\subsubsection[{Name}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::string puzzler\+::\+Puzzle\+::\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00026_a38d988a8485d3a3e4699c1f609772373}
+
+
+Unique name for the puzzle. 
+
+
+
+Implemented in \hyperlink{a00035_a88628db8e1c70676af2b59f57f4f3136}{puzzler\+::\+String\+Search\+Puzzle}, \hyperlink{a00013_a85c77863fbe9c92f44c3f6c6dfd182ea}{puzzler\+::\+Life\+Puzzle}, \hyperlink{a00006_a566e51a147dd0d1ed8dfca4f4649e4b1}{puzzler\+::\+Circuit\+Sim\+Puzzle}, \hyperlink{a00018_a06712fc62c3e8f410b9bee3f2b17c2eb}{puzzler\+::\+Matrix\+Exponent\+Puzzle}, and \hyperlink{a00022_a91ce85ad775e8eb8a20cf0df4ce2efcd}{puzzler\+::\+Option\+Explicit\+Puzzle}.
+
+\hypertarget{a00026_a3f627a94d707e1ca2db52e61196aefe2}{}\index{puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}!Reference\+Execute@{Reference\+Execute}}
+\index{Reference\+Execute@{Reference\+Execute}!puzzler\+::\+Puzzle@{puzzler\+::\+Puzzle}}
+\subsubsection[{Reference\+Execute}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+Puzzle\+::\+Reference\+Execute (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Log} $\ast$}]{log, }
+\item[{const {\bf Input} $\ast$}]{p\+Input, }
+\item[{{\bf Output} $\ast$}]{p\+Output}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00026_a3f627a94d707e1ca2db52e61196aefe2}
+
+
+\char`\"{}\+True\char`\"{} version of the solution. It may be slow, but will be correct 
+
+
+
+Implemented in \hyperlink{a00027_a28e795c9a05b405e4b6edd631134e54b}{puzzler\+::\+Puzzle\+Base$<$ T\+Input, T\+Output $>$}, \hyperlink{a00027_a28e795c9a05b405e4b6edd631134e54b}{puzzler\+::\+Puzzle\+Base$<$ Option\+Explicit\+Input, Option\+Explicit\+Output $>$}, \hyperlink{a00027_a28e795c9a05b405e4b6edd631134e54b}{puzzler\+::\+Puzzle\+Base$<$ Circuit\+Sim\+Input, Circuit\+Sim\+Output $>$}, \hyperlink{a00027_a28e795c9a05b405e4b6edd631134e54b}{puzzler\+::\+Puzzle\+Base$<$ Matrix\+Exponent\+Input, Matrix\+Exponent\+Output $>$}, \hyperlink{a00027_a28e795c9a05b405e4b6edd631134e54b}{puzzler\+::\+Puzzle\+Base$<$ Life\+Input, Life\+Output $>$}, and \hyperlink{a00027_a28e795c9a05b405e4b6edd631134e54b}{puzzler\+::\+Puzzle\+Base$<$ String\+Search\+Input, String\+Search\+Output $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/puzzler/core/\hyperlink{a00122}{puzzle.\+hpp}\end{DoxyCompactItemize}

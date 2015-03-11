@@ -1,0 +1,140 @@
+\hypertarget{a00003}{}\section{puzzler\+:\+:Circuit\+Sim\+Input Class Reference}
+\label{a00003}\index{puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}}
+
+
+{\ttfamily \#include $<$circuit\+\_\+sim.\+hpp$>$}
+
+Inheritance diagram for puzzler\+:\+:Circuit\+Sim\+Input\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{a00003}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00003_a68ac9f2ae2bc61a6638569b743a48408}{Circuit\+Sim\+Input} (const \hyperlink{a00026}{Puzzle} $\ast$puzzle, int scale)
+\item 
+\hyperlink{a00003_a81bf65f67dfab4c62ea0f32eeed0edd2}{Circuit\+Sim\+Input} (std\+::string format, std\+::string name, \hyperlink{a00025}{Persist\+Context} \&ctxt)
+\item 
+virtual void \hyperlink{a00003_a0dfeb0175d1af1f40424130478bc1acf}{Persist\+Impl} (\hyperlink{a00025}{Persist\+Context} \&conn) overridefinal
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \hyperlink{a00003_a2fee4aa543c7278fc1d96a78b0e50555}{nand\+Gate\+Count}
+\item 
+uint32\+\_\+t \hyperlink{a00003_a4a1d2f346b50c19b6a580604342fec41}{flip\+Flop\+Count}
+\item 
+std\+::vector$<$ std\+::pair$<$ int32\+\_\+t, int32\+\_\+t $>$ $>$ \hyperlink{a00003_a321be266e96bc3e9b37fedb6fbfda436}{nand\+Gate\+Inputs}
+\item 
+std\+::vector$<$ int32\+\_\+t $>$ \hyperlink{a00003_ade124cb322a0d121fee6c2288927abc9}{flip\+Flop\+Inputs}
+\item 
+uint32\+\_\+t \hyperlink{a00003_accda82ef15ce9c608214fec750f34bac}{clock\+Cycles}
+\item 
+std\+::vector$<$ bool $>$ \hyperlink{a00003_af9ad7bc970d5e8bb5822f09169b71fb4}{input\+State}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 15 of file circuit\+\_\+sim.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00003_a68ac9f2ae2bc61a6638569b743a48408}{}\index{puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}!Circuit\+Sim\+Input@{Circuit\+Sim\+Input}}
+\index{Circuit\+Sim\+Input@{Circuit\+Sim\+Input}!puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}}
+\subsubsection[{Circuit\+Sim\+Input}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+Circuit\+Sim\+Input\+::\+Circuit\+Sim\+Input (
+\begin{DoxyParamCaption}
+\item[{const {\bf Puzzle} $\ast$}]{puzzle, }
+\item[{int}]{scale}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00003_a68ac9f2ae2bc61a6638569b743a48408}
+
+
+Definition at line 34 of file circuit\+\_\+sim.\+hpp.
+
+\hypertarget{a00003_a81bf65f67dfab4c62ea0f32eeed0edd2}{}\index{puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}!Circuit\+Sim\+Input@{Circuit\+Sim\+Input}}
+\index{Circuit\+Sim\+Input@{Circuit\+Sim\+Input}!puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}}
+\subsubsection[{Circuit\+Sim\+Input}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+Circuit\+Sim\+Input\+::\+Circuit\+Sim\+Input (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{format, }
+\item[{std\+::string}]{name, }
+\item[{{\bf Persist\+Context} \&}]{ctxt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00003_a81bf65f67dfab4c62ea0f32eeed0edd2}
+
+
+Definition at line 38 of file circuit\+\_\+sim.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00003_a0dfeb0175d1af1f40424130478bc1acf}{}\index{puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}!Persist\+Impl@{Persist\+Impl}}
+\index{Persist\+Impl@{Persist\+Impl}!puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}}
+\subsubsection[{Persist\+Impl}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+Circuit\+Sim\+Input\+::\+Persist\+Impl (
+\begin{DoxyParamCaption}
+\item[{{\bf Persist\+Context} \&}]{conn}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{a00003_a0dfeb0175d1af1f40424130478bc1acf}
+
+
+Implements \hyperlink{a00009_aba0eb4c5656fc660e8746ca68f8f66e5}{puzzler\+::\+Puzzle\+::\+Input}.
+
+
+
+Definition at line 44 of file circuit\+\_\+sim.\+hpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00003_accda82ef15ce9c608214fec750f34bac}{}\index{puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}!clock\+Cycles@{clock\+Cycles}}
+\index{clock\+Cycles@{clock\+Cycles}!puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}}
+\subsubsection[{clock\+Cycles}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t puzzler\+::\+Circuit\+Sim\+Input\+::clock\+Cycles}\label{a00003_accda82ef15ce9c608214fec750f34bac}
+
+
+Definition at line 30 of file circuit\+\_\+sim.\+hpp.
+
+\hypertarget{a00003_a4a1d2f346b50c19b6a580604342fec41}{}\index{puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}!flip\+Flop\+Count@{flip\+Flop\+Count}}
+\index{flip\+Flop\+Count@{flip\+Flop\+Count}!puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}}
+\subsubsection[{flip\+Flop\+Count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t puzzler\+::\+Circuit\+Sim\+Input\+::flip\+Flop\+Count}\label{a00003_a4a1d2f346b50c19b6a580604342fec41}
+
+
+Definition at line 21 of file circuit\+\_\+sim.\+hpp.
+
+\hypertarget{a00003_ade124cb322a0d121fee6c2288927abc9}{}\index{puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}!flip\+Flop\+Inputs@{flip\+Flop\+Inputs}}
+\index{flip\+Flop\+Inputs@{flip\+Flop\+Inputs}!puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}}
+\subsubsection[{flip\+Flop\+Inputs}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$int32\+\_\+t$>$ puzzler\+::\+Circuit\+Sim\+Input\+::flip\+Flop\+Inputs}\label{a00003_ade124cb322a0d121fee6c2288927abc9}
+
+
+Definition at line 27 of file circuit\+\_\+sim.\+hpp.
+
+\hypertarget{a00003_af9ad7bc970d5e8bb5822f09169b71fb4}{}\index{puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}!input\+State@{input\+State}}
+\index{input\+State@{input\+State}!puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}}
+\subsubsection[{input\+State}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$bool$>$ puzzler\+::\+Circuit\+Sim\+Input\+::input\+State}\label{a00003_af9ad7bc970d5e8bb5822f09169b71fb4}
+
+
+Definition at line 31 of file circuit\+\_\+sim.\+hpp.
+
+\hypertarget{a00003_a2fee4aa543c7278fc1d96a78b0e50555}{}\index{puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}!nand\+Gate\+Count@{nand\+Gate\+Count}}
+\index{nand\+Gate\+Count@{nand\+Gate\+Count}!puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}}
+\subsubsection[{nand\+Gate\+Count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t puzzler\+::\+Circuit\+Sim\+Input\+::nand\+Gate\+Count}\label{a00003_a2fee4aa543c7278fc1d96a78b0e50555}
+
+
+Definition at line 20 of file circuit\+\_\+sim.\+hpp.
+
+\hypertarget{a00003_a321be266e96bc3e9b37fedb6fbfda436}{}\index{puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}!nand\+Gate\+Inputs@{nand\+Gate\+Inputs}}
+\index{nand\+Gate\+Inputs@{nand\+Gate\+Inputs}!puzzler\+::\+Circuit\+Sim\+Input@{puzzler\+::\+Circuit\+Sim\+Input}}
+\subsubsection[{nand\+Gate\+Inputs}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$std\+::pair$<$int32\+\_\+t,int32\+\_\+t$>$ $>$ puzzler\+::\+Circuit\+Sim\+Input\+::nand\+Gate\+Inputs}\label{a00003_a321be266e96bc3e9b37fedb6fbfda436}
+
+
+Definition at line 24 of file circuit\+\_\+sim.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/puzzler/puzzles/\hyperlink{a00129}{circuit\+\_\+sim.\+hpp}\end{DoxyCompactItemize}

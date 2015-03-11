@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>86EAFB90-4263-45D7-870F-226E60B4D70B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CW6</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>73BA588CC3FF5D3F5AE8BC940B4BD64FD7771698</key>
+		<string>https://github.com/HPCE/hpce_2014_cw6.git</string>
+		<key>F2FBA3BFDEE0CEA0E3944E1B2ECB5EF74E4FCAF1</key>
+		<string>https://github.com/HPCE/hpce-2014-cw2</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CW6/CW6.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>73BA588CC3FF5D3F5AE8BC940B4BD64FD7771698</key>
+		<string>../../..</string>
+		<key>F2FBA3BFDEE0CEA0E3944E1B2ECB5EF74E4FCAF1</key>
+		<string>../../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/HPCE/hpce_2014_cw6.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>73BA588CC3FF5D3F5AE8BC940B4BD64FD7771698</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F2FBA3BFDEE0CEA0E3944E1B2ECB5EF74E4FCAF1</string>
+			<key>IDESourceControlWCCName</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F2FBA3BFDEE0CEA0E3944E1B2ECB5EF74E4FCAF1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>..</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>73BA588CC3FF5D3F5AE8BC940B4BD64FD7771698</string>
+			<key>IDESourceControlWCCName</key>
+			<string>hpce_2014_cw6</string>
+		</dict>
+	</array>
+</dict>
+</plist>

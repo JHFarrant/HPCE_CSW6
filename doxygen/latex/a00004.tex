@@ -1,0 +1,108 @@
+\hypertarget{a00004}{}\section{puzzler\+:\+:Circuit\+Sim\+Output Class Reference}
+\label{a00004}\index{puzzler\+::\+Circuit\+Sim\+Output@{puzzler\+::\+Circuit\+Sim\+Output}}
+
+
+{\ttfamily \#include $<$circuit\+\_\+sim.\+hpp$>$}
+
+Inheritance diagram for puzzler\+:\+:Circuit\+Sim\+Output\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{a00004}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00004_a7978efa770aa6eec46155023e57756ce}{Circuit\+Sim\+Output} (const \hyperlink{a00026}{Puzzle} $\ast$puzzle, const \hyperlink{a00009}{Puzzle\+::\+Input} $\ast$input)
+\item 
+\hyperlink{a00004_a247b5b230795778c2642c7eafaaa70e3}{Circuit\+Sim\+Output} (std\+::string format, std\+::string name, \hyperlink{a00025}{Persist\+Context} \&ctxt)
+\item 
+virtual void \hyperlink{a00004_a1ef9b85e5ddb881cc9d96f569485e245}{Persist\+Impl} (\hyperlink{a00025}{Persist\+Context} \&conn) override
+\item 
+virtual bool \hyperlink{a00004_a8bd3f7ad0aa2f0fd567db60571009dac}{Equals} (const \hyperlink{a00023_aa605318d3632c1b359c07745bdf17e83}{Output} $\ast$output) const override
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ bool $>$ \hyperlink{a00004_ac8cb4373d4a1fb54dca1a3abcfb7cc90}{output\+State}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 64 of file circuit\+\_\+sim.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00004_a7978efa770aa6eec46155023e57756ce}{}\index{puzzler\+::\+Circuit\+Sim\+Output@{puzzler\+::\+Circuit\+Sim\+Output}!Circuit\+Sim\+Output@{Circuit\+Sim\+Output}}
+\index{Circuit\+Sim\+Output@{Circuit\+Sim\+Output}!puzzler\+::\+Circuit\+Sim\+Output@{puzzler\+::\+Circuit\+Sim\+Output}}
+\subsubsection[{Circuit\+Sim\+Output}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+Circuit\+Sim\+Output\+::\+Circuit\+Sim\+Output (
+\begin{DoxyParamCaption}
+\item[{const {\bf Puzzle} $\ast$}]{puzzle, }
+\item[{const {\bf Puzzle\+::\+Input} $\ast$}]{input}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00004_a7978efa770aa6eec46155023e57756ce}
+
+
+Definition at line 70 of file circuit\+\_\+sim.\+hpp.
+
+\hypertarget{a00004_a247b5b230795778c2642c7eafaaa70e3}{}\index{puzzler\+::\+Circuit\+Sim\+Output@{puzzler\+::\+Circuit\+Sim\+Output}!Circuit\+Sim\+Output@{Circuit\+Sim\+Output}}
+\index{Circuit\+Sim\+Output@{Circuit\+Sim\+Output}!puzzler\+::\+Circuit\+Sim\+Output@{puzzler\+::\+Circuit\+Sim\+Output}}
+\subsubsection[{Circuit\+Sim\+Output}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+Circuit\+Sim\+Output\+::\+Circuit\+Sim\+Output (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{format, }
+\item[{std\+::string}]{name, }
+\item[{{\bf Persist\+Context} \&}]{ctxt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00004_a247b5b230795778c2642c7eafaaa70e3}
+
+
+Definition at line 74 of file circuit\+\_\+sim.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00004_a8bd3f7ad0aa2f0fd567db60571009dac}{}\index{puzzler\+::\+Circuit\+Sim\+Output@{puzzler\+::\+Circuit\+Sim\+Output}!Equals@{Equals}}
+\index{Equals@{Equals}!puzzler\+::\+Circuit\+Sim\+Output@{puzzler\+::\+Circuit\+Sim\+Output}}
+\subsubsection[{Equals}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool puzzler\+::\+Circuit\+Sim\+Output\+::\+Equals (
+\begin{DoxyParamCaption}
+\item[{const {\bf Output} $\ast$}]{output}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{a00004_a8bd3f7ad0aa2f0fd567db60571009dac}
+
+
+Definition at line 85 of file circuit\+\_\+sim.\+hpp.
+
+\hypertarget{a00004_a1ef9b85e5ddb881cc9d96f569485e245}{}\index{puzzler\+::\+Circuit\+Sim\+Output@{puzzler\+::\+Circuit\+Sim\+Output}!Persist\+Impl@{Persist\+Impl}}
+\index{Persist\+Impl@{Persist\+Impl}!puzzler\+::\+Circuit\+Sim\+Output@{puzzler\+::\+Circuit\+Sim\+Output}}
+\subsubsection[{Persist\+Impl}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+Circuit\+Sim\+Output\+::\+Persist\+Impl (
+\begin{DoxyParamCaption}
+\item[{{\bf Persist\+Context} \&}]{conn}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{a00004_a1ef9b85e5ddb881cc9d96f569485e245}
+
+
+Implements \hyperlink{a00023_a6f38b053870861fd4afe8819174c4d3d}{puzzler\+::\+Puzzle\+::\+Output}.
+
+
+
+Definition at line 80 of file circuit\+\_\+sim.\+hpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00004_ac8cb4373d4a1fb54dca1a3abcfb7cc90}{}\index{puzzler\+::\+Circuit\+Sim\+Output@{puzzler\+::\+Circuit\+Sim\+Output}!output\+State@{output\+State}}
+\index{output\+State@{output\+State}!puzzler\+::\+Circuit\+Sim\+Output@{puzzler\+::\+Circuit\+Sim\+Output}}
+\subsubsection[{output\+State}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$bool$>$ puzzler\+::\+Circuit\+Sim\+Output\+::output\+State}\label{a00004_ac8cb4373d4a1fb54dca1a3abcfb7cc90}
+
+
+Definition at line 68 of file circuit\+\_\+sim.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/puzzler/puzzles/\hyperlink{a00129}{circuit\+\_\+sim.\+hpp}\end{DoxyCompactItemize}

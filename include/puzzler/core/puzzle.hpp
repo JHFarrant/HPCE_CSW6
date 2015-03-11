@@ -13,16 +13,14 @@ namespace puzzler
   {
   public:
 
-    class Input
-      : virtual Persistable
+    class Input: public virtual Persistable
     {
     private:
       std::string m_format;
       std::string m_puzzleName;
       uint32_t m_scale;
     protected:
-      Input(const Puzzle *puzzle, int scale)
-	: m_format("puzzle.input.v0")
+      Input(const Puzzle *puzzle, int scale): m_format("puzzle.input.v0")
 	, m_puzzleName(puzzle->Name())
 	, m_scale(scale)
       {}
@@ -32,18 +30,19 @@ namespace puzzler
 	, m_puzzleName(puzzleName)
       {
 	if(format!="puzzle.input.v0")
-	  throw std::runtime_error("Puzzle::Input - Invalid format string.");
-	ctxt.SendOrRecv(m_scale);
+  	   throw std::runtime_error("Puzzle::Input - Invalid format string.");
+  	   ctxt.SendOrRecv(m_scale);
       }
 
       virtual void PersistImpl(PersistContext &ctxt) =0;
+
     public:
       virtual void Persist(PersistContext &ctxt) override final
       {
-	ctxt.SendOrRecv(m_format,"puzzle.input.v0");
-	ctxt.SendOrRecv(m_puzzleName);
-	ctxt.SendOrRecv(m_scale);
-	PersistImpl(ctxt);
+        	ctxt.SendOrRecv(m_format,"puzzle.input.v0");
+        	ctxt.SendOrRecv(m_puzzleName);
+        	ctxt.SendOrRecv(m_scale);
+        	PersistImpl(ctxt);
       }
 
 
@@ -53,21 +52,17 @@ namespace puzzler
     };
 
     class Output
-      : virtual Persistable
+      : public virtual Persistable
     {
     private:
       std::string m_format;
       std::string m_puzzleName;
     protected:
-      Output(const Puzzle *puzzle, const Input *)
-	: m_format("puzzle.output.v0")
-	, m_puzzleName(puzzle->Name())
-      {
-      }
+      Output(const Puzzle *puzzle, const Input *): m_format("puzzle.output.v0"), m_puzzleName(puzzle->Name())
+      {}
 
-      Output(std::string format, std::string puzzleName, PersistContext &)
-	: m_format(format)
-	, m_puzzleName(puzzleName)
+      Output(std::string format, std::string puzzleName, PersistContext &): m_format(format)
+	       , m_puzzleName(puzzleName)
       {
 	if(format!="puzzle.output.v0")
 	  throw std::runtime_error("Puzzle::Output - Invalid format string.");
@@ -77,9 +72,9 @@ namespace puzzler
     public:
       virtual void Persist(PersistContext &ctxt) override final
       {
-	ctxt.SendOrRecv(m_format, "puzzle.output.v0");
-	ctxt.SendOrRecv(m_puzzleName);
-	PersistImpl(ctxt);
+        	ctxt.SendOrRecv(m_format, "puzzle.output.v0");
+        	ctxt.SendOrRecv(m_puzzleName);
+        	PersistImpl(ctxt);
       }
 
       virtual bool Equals(const Output *output) const=0;
@@ -128,7 +123,7 @@ namespace puzzler
     static void Register(std::shared_ptr<Puzzle> puzzle)
     {
       if(Registry().find(puzzle->Name())!=Registry().end())
-	throw std::runtime_error("PuzzleRegistrar::Register - There is already a handler for '"+puzzle->Name()+"'");
+	       throw std::runtime_error("PuzzleRegistrar::Register - There is already a handler for '"+puzzle->Name()+"'");
 
       Registry()[puzzle->Name()]=puzzle;
     }
@@ -140,7 +135,7 @@ namespace puzzler
 
       auto puzzle=Lookup(name);
       if(!puzzle){
-	throw std::runtime_error("PuzzleRegistrar::LoadInput - No handler for type '"+name+"'");
+	       throw std::runtime_error("PuzzleRegistrar::LoadInput - No handler for type '"+name+"'");
       }
 
       return puzzle->LoadInput(format, name, ctxt);
@@ -153,7 +148,7 @@ namespace puzzler
 
       auto puzzle=Lookup(name);
       if(!puzzle){
-	throw std::runtime_error("PuzzleRegistrar::LoadOutput - No handler for type '"+name+"'");
+	       throw std::runtime_error("PuzzleRegistrar::LoadOutput - No handler for type '"+name+"'");
       }
 
       return puzzle->LoadOutput(format, name, ctxt);
@@ -163,7 +158,7 @@ namespace puzzler
     {
       auto it=Registry().find(name);
       if(it==Registry().end())
-	return std::shared_ptr<Puzzle>();
+	       return std::shared_ptr<Puzzle>();
       return it->second;
     }
 
@@ -171,8 +166,8 @@ namespace puzzler
     {
       auto it=Registry().begin();
       while(it!=Registry().end()){
-	std::cout<<it->second->Name()<<"\n";
-	++it;
+	       std::cout<<it->second->Name()<<"\n";
+	       ++it;
       }
     }
     

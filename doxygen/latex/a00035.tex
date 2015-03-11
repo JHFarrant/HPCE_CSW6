@@ -1,0 +1,173 @@
+\hypertarget{a00035}{}\section{puzzler\+:\+:String\+Search\+Puzzle Class Reference}
+\label{a00035}\index{puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}}
+
+
+{\ttfamily \#include $<$string\+\_\+search.\+hpp$>$}
+
+Inheritance diagram for puzzler\+:\+:String\+Search\+Puzzle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{a00035}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::string \hyperlink{a00035_a88628db8e1c70676af2b59f57f4f3136}{Name} () const override
+\begin{DoxyCompactList}\small\item\em Unique name for the puzzle. \end{DoxyCompactList}\item 
+virtual std\+::shared\+\_\+ptr$<$ \hyperlink{a00009}{Input} $>$ \hyperlink{a00035_a9ca775a43c427b61a6d0c8f365334596}{Create\+Input} (\hyperlink{a00008}{I\+Log} $\ast$, int scale) const 
+\begin{DoxyCompactList}\small\item\em Create input with difficulty scale. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T\+Rng $>$ }\\std\+::string \hyperlink{a00035_ae2b6bd3807ee6b477d4c7081776ae6f0}{Make\+Pattern} (uint32\+\_\+t length, T\+Rng \&rng) const 
+\item 
+std\+::string \hyperlink{a00035_a703ceaa5a1e394430bee287784c50dc1}{Make\+String} (uint32\+\_\+t length, uint32\+\_\+t seed) const 
+\item 
+unsigned \hyperlink{a00035_aa22ba17ebe9bf921e4b0466fc883956e}{Matches} (const std\+::string data, unsigned offset, const std\+::string pattern) const 
+\item 
+virtual void \hyperlink{a00035_ab38b7057ea7926711c423f6c72d2a49e}{Execute} (\hyperlink{a00008}{I\+Log} $\ast$log, const \hyperlink{a00032}{String\+Search\+Input} $\ast$p\+Input, \hyperlink{a00033}{String\+Search\+Output} $\ast$p\+Output) const =0
+\item 
+void \hyperlink{a00035_a9c15a95de90157e2c3e98fd6dc482c80}{Reference\+Execute} (\hyperlink{a00008}{I\+Log} $\ast$log, const \hyperlink{a00032}{String\+Search\+Input} $\ast$p\+Input, \hyperlink{a00033}{String\+Search\+Output} $\ast$p\+Output) const 
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static uint32\+\_\+t \hyperlink{a00035_a045c52e7ce3af5387cb29bd9017fb293}{Step} (uint32\+\_\+t x)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 75 of file string\+\_\+search.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00035_a9ca775a43c427b61a6d0c8f365334596}{}\index{puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}!Create\+Input@{Create\+Input}}
+\index{Create\+Input@{Create\+Input}!puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}}
+\subsubsection[{Create\+Input}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::shared\+\_\+ptr$<${\bf Input}$>$ puzzler\+::\+String\+Search\+Puzzle\+::\+Create\+Input (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Log} $\ast$}]{log, }
+\item[{int}]{scale}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00035_a9ca775a43c427b61a6d0c8f365334596}
+
+
+Create input with difficulty scale. 
+
+
+
+Implements \hyperlink{a00026_a1b68731801d378875d8e8a0068d35562}{puzzler\+::\+Puzzle}.
+
+
+
+Definition at line 234 of file string\+\_\+search.\+hpp.
+
+\hypertarget{a00035_ab38b7057ea7926711c423f6c72d2a49e}{}\index{puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}!Execute@{Execute}}
+\index{Execute@{Execute}!puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}}
+\subsubsection[{Execute}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+String\+Search\+Puzzle\+::\+Execute (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Log} $\ast$}]{log, }
+\item[{const {\bf String\+Search\+Input} $\ast$}]{p\+Input, }
+\item[{{\bf String\+Search\+Output} $\ast$}]{p\+Output}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{a00035_ab38b7057ea7926711c423f6c72d2a49e}
+
+
+Implements \hyperlink{a00027_a695a1e881c86849e21d0248507ac212f}{puzzler\+::\+Puzzle\+Base$<$ String\+Search\+Input, String\+Search\+Output $>$}.
+
+
+
+Implemented in \hyperlink{a00034_a139312a56443b786f10caa395f9c4f88}{String\+Search\+Provider}.
+
+\hypertarget{a00035_ae2b6bd3807ee6b477d4c7081776ae6f0}{}\index{puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}!Make\+Pattern@{Make\+Pattern}}
+\index{Make\+Pattern@{Make\+Pattern}!puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}}
+\subsubsection[{Make\+Pattern}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T\+Rng $>$ std\+::string puzzler\+::\+String\+Search\+Puzzle\+::\+Make\+Pattern (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{length, }
+\item[{T\+Rng \&}]{rng}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{a00035_ae2b6bd3807ee6b477d4c7081776ae6f0}
+
+
+Definition at line 87 of file string\+\_\+search.\+hpp.
+
+\hypertarget{a00035_a703ceaa5a1e394430bee287784c50dc1}{}\index{puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}!Make\+String@{Make\+String}}
+\index{Make\+String@{Make\+String}!puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}}
+\subsubsection[{Make\+String}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string puzzler\+::\+String\+Search\+Puzzle\+::\+Make\+String (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{length, }
+\item[{uint32\+\_\+t}]{seed}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{a00035_a703ceaa5a1e394430bee287784c50dc1}
+
+
+Definition at line 103 of file string\+\_\+search.\+hpp.
+
+\hypertarget{a00035_aa22ba17ebe9bf921e4b0466fc883956e}{}\index{puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}!Matches@{Matches}}
+\index{Matches@{Matches}!puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}}
+\subsubsection[{Matches}]{\setlength{\rightskip}{0pt plus 5cm}unsigned puzzler\+::\+String\+Search\+Puzzle\+::\+Matches (
+\begin{DoxyParamCaption}
+\item[{const std\+::string}]{data, }
+\item[{unsigned}]{offset, }
+\item[{const std\+::string}]{pattern}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{a00035_aa22ba17ebe9bf921e4b0466fc883956e}
+
+
+Definition at line 150 of file string\+\_\+search.\+hpp.
+
+\hypertarget{a00035_a88628db8e1c70676af2b59f57f4f3136}{}\index{puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}!Name@{Name}}
+\index{Name@{Name}!puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}}
+\subsubsection[{Name}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::string puzzler\+::\+String\+Search\+Puzzle\+::\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{a00035_a88628db8e1c70676af2b59f57f4f3136}
+
+
+Unique name for the puzzle. 
+
+
+
+Implements \hyperlink{a00026_a38d988a8485d3a3e4699c1f609772373}{puzzler\+::\+Puzzle}.
+
+
+
+Definition at line 230 of file string\+\_\+search.\+hpp.
+
+\hypertarget{a00035_a9c15a95de90157e2c3e98fd6dc482c80}{}\index{puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}!Reference\+Execute@{Reference\+Execute}}
+\index{Reference\+Execute@{Reference\+Execute}!puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}}
+\subsubsection[{Reference\+Execute}]{\setlength{\rightskip}{0pt plus 5cm}void puzzler\+::\+String\+Search\+Puzzle\+::\+Reference\+Execute (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Log} $\ast$}]{log, }
+\item[{const {\bf String\+Search\+Input} $\ast$}]{p\+Input, }
+\item[{{\bf String\+Search\+Output} $\ast$}]{p\+Output}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}\label{a00035_a9c15a95de90157e2c3e98fd6dc482c80}
+
+
+Implements \hyperlink{a00027_aed67f6b074b18cbf20019928acc65f26}{puzzler\+::\+Puzzle\+Base$<$ String\+Search\+Input, String\+Search\+Output $>$}.
+
+
+
+Definition at line 190 of file string\+\_\+search.\+hpp.
+
+\hypertarget{a00035_a045c52e7ce3af5387cb29bd9017fb293}{}\index{puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}!Step@{Step}}
+\index{Step@{Step}!puzzler\+::\+String\+Search\+Puzzle@{puzzler\+::\+String\+Search\+Puzzle}}
+\subsubsection[{Step}]{\setlength{\rightskip}{0pt plus 5cm}static uint32\+\_\+t puzzler\+::\+String\+Search\+Puzzle\+::\+Step (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{x}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}\label{a00035_a045c52e7ce3af5387cb29bd9017fb293}
+
+
+Definition at line 80 of file string\+\_\+search.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/puzzler/puzzles/\hyperlink{a00133}{string\+\_\+search.\+hpp}\end{DoxyCompactItemize}
