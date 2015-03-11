@@ -1,7 +1,11 @@
 #ifndef puzzler_core_util_hpp
 #define puzzler_core_util_hpp
 
-//#include <time.h>
+#if defined(_WIN32) || defined(_WIN64)
+#define NOMINMAX
+#endif
+
+#include <time.h>
 #include <cstdio>
 #include <cstdarg>
 
@@ -12,34 +16,9 @@
 #include <vector>
 #include <stdexcept>
 
-#include <time.h>
-#include <sys/time.h>
-
-#define CLOCK_REALTIME 0
-
-//create clock_gettime alias for OSX
-//http://stackoverflow.com/questions/5167269/clock-gettime-alternative-in-mac-os-x
-#ifdef __MACH__ // for OSX
+#ifdef __MACH__
 #include <mach/clock.h>
 #include <mach/mach.h>
-
-int clock_gettime(int /*clk_id*/, struct timespec * ts){
-  
-  clock_serv_t cclock;
-  mach_timespec_t mts;
-  host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &cclock);
-  clock_get_time(cclock, &mts);
-  mach_port_deallocate(mach_task_self(), cclock);
-  ts->tv_sec = mts.tv_sec;
-  ts->tv_nsec = mts.tv_nsec;
-
-  return 0;
-
-}
-
-#else
-
-
 #endif
 
 #if defined(__CYGWIN__) || !(defined(_WIN32) || defined(_WIN64))
@@ -86,14 +65,14 @@ namespace puzzler
   public:
     WithBinaryIO()
     {
-      fflush(_fileno(stdout));
+      fflush(stdout);
       m_stdinPrev=_setmode(_fileno(stdin), _O_BINARY);
       m_stdoutPrev=_setmode(_fileno(stdout), _O_BINARY);
     }
 
     ~WithBinaryIO()
     {
-      fflush(_fileno(stdout));
+      fflush(stdout);
       m_stdinPrev=_setmode(_fileno(stdin), _O_BINARY);
       m_stdoutPrev=_setmode(_fileno(stdout), _O_BINARY);
     }
@@ -124,6 +103,23 @@ namespace puzzler
     tt -= 11644473600000000000ULL;
     return tt;;
   }
+#elif __MACH__
+    
+    inline timestamp_t now()
+    {
+        struct timespec ts;
+
+        clock_serv_t cclock;
+        mach_timespec_t mts;
+        host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &cclock);
+        clock_get_time(cclock, &mts);
+        mach_port_deallocate(mach_task_self(), cclock);
+        ts.tv_sec = mts.tv_sec;
+        ts.tv_nsec = mts.tv_nsec;
+        
+        return uint64_t(1e9*ts.tv_sec+ts.tv_nsec);
+    }
+    
 #else
   inline timestamp_t now()
   {
