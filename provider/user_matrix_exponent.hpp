@@ -1,5 +1,6 @@
 #ifndef user_matrix_exponent_hpp
 #define user_matrix_exponent_hpp
+#define CL_USE_DEPRECATED_OPENCL_1_1_APIS
 
 #include "puzzler/puzzles/matrix_exponent.hpp"
 #include "cl.hpp"
@@ -156,31 +157,32 @@ static void setup_opencl(puzzler::ILog *log,openCLinstance* opencl1)
 		log->LogDebug("Compliling Kernels.");
 	
 		std::string kernelSource=LoadSource("provider/kernels.cl");
-		kernelSource="__kernel void Add(__global f eloat *x){ x[get_global_id(0)] += 0.125f; }\n";
+		kernelSource="__kernel void Add(__global float *x){ x[get_global_id(0)] += 0.125f; }\n";
 
 		cl::Program::Sources sources(1, std::make_pair(kernelSource.c_str(), kernelSource.size()+1));
 		
 		cl::Program program(context, sources);
 		
-		try{
+		
 	    program.build(devices);
-		}catch(...){
+	
 	    for(unsigned i=0;i<devices.size();i++){
 	        std::cerr<<"Log for device "<<devices[i].getInfo<CL_DEVICE_NAME>()<<":\n\n";
 	        std::cerr<<program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(devices[i])<<"\n\n";
-	    }
-	    throw;
-		}
-		
-		unsigned nThreads=1;
+	 	} 
 		
 		size_t cbBuffer=4;
 		cl::Buffer buffer_1(context, CL_MEM_READ_WRITE, cbBuffer);
 		
 		opencl1->buffer_1 = buffer_1;
 
-		cl::Kernel kernel_1(program, "erode_kernel");
-		
+		cl::Kernel kernel_1(program, "Add");
+		std::cerr<<kernel_1.getInfo<CL_KERNEL_FUNCTION_NAME>()<<"\n\n";
+		std::cerr<<kernel_1.getInfo<CL_KERNEL_NUM_ARGS>()<<"\n\n";
+		std::cerr<<kernel_1.getInfo<CL_KERNEL_REFERENCE_COUNT>()<<"\n\n";
+		//std::cerr<<kernel_1.getInfo<CL_KERNEL_CONTEXT>()<<"\n\n";
+		//std::cerr<<kernel_1.getInfo<CL_KERNEL_PROGRAM>()<<"\n\n";
+
 		opencl1->kernel_1 = kernel_1;
 
 		cl::CommandQueue queue(context, device);
@@ -199,6 +201,7 @@ static void test_opencl(puzzler::ILog *log,openCLinstance* opencl1){
 	
 		unsigned nThreads=1;
 		float input=0.5;
+		opencl1->kernel_1.setArg(0, opencl1->buffer_1);
 
 		opencl1->queue.enqueueWriteBuffer(opencl1->buffer_1, CL_TRUE, 0, 4, &input);
 		opencl1->queue.enqueueBarrier();
@@ -208,12 +211,14 @@ static void test_opencl(puzzler::ILog *log,openCLinstance* opencl1){
 		
 		float output;
 		opencl1->queue.enqueueReadBuffer(opencl1->buffer_1, CL_TRUE, 0, 4, &output);
-		//std::cerr<<"Output = "<<output<<"\n"<<opencl1->kernel_1.getWorkGroupInfo(0)) <<"\n";
+		//std::cerr<<"Output = "<<output<<"\n"<<opencl1->kernel_1.getInfo<CL_KERNEL_FUNCTION_NAME>() <<"\n";
 		if(output!=0.625){
-			std::cerr<<"Program executed, but got the wrong output.\n";
+			//std::cerr<<"Program executed, but got the wrong output.\n";
+			log->LogDebug("Program executed, but got the wrong output. - !!!!!!!!!\n");
 			return;
 		}else{
-			std::cerr<<"Success, program executed kernel successfully.\n";
+			//std::cerr<<"Success, program executed kernel successfully.\n";
+			log->LogDebug("Success, program executed kernel successfully.\n");
 		}
 
 }
