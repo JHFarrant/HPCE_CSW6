@@ -1,0 +1,204 @@
+\hypertarget{a00008}{}\section{puzzler\+:\+:I\+Log Class Reference}
+\label{a00008}\index{puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}}
+
+
+{\ttfamily \#include $<$log.\+hpp$>$}
+
+Inheritance diagram for puzzler\+:\+:I\+Log\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{a00008}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{a00008_a6eb498cf2e16539a9c45bc86eef22e9a}{$\sim$\+I\+Log} ()
+\item 
+void \hyperlink{a00008_a090b6266b033be6438e2a732f999719d}{Log} (int level, const char $\ast$str,...)
+\item 
+{\footnotesize template$<$class T\+Functor $>$ }\\void \hyperlink{a00008_afeb380988a6fa1d57c1eb69cc2b5301f}{Log} (int level, T\+Functor f)
+\item 
+void \hyperlink{a00008_a93e1f98195799e0a0bb1b72b1534f2e0}{Log\+Fatal} (const char $\ast$str,...)
+\item 
+void \hyperlink{a00008_a7f67c099561fcdb77ead03b82e228e0e}{Log\+Error} (const char $\ast$str,...)
+\item 
+void \hyperlink{a00008_a3dab7c8f26e554b6903d9cdd3cbf277e}{Log\+Info} (const char $\ast$str,...)
+\item 
+void \hyperlink{a00008_a89c371cdb9bc1f3e64ca1d8673f8cb7c}{Log\+Verbose} (const char $\ast$str,...)
+\item 
+void \hyperlink{a00008_abc9daeb0862c355133da8772f4df79d4}{Log\+Debug} (const char $\ast$str,...)
+\item 
+virtual void \hyperlink{a00008_a47986f80c104ed2613c372ac403c2121}{v\+Log} (int level, const char $\ast$str, va\+\_\+list args)=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00008_a640ccb19af6f2c607af8fe82a2004510}{I\+Log} (int log\+Level)
+\item 
+\hyperlink{a00008_a6ca79b1d9b99ffe812e2332b5184a893}{I\+Log} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{a00008_a499ae736303da1d58454bed02b2b02fd}{m\+\_\+log\+Level}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 19 of file log.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00008_a640ccb19af6f2c607af8fe82a2004510}{}\index{puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}!I\+Log@{I\+Log}}
+\index{I\+Log@{I\+Log}!puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}}
+\subsubsection[{I\+Log}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+I\+Log\+::\+I\+Log (
+\begin{DoxyParamCaption}
+\item[{int}]{log\+Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{a00008_a640ccb19af6f2c607af8fe82a2004510}
+
+
+Definition at line 24 of file log.\+hpp.
+
+\hypertarget{a00008_a6ca79b1d9b99ffe812e2332b5184a893}{}\index{puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}!I\+Log@{I\+Log}}
+\index{I\+Log@{I\+Log}!puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}}
+\subsubsection[{I\+Log}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+I\+Log\+::\+I\+Log (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{a00008_a6ca79b1d9b99ffe812e2332b5184a893}
+
+
+Definition at line 28 of file log.\+hpp.
+
+\hypertarget{a00008_a6eb498cf2e16539a9c45bc86eef22e9a}{}\index{puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}!````~I\+Log@{$\sim$\+I\+Log}}
+\index{````~I\+Log@{$\sim$\+I\+Log}!puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}}
+\subsubsection[{$\sim$\+I\+Log}]{\setlength{\rightskip}{0pt plus 5cm}virtual puzzler\+::\+I\+Log\+::$\sim$\+I\+Log (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00008_a6eb498cf2e16539a9c45bc86eef22e9a}
+
+
+Definition at line 32 of file log.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00008_a090b6266b033be6438e2a732f999719d}{}\index{puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}!Log@{Log}}
+\index{Log@{Log}!puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}}
+\subsubsection[{Log}]{\setlength{\rightskip}{0pt plus 5cm}void puzzler\+::\+I\+Log\+::\+Log (
+\begin{DoxyParamCaption}
+\item[{int}]{level, }
+\item[{const char $\ast$}]{str, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00008_a090b6266b033be6438e2a732f999719d}
+
+
+Definition at line 35 of file log.\+hpp.
+
+\hypertarget{a00008_afeb380988a6fa1d57c1eb69cc2b5301f}{}\index{puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}!Log@{Log}}
+\index{Log@{Log}!puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}}
+\subsubsection[{Log}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T\+Functor $>$ void puzzler\+::\+I\+Log\+::\+Log (
+\begin{DoxyParamCaption}
+\item[{int}]{level, }
+\item[{T\+Functor}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00008_afeb380988a6fa1d57c1eb69cc2b5301f}
+Low-\/cost logging -\/ we only evaluate the function if the log is enabled, so cost is very low in the no-\/log case. 
+
+Definition at line 51 of file log.\+hpp.
+
+\hypertarget{a00008_abc9daeb0862c355133da8772f4df79d4}{}\index{puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}!Log\+Debug@{Log\+Debug}}
+\index{Log\+Debug@{Log\+Debug}!puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}}
+\subsubsection[{Log\+Debug}]{\setlength{\rightskip}{0pt plus 5cm}void puzzler\+::\+I\+Log\+::\+Log\+Debug (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00008_abc9daeb0862c355133da8772f4df79d4}
+
+
+Definition at line 100 of file log.\+hpp.
+
+\hypertarget{a00008_a7f67c099561fcdb77ead03b82e228e0e}{}\index{puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}!Log\+Error@{Log\+Error}}
+\index{Log\+Error@{Log\+Error}!puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}}
+\subsubsection[{Log\+Error}]{\setlength{\rightskip}{0pt plus 5cm}void puzzler\+::\+I\+Log\+::\+Log\+Error (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00008_a7f67c099561fcdb77ead03b82e228e0e}
+
+
+Definition at line 70 of file log.\+hpp.
+
+\hypertarget{a00008_a93e1f98195799e0a0bb1b72b1534f2e0}{}\index{puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}!Log\+Fatal@{Log\+Fatal}}
+\index{Log\+Fatal@{Log\+Fatal}!puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}}
+\subsubsection[{Log\+Fatal}]{\setlength{\rightskip}{0pt plus 5cm}void puzzler\+::\+I\+Log\+::\+Log\+Fatal (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00008_a93e1f98195799e0a0bb1b72b1534f2e0}
+
+
+Definition at line 60 of file log.\+hpp.
+
+\hypertarget{a00008_a3dab7c8f26e554b6903d9cdd3cbf277e}{}\index{puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}!Log\+Info@{Log\+Info}}
+\index{Log\+Info@{Log\+Info}!puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}}
+\subsubsection[{Log\+Info}]{\setlength{\rightskip}{0pt plus 5cm}void puzzler\+::\+I\+Log\+::\+Log\+Info (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00008_a3dab7c8f26e554b6903d9cdd3cbf277e}
+
+
+Definition at line 80 of file log.\+hpp.
+
+\hypertarget{a00008_a89c371cdb9bc1f3e64ca1d8673f8cb7c}{}\index{puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}!Log\+Verbose@{Log\+Verbose}}
+\index{Log\+Verbose@{Log\+Verbose}!puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}}
+\subsubsection[{Log\+Verbose}]{\setlength{\rightskip}{0pt plus 5cm}void puzzler\+::\+I\+Log\+::\+Log\+Verbose (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00008_a89c371cdb9bc1f3e64ca1d8673f8cb7c}
+
+
+Definition at line 90 of file log.\+hpp.
+
+\hypertarget{a00008_a47986f80c104ed2613c372ac403c2121}{}\index{puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}!v\+Log@{v\+Log}}
+\index{v\+Log@{v\+Log}!puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}}
+\subsubsection[{v\+Log}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+I\+Log\+::v\+Log (
+\begin{DoxyParamCaption}
+\item[{int}]{level, }
+\item[{const char $\ast$}]{str, }
+\item[{va\+\_\+list}]{args}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00008_a47986f80c104ed2613c372ac403c2121}
+
+
+Implemented in \hyperlink{a00014_a1ae9b3d7e60f373f5d028ff57860f31d}{puzzler\+::\+Log\+Dest}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00008_a499ae736303da1d58454bed02b2b02fd}{}\index{puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}!m\+\_\+log\+Level@{m\+\_\+log\+Level}}
+\index{m\+\_\+log\+Level@{m\+\_\+log\+Level}!puzzler\+::\+I\+Log@{puzzler\+::\+I\+Log}}
+\subsubsection[{m\+\_\+log\+Level}]{\setlength{\rightskip}{0pt plus 5cm}int puzzler\+::\+I\+Log\+::m\+\_\+log\+Level\hspace{0.3cm}{\ttfamily [protected]}}\label{a00008_a499ae736303da1d58454bed02b2b02fd}
+
+
+Definition at line 22 of file log.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/puzzler/core/\hyperlink{a00120}{log.\+hpp}\end{DoxyCompactItemize}

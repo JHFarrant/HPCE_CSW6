@@ -1,0 +1,119 @@
+\hypertarget{a00020}{}\section{puzzler\+:\+:Option\+Explicit\+Output Class Reference}
+\label{a00020}\index{puzzler\+::\+Option\+Explicit\+Output@{puzzler\+::\+Option\+Explicit\+Output}}
+
+
+{\ttfamily \#include $<$option\+\_\+explicit.\+hpp$>$}
+
+Inheritance diagram for puzzler\+:\+:Option\+Explicit\+Output\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{a00020}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00020_a72649bdc984a494435893bd366771271}{Option\+Explicit\+Output} (const \hyperlink{a00026}{Puzzle} $\ast$puzzle, const \hyperlink{a00009}{Puzzle\+::\+Input} $\ast$input)
+\item 
+\hyperlink{a00020_ad9ca0d088680197c8162a7943efc84e0}{Option\+Explicit\+Output} (std\+::string format, std\+::string name, \hyperlink{a00025}{Persist\+Context} \&ctxt)
+\item 
+virtual bool \hyperlink{a00020_ad12ffa4387fafa37298425000e6e1586}{Equals} (const \hyperlink{a00023_aa605318d3632c1b359c07745bdf17e83}{Output} $\ast$output) const override
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{a00020_a4537f91041cd43bd1efebd7c21a83ca9}{steps}
+\item 
+double \hyperlink{a00020_a37bc5d5542984f932dc2a5f114d02f1b}{value}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{a00020_a244f42e70ed257838a657360d7b5c370}{Persist\+Impl} (\hyperlink{a00025}{Persist\+Context} \&conn)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 46 of file option\+\_\+explicit.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00020_a72649bdc984a494435893bd366771271}{}\index{puzzler\+::\+Option\+Explicit\+Output@{puzzler\+::\+Option\+Explicit\+Output}!Option\+Explicit\+Output@{Option\+Explicit\+Output}}
+\index{Option\+Explicit\+Output@{Option\+Explicit\+Output}!puzzler\+::\+Option\+Explicit\+Output@{puzzler\+::\+Option\+Explicit\+Output}}
+\subsubsection[{Option\+Explicit\+Output}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+Option\+Explicit\+Output\+::\+Option\+Explicit\+Output (
+\begin{DoxyParamCaption}
+\item[{const {\bf Puzzle} $\ast$}]{puzzle, }
+\item[{const {\bf Puzzle\+::\+Input} $\ast$}]{input}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00020_a72649bdc984a494435893bd366771271}
+
+
+Definition at line 53 of file option\+\_\+explicit.\+hpp.
+
+\hypertarget{a00020_ad9ca0d088680197c8162a7943efc84e0}{}\index{puzzler\+::\+Option\+Explicit\+Output@{puzzler\+::\+Option\+Explicit\+Output}!Option\+Explicit\+Output@{Option\+Explicit\+Output}}
+\index{Option\+Explicit\+Output@{Option\+Explicit\+Output}!puzzler\+::\+Option\+Explicit\+Output@{puzzler\+::\+Option\+Explicit\+Output}}
+\subsubsection[{Option\+Explicit\+Output}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+Option\+Explicit\+Output\+::\+Option\+Explicit\+Output (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{format, }
+\item[{std\+::string}]{name, }
+\item[{{\bf Persist\+Context} \&}]{ctxt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00020_ad9ca0d088680197c8162a7943efc84e0}
+
+
+Definition at line 57 of file option\+\_\+explicit.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00020_ad12ffa4387fafa37298425000e6e1586}{}\index{puzzler\+::\+Option\+Explicit\+Output@{puzzler\+::\+Option\+Explicit\+Output}!Equals@{Equals}}
+\index{Equals@{Equals}!puzzler\+::\+Option\+Explicit\+Output@{puzzler\+::\+Option\+Explicit\+Output}}
+\subsubsection[{Equals}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool puzzler\+::\+Option\+Explicit\+Output\+::\+Equals (
+\begin{DoxyParamCaption}
+\item[{const {\bf Output} $\ast$}]{output}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{a00020_ad12ffa4387fafa37298425000e6e1586}
+
+
+Definition at line 70 of file option\+\_\+explicit.\+hpp.
+
+\hypertarget{a00020_a244f42e70ed257838a657360d7b5c370}{}\index{puzzler\+::\+Option\+Explicit\+Output@{puzzler\+::\+Option\+Explicit\+Output}!Persist\+Impl@{Persist\+Impl}}
+\index{Persist\+Impl@{Persist\+Impl}!puzzler\+::\+Option\+Explicit\+Output@{puzzler\+::\+Option\+Explicit\+Output}}
+\subsubsection[{Persist\+Impl}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+Option\+Explicit\+Output\+::\+Persist\+Impl (
+\begin{DoxyParamCaption}
+\item[{{\bf Persist\+Context} \&}]{conn}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}\label{a00020_a244f42e70ed257838a657360d7b5c370}
+
+
+Implements \hyperlink{a00023_a6f38b053870861fd4afe8819174c4d3d}{puzzler\+::\+Puzzle\+::\+Output}.
+
+
+
+Definition at line 64 of file option\+\_\+explicit.\+hpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00020_a4537f91041cd43bd1efebd7c21a83ca9}{}\index{puzzler\+::\+Option\+Explicit\+Output@{puzzler\+::\+Option\+Explicit\+Output}!steps@{steps}}
+\index{steps@{steps}!puzzler\+::\+Option\+Explicit\+Output@{puzzler\+::\+Option\+Explicit\+Output}}
+\subsubsection[{steps}]{\setlength{\rightskip}{0pt plus 5cm}int puzzler\+::\+Option\+Explicit\+Output\+::steps}\label{a00020_a4537f91041cd43bd1efebd7c21a83ca9}
+
+
+Definition at line 50 of file option\+\_\+explicit.\+hpp.
+
+\hypertarget{a00020_a37bc5d5542984f932dc2a5f114d02f1b}{}\index{puzzler\+::\+Option\+Explicit\+Output@{puzzler\+::\+Option\+Explicit\+Output}!value@{value}}
+\index{value@{value}!puzzler\+::\+Option\+Explicit\+Output@{puzzler\+::\+Option\+Explicit\+Output}}
+\subsubsection[{value}]{\setlength{\rightskip}{0pt plus 5cm}double puzzler\+::\+Option\+Explicit\+Output\+::value}\label{a00020_a37bc5d5542984f932dc2a5f114d02f1b}
+
+
+Definition at line 51 of file option\+\_\+explicit.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/puzzler/puzzles/\hyperlink{a00132}{option\+\_\+explicit.\+hpp}\end{DoxyCompactItemize}

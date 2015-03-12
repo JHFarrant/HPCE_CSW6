@@ -1,0 +1,114 @@
+\hypertarget{a00016}{}\section{puzzler\+:\+:Matrix\+Exponent\+Output Class Reference}
+\label{a00016}\index{puzzler\+::\+Matrix\+Exponent\+Output@{puzzler\+::\+Matrix\+Exponent\+Output}}
+
+
+{\ttfamily \#include $<$matrix\+\_\+exponent.\+hpp$>$}
+
+Inheritance diagram for puzzler\+:\+:Matrix\+Exponent\+Output\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{a00016}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00016_a6289ff3c310e540b00fd9b9b4207eaff}{Matrix\+Exponent\+Output} (const \hyperlink{a00026}{Puzzle} $\ast$puzzle, const \hyperlink{a00009}{Puzzle\+::\+Input} $\ast$input)
+\item 
+\hyperlink{a00016_ad9f7e98f072005bc7c9206b5b5fe4eb4}{Matrix\+Exponent\+Output} (std\+::string format, std\+::string name, \hyperlink{a00025}{Persist\+Context} \&ctxt)
+\item 
+virtual bool \hyperlink{a00016_a2bb02456a1fa4298038303a7ad0c3eee}{Equals} (const \hyperlink{a00023}{Puzzle\+::\+Output} $\ast$output) const override
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ uint32\+\_\+t $>$ \hyperlink{a00016_a9b891f8e2007f094085a8f41852e58b3}{hashes}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{a00016_ab29a2f912c55c0c027d7fd2bf023c41c}{Persist\+Impl} (\hyperlink{a00025}{Persist\+Context} \&conn)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 38 of file matrix\+\_\+exponent.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00016_a6289ff3c310e540b00fd9b9b4207eaff}{}\index{puzzler\+::\+Matrix\+Exponent\+Output@{puzzler\+::\+Matrix\+Exponent\+Output}!Matrix\+Exponent\+Output@{Matrix\+Exponent\+Output}}
+\index{Matrix\+Exponent\+Output@{Matrix\+Exponent\+Output}!puzzler\+::\+Matrix\+Exponent\+Output@{puzzler\+::\+Matrix\+Exponent\+Output}}
+\subsubsection[{Matrix\+Exponent\+Output}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+Matrix\+Exponent\+Output\+::\+Matrix\+Exponent\+Output (
+\begin{DoxyParamCaption}
+\item[{const {\bf Puzzle} $\ast$}]{puzzle, }
+\item[{const {\bf Puzzle\+::\+Input} $\ast$}]{input}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00016_a6289ff3c310e540b00fd9b9b4207eaff}
+
+
+Definition at line 44 of file matrix\+\_\+exponent.\+hpp.
+
+\hypertarget{a00016_ad9f7e98f072005bc7c9206b5b5fe4eb4}{}\index{puzzler\+::\+Matrix\+Exponent\+Output@{puzzler\+::\+Matrix\+Exponent\+Output}!Matrix\+Exponent\+Output@{Matrix\+Exponent\+Output}}
+\index{Matrix\+Exponent\+Output@{Matrix\+Exponent\+Output}!puzzler\+::\+Matrix\+Exponent\+Output@{puzzler\+::\+Matrix\+Exponent\+Output}}
+\subsubsection[{Matrix\+Exponent\+Output}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+Matrix\+Exponent\+Output\+::\+Matrix\+Exponent\+Output (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{format, }
+\item[{std\+::string}]{name, }
+\item[{{\bf Persist\+Context} \&}]{ctxt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00016_ad9f7e98f072005bc7c9206b5b5fe4eb4}
+
+
+Definition at line 48 of file matrix\+\_\+exponent.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00016_a2bb02456a1fa4298038303a7ad0c3eee}{}\index{puzzler\+::\+Matrix\+Exponent\+Output@{puzzler\+::\+Matrix\+Exponent\+Output}!Equals@{Equals}}
+\index{Equals@{Equals}!puzzler\+::\+Matrix\+Exponent\+Output@{puzzler\+::\+Matrix\+Exponent\+Output}}
+\subsubsection[{Equals}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool puzzler\+::\+Matrix\+Exponent\+Output\+::\+Equals (
+\begin{DoxyParamCaption}
+\item[{const {\bf Puzzle\+::\+Output} $\ast$}]{output}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{a00016_a2bb02456a1fa4298038303a7ad0c3eee}
+
+
+Implements \hyperlink{a00023_aa848aae3197c2a224d72127f0541ce7f}{puzzler\+::\+Puzzle\+::\+Output}.
+
+
+
+Definition at line 60 of file matrix\+\_\+exponent.\+hpp.
+
+\hypertarget{a00016_ab29a2f912c55c0c027d7fd2bf023c41c}{}\index{puzzler\+::\+Matrix\+Exponent\+Output@{puzzler\+::\+Matrix\+Exponent\+Output}!Persist\+Impl@{Persist\+Impl}}
+\index{Persist\+Impl@{Persist\+Impl}!puzzler\+::\+Matrix\+Exponent\+Output@{puzzler\+::\+Matrix\+Exponent\+Output}}
+\subsubsection[{Persist\+Impl}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+Matrix\+Exponent\+Output\+::\+Persist\+Impl (
+\begin{DoxyParamCaption}
+\item[{{\bf Persist\+Context} \&}]{conn}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}\label{a00016_ab29a2f912c55c0c027d7fd2bf023c41c}
+
+
+Implements \hyperlink{a00023_a6f38b053870861fd4afe8819174c4d3d}{puzzler\+::\+Puzzle\+::\+Output}.
+
+
+
+Definition at line 55 of file matrix\+\_\+exponent.\+hpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00016_a9b891f8e2007f094085a8f41852e58b3}{}\index{puzzler\+::\+Matrix\+Exponent\+Output@{puzzler\+::\+Matrix\+Exponent\+Output}!hashes@{hashes}}
+\index{hashes@{hashes}!puzzler\+::\+Matrix\+Exponent\+Output@{puzzler\+::\+Matrix\+Exponent\+Output}}
+\subsubsection[{hashes}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$uint32\+\_\+t$>$ puzzler\+::\+Matrix\+Exponent\+Output\+::hashes}\label{a00016_a9b891f8e2007f094085a8f41852e58b3}
+
+
+Definition at line 42 of file matrix\+\_\+exponent.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/puzzler/puzzles/\hyperlink{a00131}{matrix\+\_\+exponent.\+hpp}\end{DoxyCompactItemize}

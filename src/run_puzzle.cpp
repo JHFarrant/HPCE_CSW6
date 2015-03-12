@@ -1,4 +1,3 @@
-
 #include "puzzler/puzzler.hpp"
 
 #include <iostream>

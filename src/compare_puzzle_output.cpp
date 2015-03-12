@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
       int logLevel=atoi(argv[3]);
       fprintf(stderr, "LogLevel = %s -> %d\n", argv[3], logLevel);
       
-      std::shared_ptr<puzzler::ILog> logDest=std::make_shared<puzzler::LogDest>("execute_puzzle", logLevel);
+      std::shared_ptr<puzzler::ILog> logDest=std::make_shared<puzzler::LogDest>("compare_puzzle", logLevel);
       logDest->Log(puzzler::Log_Info, "Created log.");
 
       logDest->LogInfo("Loading reference %s", refName.c_str());

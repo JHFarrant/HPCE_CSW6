@@ -1,0 +1,130 @@
+\hypertarget{a00013}{}\section{puzzler\+:\+:Life\+Puzzle Class Reference}
+\label{a00013}\index{puzzler\+::\+Life\+Puzzle@{puzzler\+::\+Life\+Puzzle}}
+
+
+{\ttfamily \#include $<$life.\+hpp$>$}
+
+Inheritance diagram for puzzler\+:\+:Life\+Puzzle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{a00013}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::string \hyperlink{a00013_a85c77863fbe9c92f44c3f6c6dfd182ea}{Name} () const override
+\begin{DoxyCompactList}\small\item\em Unique name for the puzzle. \end{DoxyCompactList}\item 
+virtual std\+::shared\+\_\+ptr$<$ \hyperlink{a00009}{Input} $>$ \hyperlink{a00013_a941f2fedd6f853ab29a38a63408a2d7a}{Create\+Input} (\hyperlink{a00008}{I\+Log} $\ast$, int scale) const override
+\begin{DoxyCompactList}\small\item\em Create input with difficulty scale. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{a00013_a6c147d7d71684d67228428d4860a7e0c}{update} (int n, const std\+::vector$<$ bool $>$ \&curr, int x, int y) const 
+\item 
+virtual void \hyperlink{a00013_a42ce93d594f6ed2df036cdb02f47db6a}{Execute} (\hyperlink{a00008}{I\+Log} $\ast$log, const \hyperlink{a00010}{Life\+Input} $\ast$input, \hyperlink{a00011}{Life\+Output} $\ast$output) const =0
+\item 
+void \hyperlink{a00013_af3959bd479765598f239fc619040cd51}{Reference\+Execute} (\hyperlink{a00008}{I\+Log} $\ast$log, const \hyperlink{a00010}{Life\+Input} $\ast$p\+Input, \hyperlink{a00011}{Life\+Output} $\ast$p\+Output) const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 75 of file life.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00013_a941f2fedd6f853ab29a38a63408a2d7a}{}\index{puzzler\+::\+Life\+Puzzle@{puzzler\+::\+Life\+Puzzle}!Create\+Input@{Create\+Input}}
+\index{Create\+Input@{Create\+Input}!puzzler\+::\+Life\+Puzzle@{puzzler\+::\+Life\+Puzzle}}
+\subsubsection[{Create\+Input}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::shared\+\_\+ptr$<${\bf Input}$>$ puzzler\+::\+Life\+Puzzle\+::\+Create\+Input (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Log} $\ast$}]{log, }
+\item[{int}]{scale}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{a00013_a941f2fedd6f853ab29a38a63408a2d7a}
+
+
+Create input with difficulty scale. 
+
+
+
+Implements \hyperlink{a00026_a1b68731801d378875d8e8a0068d35562}{puzzler\+::\+Puzzle}.
+
+
+
+Definition at line 175 of file life.\+hpp.
+
+\hypertarget{a00013_a42ce93d594f6ed2df036cdb02f47db6a}{}\index{puzzler\+::\+Life\+Puzzle@{puzzler\+::\+Life\+Puzzle}!Execute@{Execute}}
+\index{Execute@{Execute}!puzzler\+::\+Life\+Puzzle@{puzzler\+::\+Life\+Puzzle}}
+\subsubsection[{Execute}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+Life\+Puzzle\+::\+Execute (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Log} $\ast$}]{log, }
+\item[{const {\bf Life\+Input} $\ast$}]{input, }
+\item[{{\bf Life\+Output} $\ast$}]{output}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{a00013_a42ce93d594f6ed2df036cdb02f47db6a}
+
+
+Implements \hyperlink{a00027_a695a1e881c86849e21d0248507ac212f}{puzzler\+::\+Puzzle\+Base$<$ Life\+Input, Life\+Output $>$}.
+
+
+
+Implemented in \hyperlink{a00012_ae1ccb15d99c10b691f8b92c4b61f2b35}{Life\+Provider}.
+
+\hypertarget{a00013_a85c77863fbe9c92f44c3f6c6dfd182ea}{}\index{puzzler\+::\+Life\+Puzzle@{puzzler\+::\+Life\+Puzzle}!Name@{Name}}
+\index{Name@{Name}!puzzler\+::\+Life\+Puzzle@{puzzler\+::\+Life\+Puzzle}}
+\subsubsection[{Name}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::string puzzler\+::\+Life\+Puzzle\+::\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{a00013_a85c77863fbe9c92f44c3f6c6dfd182ea}
+
+
+Unique name for the puzzle. 
+
+
+
+Implements \hyperlink{a00026_a38d988a8485d3a3e4699c1f609772373}{puzzler\+::\+Puzzle}.
+
+
+
+Definition at line 172 of file life.\+hpp.
+
+\hypertarget{a00013_af3959bd479765598f239fc619040cd51}{}\index{puzzler\+::\+Life\+Puzzle@{puzzler\+::\+Life\+Puzzle}!Reference\+Execute@{Reference\+Execute}}
+\index{Reference\+Execute@{Reference\+Execute}!puzzler\+::\+Life\+Puzzle@{puzzler\+::\+Life\+Puzzle}}
+\subsubsection[{Reference\+Execute}]{\setlength{\rightskip}{0pt plus 5cm}void puzzler\+::\+Life\+Puzzle\+::\+Reference\+Execute (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Log} $\ast$}]{log, }
+\item[{const {\bf Life\+Input} $\ast$}]{p\+Input, }
+\item[{{\bf Life\+Output} $\ast$}]{p\+Output}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}\label{a00013_af3959bd479765598f239fc619040cd51}
+
+
+Implements \hyperlink{a00027_aed67f6b074b18cbf20019928acc65f26}{puzzler\+::\+Puzzle\+Base$<$ Life\+Input, Life\+Output $>$}.
+
+
+
+Definition at line 119 of file life.\+hpp.
+
+\hypertarget{a00013_a6c147d7d71684d67228428d4860a7e0c}{}\index{puzzler\+::\+Life\+Puzzle@{puzzler\+::\+Life\+Puzzle}!update@{update}}
+\index{update@{update}!puzzler\+::\+Life\+Puzzle@{puzzler\+::\+Life\+Puzzle}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}bool puzzler\+::\+Life\+Puzzle\+::update (
+\begin{DoxyParamCaption}
+\item[{int}]{n, }
+\item[{const std\+::vector$<$ bool $>$ \&}]{curr, }
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{a00013_a6c147d7d71684d67228428d4860a7e0c}
+
+
+Definition at line 80 of file life.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/puzzler/puzzles/\hyperlink{a00130}{life.\+hpp}\end{DoxyCompactItemize}
