@@ -2,6 +2,9 @@
 #define user_matrix_exponent_hpp
 
 #include "puzzler/puzzles/matrix_exponent.hpp"
+#include "cl.hpp"
+#include <fstream>
+
 struct openCLinstance {
   cl::Kernel kernel_1;
   cl::Kernel kernel_2;
@@ -11,11 +14,7 @@ struct openCLinstance {
   cl::Buffer buffer_3;
   cl::Context context;
   int selected_device;
-} ;
-
-
-
-
+};
 
 
 class MatrixExponentProvider
@@ -30,8 +29,12 @@ public:
 		       const puzzler::MatrixExponentInput *input,
 		       puzzler::MatrixExponentOutput *output
 		       ) const override {
+	struct openCLinstance opencl1;
+	setup_opencl(log,&opencl1);
+	log->LogDebug("opencl1->selected_device %d",opencl1.selected_device );
+	test_opencl(log,&opencl1);
 
-    std::vector<uint32_t> hash(input->steps);
+    std::vector<uint32_t>  hash(input->steps);
 
       log->LogVerbose("Setting up A and identity");
       auto A=MatrixCreate(input->n, input->seed);
@@ -79,13 +82,8 @@ protected:
     
     static std::string LoadSource(const char *fileName)
 {
-    // Don't forget to change your_login here
-    std::string baseDir="src/jf1711";
-    if(getenv("HPCE_CL_SRC_DIR")){
-        baseDir=getenv("HPCE_CL_SRC_DIR");
-    }
 
-    std::string fullName=baseDir+"/"+fileName;
+    std::string fullName=fileName;
 
     // Open a read-only binary stream over the file
     std::ifstream src(fullName, std::ios::in | std::ios::binary);
@@ -98,10 +96,10 @@ protected:
         std::istreambuf_iterator<char>()
     );
 }
-static openCLinstance* setup_opencl()
-{
+static void setup_opencl(puzzler::ILog *log,openCLinstance* opencl1)
+{	
+	
 	try{
-		openCLinstance opencl1;
 		
 		std::vector<cl::Platform> platforms;
 			
@@ -109,17 +107,20 @@ static openCLinstance* setup_opencl()
 		if(platforms.size()==0)
 			throw std::runtime_error("No OpenCL platforms found.");
 		
-		std::cerr<<"Found "<<platforms.size()<<" platforms\n";
+		log->LogDebug("Found %i platforms.",platforms.size());	
+		//std::cerr<<"Found "<<platforms.size()<<" platforms\n";
 		for(unsigned i=0;i<platforms.size();i++){
 			std::string vendor=platforms[i].getInfo<CL_PLATFORM_VENDOR>();
-			std::cerr<<"  Platform "<<i<<" : "<<vendor<<"\n";
+			//std::cerr<<"  Platform "<<i<<" : "<<vendor<<"\n";
+			log->LogDebug("  Platform : %s",vendor.c_str());	
 		}
 		
 		int selectedPlatform=0;
 		if(getenv("HPCE_SELECT_PLATFORM")){
 			selectedPlatform=atoi(getenv("HPCE_SELECT_PLATFORM"));
 		}
-		std::cerr<<"Choosing platform "<<selectedPlatform<<"\n";
+		log->LogDebug("Choosing platform %d",selectedPlatform);
+		//std::cerr<<"Choosing platform "<<selectedPlatform<<"\n";
 		cl::Platform platform=platforms.at(selectedPlatform);
 		
 		std::vector<cl::Device> devices;
@@ -127,54 +128,95 @@ static openCLinstance* setup_opencl()
 		if(devices.size()==0){
 			throw std::runtime_error("No opencl devices found.\n");
 		}
-			
-		std::cerr<<"Found "<<devices.size()<<" devices\n";
+		
+		log->LogDebug("Found %i devices.",devices.size());	
+		//std::cerr<<"Found "<<devices.size()<<" devices\n";
 		for(unsigned i=0;i<devices.size();i++){
 			std::string name=devices[i].getInfo<CL_DEVICE_NAME>();
-			std::cerr<<"  Device "<<i<<" : "<<name<<"\n";
+			log->LogDebug("  Device : %s",name.c_str());	
+			//std::cerr<<"  Device "<<i<<" : "<<name<<"\n";
 		}
 		
 		int selectedDevice=0;
 		if(getenv("HPCE_SELECT_DEVICE")){
 			selectedDevice=atoi(getenv("HPCE_SELECT_DEVICE"));
 		}
-		std::cerr<<"Choosing device "<<selectedDevice<<"\n";
+		log->LogDebug("Choosing device %i",selectedDevice);	
+		//std::cerr<<"Choosing device "<<selectedDevice<<"\n";
+		
 		cl::Device device=devices.at(selectedDevice);
 		
-		opencl1.selected_device = selectedDevice;
+		opencl1->selected_device = selectedDevice;
 		
+		log->LogDebug("Setting up context.");
 		cl::Context context(devices);
+
+		opencl1->context = context;
 		
-		opencl1.context = context;
-		
-		std::string kernelSource="";
-		
+		log->LogDebug("Compliling Kernels.");
+	
+		std::string kernelSource=LoadSource("provider/kernels.cl");
+		kernelSource="__kernel void Add(__global f eloat *x){ x[get_global_id(0)] += 0.125f; }\n";
+
 		cl::Program::Sources sources(1, std::make_pair(kernelSource.c_str(), kernelSource.size()+1));
 		
 		cl::Program program(context, sources);
-		program.build(devices);
+		
+		try{
+	    program.build(devices);
+		}catch(...){
+	    for(unsigned i=0;i<devices.size();i++){
+	        std::cerr<<"Log for device "<<devices[i].getInfo<CL_DEVICE_NAME>()<<":\n\n";
+	        std::cerr<<program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(devices[i])<<"\n\n";
+	    }
+	    throw;
+		}
 		
 		unsigned nThreads=1;
 		
 		size_t cbBuffer=4;
-		cl::Buffer buffer(context, CL_MEM_READ_WRITE, cbBuffer);
+		cl::Buffer buffer_1(context, CL_MEM_READ_WRITE, cbBuffer);
 		
-		cl::Kernel kernel_1(program, "Add");
+		opencl1->buffer_1 = buffer_1;
+
+		cl::Kernel kernel_1(program, "erode_kernel");
 		
-		opencl1.kernel_1 = kernel_1;
-		
+		opencl1->kernel_1 = kernel_1;
+
 		cl::CommandQueue queue(context, device);
 		
-		opencl1.queue = queue; 
+		opencl1->queue = queue; 
 		
 	}catch(const std::exception &e){
 		std::cerr<<"Exception : "<<e.what()<<std::endl;
-		return 1;
+		return;
 	}
 		
-	return opencl1;
+	return;
 }
+static void test_opencl(puzzler::ILog *log,openCLinstance* opencl1){
+		log->LogDebug("Testing Opencl.");
+	
+		unsigned nThreads=1;
+		float input=0.5;
 
+		opencl1->queue.enqueueWriteBuffer(opencl1->buffer_1, CL_TRUE, 0, 4, &input);
+		opencl1->queue.enqueueBarrier();
+			
+		opencl1->queue.enqueueNDRangeKernel(opencl1->kernel_1, cl::NDRange(0), cl::NDRange(nThreads), cl::NullRange);
+		opencl1->queue.enqueueBarrier();
+		
+		float output;
+		opencl1->queue.enqueueReadBuffer(opencl1->buffer_1, CL_TRUE, 0, 4, &output);
+		//std::cerr<<"Output = "<<output<<"\n"<<opencl1->kernel_1.getWorkGroupInfo(0)) <<"\n";
+		if(output!=0.625){
+			std::cerr<<"Program executed, but got the wrong output.\n";
+			return;
+		}else{
+			std::cerr<<"Success, program executed kernel successfully.\n";
+		}
+
+}
     
 };
 
