@@ -11,6 +11,8 @@ public:
   CircuitSimProvider()
   {}
 
+  //~CircuitSimProvider(){}
+
   virtual void Execute(
 		       puzzler::ILog *log,
 		       const puzzler::CircuitSimInput *input,
@@ -18,6 +20,7 @@ public:
 		       ) const override {
     ReferenceExecute(log, input, output);
   }
+
 
 };
 
