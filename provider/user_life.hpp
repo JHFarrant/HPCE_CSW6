@@ -3,6 +3,7 @@
 
 #include "puzzler/puzzles/life.hpp"
 
+
 class LifeProvider
   : public puzzler::LifePuzzle
 {
