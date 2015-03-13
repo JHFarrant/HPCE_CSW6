@@ -14,3 +14,4 @@ puzzles.o : *.hpp
 	ar -cr ../lib/libpuzzler.a puzzles.o
 
 all : ../lib/libpuzzler.a
+
