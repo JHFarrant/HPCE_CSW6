@@ -1,6 +1,6 @@
 
 #include "puzzler/puzzler.hpp"
-
+#include <ctime>
 #include <iostream>
 
 
@@ -37,11 +37,18 @@ int main(int argc, char *argv[])
 
       logDest->LogInfo("Executing puzzle");
       auto got=puzzle->MakeEmptyOutput(input.get());
+      std::clock_t start1;
+      start1 = std::clock();
       puzzle->Execute(logDest.get(), input.get(), got.get());
+      std::cout << "Time: " << (std::clock() - start1) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;
+      logDest->LogInfo("Time: %f ms",(std::clock() - start1) / (double)(CLOCKS_PER_SEC / 1000));
 
       logDest->LogInfo("Executing reference");
       auto ref=puzzle->MakeEmptyOutput(input.get());
+      std::clock_t start2;
+      start2 = std::clock();
       puzzle->ReferenceExecute(logDest.get(), input.get(), ref.get());
+      std::cout << "Time: " << (std::clock() - start2) / (double)(CLOCKS_PER_SEC / 1000) << " ms" << std::endl;
 
       logDest->LogInfo("Checking output");
       if(!ref->Equals(got.get())){

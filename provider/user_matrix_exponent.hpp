@@ -1,6 +1,6 @@
 #ifndef user_matrix_exponent_hpp
 #define user_matrix_exponent_hpp
-#define CL_USE_DEPRECATED_OPENCL_1_1_APIS
+//#define CL_USE_DEPRECATED_OPENCL_1_1_APIS
 
 #include "puzzler/puzzles/matrix_exponent.hpp"
 #include "cl.hpp"
@@ -9,10 +9,12 @@
 struct openCLinstance {
   cl::Kernel kernel_1;
   cl::Kernel kernel_2;
+  cl::Kernel kernel_3;
   cl::CommandQueue queue;
   cl::Buffer buffer_1;
   cl::Buffer buffer_2;
   cl::Buffer buffer_3;
+  cl::Buffer buffer_4;
   cl::Context context;
   int selected_device;
 };
@@ -31,23 +33,29 @@ public:
 		       puzzler::MatrixExponentOutput *output
 		       ) const override {
 	struct openCLinstance opencl1;
-	setup_opencl(log,&opencl1);
+	setup_opencl(log, &opencl1, input->n);
 	log->LogDebug("opencl1->selected_device %d",opencl1.selected_device );
 	test_opencl(log,&opencl1);
 
     std::vector<uint32_t>  hash(input->steps);
+	  uint32_t test = 4294967296;
+      uint32_t test2 = test + 10;
+      uint64_t test3 = (test + test2)%2147483647;
+      uint32_t test4 = test3;
+      std::cerr<<test<<" "<<test2<<" "<<test3<<" "<<test4<<"\n";
 
       log->LogVerbose("Setting up A and identity");
       auto A=MatrixCreate(input->n, input->seed);
-      auto acc=MatrixIdentity(input->n);
+      uint32_t acc = MatrixIdentity(input->n , &opencl1);
 
       log->LogVerbose("Beginning multiplication");
-      hash[0]=acc[0];
+      hash[0]=acc;
       //OpenCL Here (Include hash vector inside MatrixMul Kernel)
+      opencl1.queue.enqueueWriteBuffer(opencl1.buffer_3, CL_TRUE, 0, 4*input->n*input->n, &A[0]);
       for(unsigned i=1; i<input->steps; i++){
         log->LogDebug("Iteration %d", i);
-        acc=MatrixMul(input->n,acc, A);
-        hash[i]=acc[0];
+        acc=MatrixMul(input->n, &opencl1);
+        hash[i]=acc;
       }
       log->LogVerbose("Done");
 	
@@ -57,27 +65,99 @@ public:
   }
   
 protected:
-    static std::vector<uint32_t> MatrixIdentity(unsigned n)
+    static uint32_t MatrixIdentity(unsigned n , openCLinstance* opencl1)
     {
     //Run open_cl Implementation here.
-      std::vector<uint32_t> res(n*n,0);
-      for(unsigned i=0; i<n; i++){
-        res[i*n+i]=1;
-      }
+    // run kernel
+    // read result
+      cl::NDRange globalSize(n, n);
+      uint32_t res;
+      // for(unsigned i=0; i<n; i++){
+      //   res[i*n+i]=1;
+      // }
+      
+      //       for(int row = 0; row < n;row++){
+      // 	for(int col = 0; col < n;col++){
+      // 		std::cerr<<"["<<res[row*n+col]<<"] ";
+      // 	}
+      // 	std::cerr<<"\n";
+      // }
+      // std::cerr<<"\n\n\n";
+
+
+      //opencl1->queue.enqueueWriteBuffer(opencl1->buffer_2, CL_TRUE, 0, 4 * n * n, &res[0]);
+      opencl1->kernel_2.setArg(0, opencl1->buffer_2);
+   
+      opencl1->queue.enqueueNDRangeKernel(opencl1->kernel_2, cl::NDRange(0,0), globalSize, cl::NullRange);
+	  opencl1->queue.enqueueBarrier();
+      opencl1->queue.enqueueReadBuffer(opencl1->buffer_2, CL_TRUE, 0, 4, &res);
+      //opencl1->queue.enqueueBarrier();
+
+      // for(int row = 0; row < n;row++){
+      // 	for(int col = 0; col < n;col++){
+      // 		std::cerr<<"["<<res[row*n+col]<<"] ";
+      // 	}
+      // 	std::cerr<<"\n"; 
+      // }
       return res;
     }
     
-    static std::vector<uint32_t> MatrixMul(unsigned n, std::vector<uint32_t> a, std::vector<uint32_t> b)
+    static uint32_t MatrixMul(unsigned n,openCLinstance* opencl1)
     {
-      std::vector<uint32_t> res(n*n, 0);
+      //std::vector<uint32_t> res(1, 0);
+      uint32_t res;
       //Run open_cl Implementation here.
-      for(unsigned r=0; r<n; r++){
-        for(unsigned c=0; c<n; c++){
-          for(unsigned i=0; i<n; i++){
-            res[r*n+c] = Add(res[r*n+c], Mul(a[r*n+i], b[i*n+r]));
-          }
-        }
-      }
+      
+      // for(unsigned r=0; r<n; r++){
+      //   for(unsigned c=0; c<n; c++){
+      //     for(unsigned i=0; i<n; i++){
+      //       res[r*n+c] = Add(res[r*n+c], Mul(a[r*n+i], b[i*n+r]));
+      //     }
+      //   }
+      // }
+
+
+  //     std::cerr<<"N = "<<n<<"\n";
+		// std::cerr<<"-------b-------\n";
+  //     for(int row = 0; row < n;row++){
+  //     	for(int col = 0; col < n;col++){
+  //     		std::cerr<<"["<<b[row*n+col]<<"] ";
+  //     	}
+  //     	std::cerr<<"\n";
+  //     }
+  //      std::cerr<<"\n\n\n\n";
+
+  //      	std::cerr<<"-------a-------\n";
+  //     for(int row = 0; row < n;row++){
+  //     	for(int col = 0; col < n;col++){
+  //     		std::cerr<<"["<<a[row*n+col]<<"] ";
+  //     	}
+  //     	std::cerr<<"\n";
+  //     }
+  //      std::cerr<<"\n\n\n\n";
+
+
+      //opencl1->queue.enqueueWriteBuffer(opencl1->buffer_2, CL_TRUE, 0, 4*n*n, &a[0]);
+      //opencl1->queue.enqueueWriteBuffer(opencl1->buffer_3, CL_TRUE, 0, 4*n*n, &b[0]);
+      //opencl1->queue.enqueueBarrier();
+
+      opencl1->kernel_3.setArg(0, opencl1->buffer_2);
+      opencl1->kernel_3.setArg(1, opencl1->buffer_3); 
+      opencl1->kernel_3.setArg(2, opencl1->buffer_4);
+      opencl1->queue.enqueueNDRangeKernel(opencl1->kernel_3, cl::NDRange(0,0), cl::NDRange(n,n), cl::NullRange);
+      opencl1->queue.enqueueBarrier(); 
+      opencl1->queue.enqueueReadBuffer(opencl1->buffer_4, CL_TRUE, 0, 4 , &res);
+      std::swap(opencl1->buffer_2,opencl1->buffer_4);
+	 
+	 	// std::cerr<<"-------res-------";
+	  // for(int row = 0; row < n;row++){
+	  //     	for(int col = 0; col < n;col++){
+	  //     		std::cerr<<"["<<res[row*n+col]<<"] ";
+	  //     	}
+	  //     	std::cerr<<"\n";
+	  //     }
+	  //     std::cerr<<"\n\n\n\n";
+
       return res;
     }
     
@@ -97,7 +177,7 @@ protected:
         std::istreambuf_iterator<char>()
     );
 }
-static void setup_opencl(puzzler::ILog *log,openCLinstance* opencl1)
+static void setup_opencl(puzzler::ILog *log,openCLinstance* opencl1, unsigned n)
 {	
 	
 	try{
@@ -157,7 +237,7 @@ static void setup_opencl(puzzler::ILog *log,openCLinstance* opencl1)
 		log->LogDebug("Compliling Kernels.");
 	
 		std::string kernelSource=LoadSource("provider/kernels.cl");
-		kernelSource="__kernel void Add(__global float *x){ x[get_global_id(0)] += 0.125f; }\n";
+		kernelSource += "__kernel void Add(__global float *x){ x[get_global_id(0)] += 0.125f; }\n";
 
 		cl::Program::Sources sources(1, std::make_pair(kernelSource.c_str(), kernelSource.size()+1));
 		
@@ -174,16 +254,28 @@ static void setup_opencl(puzzler::ILog *log,openCLinstance* opencl1)
 		size_t cbBuffer=4;
 		cl::Buffer buffer_1(context, CL_MEM_READ_WRITE, cbBuffer);
 		
-		opencl1->buffer_1 = buffer_1;
+		cbBuffer=4*n*n;
+		cl::Buffer buffer_2(context, CL_MEM_READ_WRITE, cbBuffer);
+		cl::Buffer buffer_3(context, CL_MEM_READ_WRITE, cbBuffer);
+		cl::Buffer buffer_4(context, CL_MEM_READ_WRITE, cbBuffer);
+
+		opencl1->buffer_1 = buffer_1; //Test Buffer
+		opencl1->buffer_2 = buffer_2;
+		opencl1->buffer_3 = buffer_3;
+		opencl1->buffer_4 = buffer_4;
 
 		cl::Kernel kernel_1(program, "Add");
-		std::cerr<<kernel_1.getInfo<CL_KERNEL_FUNCTION_NAME>()<<"\n\n";
-		std::cerr<<kernel_1.getInfo<CL_KERNEL_NUM_ARGS>()<<"\n\n";
-		std::cerr<<kernel_1.getInfo<CL_KERNEL_REFERENCE_COUNT>()<<"\n\n";
+		cl::Kernel kernel_2(program, "Identity");
+		cl::Kernel kernel_3(program, "Multiply");
+		//std::cerr<<kernel_1.getInfo<CL_KERNEL_FUNCTION_NAME>()<<"\n\n";
+		//std::cerr<<kernel_1.getInfo<CL_KERNEL_NUM_ARGS>()<<"\n\n";
+		//std::cerr<<kernel_1.getInfo<CL_KERNEL_REFERENCE_COUNT>()<<"\n\n";
 		//std::cerr<<kernel_1.getInfo<CL_KERNEL_CONTEXT>()<<"\n\n";
 		//std::cerr<<kernel_1.getInfo<CL_KERNEL_PROGRAM>()<<"\n\n";
 
 		opencl1->kernel_1 = kernel_1;
+		opencl1->kernel_2 = kernel_2;
+		opencl1->kernel_3 = kernel_3;
 
 		cl::CommandQueue queue(context, device);
 		
@@ -218,7 +310,7 @@ static void test_opencl(puzzler::ILog *log,openCLinstance* opencl1){
 			return;
 		}else{
 			//std::cerr<<"Success, program executed kernel successfully.\n";
-			log->LogDebug("Success, program executed kernel successfully.\n");
+			log->LogDebug("Success, program executed test kernel successfully.\n");
 		}
 
 }
