@@ -2,7 +2,7 @@ SHELL=/bin/bash
 
 CPPFLAGS += -std=c++11 -W -Wall  -g
 CPPFLAGS += -O3
-CPPFLAGS += -I ../include
+CPPFLAGS += -I ../include -I CL
 
 puzzles.o : *.hpp
 
