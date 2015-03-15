@@ -2,6 +2,7 @@
 #define user_life_hpp
 
 #include "puzzler/puzzles/life.hpp"
+#include "setup.h"
 
 
 class LifeProvider
@@ -17,7 +18,7 @@ public:
 		       puzzler::LifeOutput *output
 		       ) const override {
     
-      
+      setup(log);
       log->LogVerbose("About to start running iterations (total = %d)", input->steps);
       
       unsigned n=input->n;
@@ -41,6 +42,7 @@ public:
           for(unsigned x=0; x<n; x++){
               for(unsigned y=0; y<n; y++){
                   //next[y*n+x]=update(n, state, x, y);
+            
                   next[y*n+x]= kernel_update(n, state, x, y);
               }
           }
@@ -73,7 +75,7 @@ protected:
                 int ox=(n+x+dx)%n; // handle wrap-around
                 int oy=(n+y+dy)%n;
                 
-                if(curr.at(oy*n+ox) && !(dx==0 && dy==0))
+                if(curr[oy*n+ox] && !(dx==0 && dy==0))
                     neighbours++;
             }
         }
