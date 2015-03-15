@@ -6,9 +6,9 @@ REF="ref_out.txt"  #reference filename
 USER="user_out.txt"   #user filename
 CREATE_LL=0; # create_puzzle_input log level
 EX_LL=4; # execute_puzzle log level
-COMP_LL=0; # compare_puzzle_output log level
-PUZZLE="circuit_sim"  # puzzle to test 
-SCALE=5 # problem size (size of)
+COMP_LL=4; # compare_puzzle_output log level
+PUZZLE="life"  # puzzle to test 
+SCALE=100 # problem size (size of)
 
 
 
