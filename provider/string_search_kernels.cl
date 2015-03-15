@@ -1,4 +1,4 @@
-__kernel void Matches(__global char* patterns,  __global char* data,  __global uchar* bools, uint data_size,  uint individual_pattern_length, __global char* buf1,__global char* buf2)
+__kernel void Matches(__global char* patterns,  __global char* data,  __global uchar* bools, uint data_size,  uint individual_pattern_length)
 {
 
     uint pos= get_global_id(0);
