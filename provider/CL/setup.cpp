@@ -54,10 +54,6 @@ void setup(puzzler::ILog *log){
         fprintf(stderr, "-------------------------------------\n");
     }catch(...){
         for(unsigned i=0;i<devices.size();i++){
-           // std::cerr<<"Log for device "<<devices[i].getInfo<CL_DEVICE_NAME>()<<":\n\n";
-            //fprintf(stderr, "Log for device %s \n\n", (devices[i].getInfo<CL_DEVICE_NAME>()).c_str() );
-           //std::cerr<<program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(devices[i])<<"\n\n";
-           // fprintf(stderr, "%s \n\n", program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(devices[i]).c_str() );
             
             fprintf(stderr,"Log for device %s \n\n", (devices[i].getInfo<CL_DEVICE_NAME>()).c_str());
             fprintf(stderr,"%s \n\n", program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(devices[i]).c_str());
@@ -70,13 +66,11 @@ void setup(puzzler::ILog *log){
 
 void showPlatforms(std::vector<cl::Platform> * platforms ){
     
-    //std::cerr<<"Found "<<platforms->size()<<" platforms\n";
     fprintf(stderr,"Found %d platforms \n", platforms->size());
     
     for(unsigned i=0;i<platforms->size();i++){
         std::string vendor=platforms->at(i).getInfo<CL_PLATFORM_VENDOR>();
-        //std::cerr<<"  Platform "<<i<<" : "<<vendor<<"\n";
-       fprintf(stderr,"Platform %d : %s \n", i, vendor.c_str());
+        fprintf(stderr,"Platform %d : %s \n", i, vendor.c_str());
 
     }
     
@@ -85,10 +79,8 @@ void showPlatforms(std::vector<cl::Platform> * platforms ){
 void showDevices(std::vector<cl::Device> * devices){
     
     std::cerr<<"Found "<<devices->size()<<" devices\n";
-    //fprintf(stderr, "Found %s\n", devices->size().c_str());
     for(unsigned i=0;i<devices->size();i++){
         std::string name=devices->at(i).getInfo<CL_DEVICE_NAME>();
-       // std::cerr<<"  Device "<<i<<" : "<<name<<"\n";
         fprintf(stderr,"  Device %d : %s\n", i, name.c_str());
     }
 }
@@ -98,7 +90,6 @@ cl::Platform  selectPlatform(std::vector<cl::Platform> * platforms ){
     if(getenv("HPCE_SELECT_PLATFORM"))
         selectedPlatform=atoi(getenv("HPCE_SELECT_PLATFORM"));
     
-    //std::cerr<<"Choosing platform "<<selectedPlatform<<"\n\n";
     fprintf(stderr,"Choosing platform %d \n\n", selectedPlatform);
     return platforms->at(selectedPlatform);
     
@@ -111,7 +102,6 @@ cl::Device selectDevice(std::vector<cl::Device> * devices){
     if(getenv("HPCE_SELECT_DEVICE"))
         selectedDevice=atoi(getenv("HPCE_SELECT_DEVICE"));
     
-    //std::cerr<<"Choosing device "<<selectedDevice<<"\n";
     fprintf(stderr,"Choosing device %d \n", selectedDevice);
     return devices->at(selectedDevice);
 }
