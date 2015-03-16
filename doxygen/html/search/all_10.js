@@ -1,0 +1,10 @@
+var searchData=
+[
+  ['r',['r',['../a00019.html#a861b90050a79636ffc94285b5505b846',1,'puzzler::OptionExplicitInput']]],
+  ['readme_2emd',['readme.md',['../a00140.html',1,'']]],
+  ['recv',['Recv',['../a00031.html#a700b50890c0adb2af0800b43b1ac0d5f',1,'puzzler::Stream::Recv()'],['../a00007.html#a28c190f98fc33a13b0b791e7b1213152',1,'puzzler::FileInStream::Recv()'],['../a00029.html#a1fc5817613feb455300176f2c1c01796',1,'puzzler::StdinStream::Recv()'],['../a00030.html#aad641058487bb26cf8555ab14a8d97a9',1,'puzzler::StdoutStream::Recv()']]],
+  ['recvoffset',['RecvOffset',['../a00031.html#aa4ddc05c400ec1833c7beb8af9b0cbe4',1,'puzzler::Stream::RecvOffset()'],['../a00007.html#a61be8ee8fd10a704690f64bf3f87bbb7',1,'puzzler::FileInStream::RecvOffset()'],['../a00029.html#aea1804e01face82dac1313265167c91b',1,'puzzler::StdinStream::RecvOffset()'],['../a00030.html#aea7a8080718b7038a1a4cb3e932edd8c',1,'puzzler::StdoutStream::RecvOffset()']]],
+  ['referenceexecute',['ReferenceExecute',['../a00026.html#a3f627a94d707e1ca2db52e61196aefe2',1,'puzzler::Puzzle::ReferenceExecute()'],['../a00027.html#aed67f6b074b18cbf20019928acc65f26',1,'puzzler::PuzzleBase::ReferenceExecute(ILog *log, const TInput *pInput, TOutput *pOutput) const =0'],['../a00027.html#a28e795c9a05b405e4b6edd631134e54b',1,'puzzler::PuzzleBase::ReferenceExecute(ILog *log, const Input *pInput, Output *pOutput) const overridefinal'],['../a00006.html#aa0bc8d1a3d353cde599d096e1d8a0abf',1,'puzzler::CircuitSimPuzzle::ReferenceExecute()'],['../a00013.html#af3959bd479765598f239fc619040cd51',1,'puzzler::LifePuzzle::ReferenceExecute()'],['../a00018.html#ad941df5fabd37a9971f41c6921bce75d',1,'puzzler::MatrixExponentPuzzle::ReferenceExecute()'],['../a00022.html#a0cd401a385d8bf341468a76890460911',1,'puzzler::OptionExplicitPuzzle::ReferenceExecute()'],['../a00035.html#a9c15a95de90157e2c3e98fd6dc482c80',1,'puzzler::StringSearchPuzzle::ReferenceExecute()']]],
+  ['register',['Register',['../a00028.html#a50f2d83deab9ca28813010f52331d146',1,'puzzler::PuzzleRegistrar']]],
+  ['run_5fpuzzle_2ecpp',['run_puzzle.cpp',['../a00144.html',1,'']]]
+];

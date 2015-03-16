@@ -53,11 +53,19 @@
       </MacroExpansion>
       <CommandLineArguments>
          <CommandLineArgument
+<<<<<<< HEAD
             argument = "life"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "3"
+=======
+            argument = "option_explicit"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "100"
+>>>>>>> 56c91d81595801efa1c7c883907ba5a6e7fca8eb
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

@@ -9,6 +9,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
             filePath = "provider/user_life.hpp"
             timestampString = "448203456.259037"
             startingColumnNumber = "9223372036854775807"
@@ -48,6 +49,15 @@
             startingLineNumber = "94"
             endingLineNumber = "94"
             landmarkName = "Execute( puzzler::ILog *log, const puzzler::LifeInput *input, puzzler::LifeOutput *output )"
+=======
+            filePath = "src/run_puzzle.cpp"
+            timestampString = "447892182.215826"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "6"
+            endingLineNumber = "6"
+            landmarkName = "main(int argc, char *argv[])"
+>>>>>>> 56c91d81595801efa1c7c883907ba5a6e7fca8eb
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,6 +67,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
             filePath = "provider/user_life.hpp"
             timestampString = "448203456.259037"
             startingColumnNumber = "9223372036854775807"
@@ -64,6 +75,15 @@
             startingLineNumber = "107"
             endingLineNumber = "107"
             landmarkName = "Execute( puzzler::ILog *log, const puzzler::LifeInput *input, puzzler::LifeOutput *output )"
+=======
+            filePath = "src/run_puzzle.cpp"
+            timestampString = "447892189.902973"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "9"
+            endingLineNumber = "9"
+            landmarkName = "main(int argc, char *argv[])"
+>>>>>>> 56c91d81595801efa1c7c883907ba5a6e7fca8eb
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,6 +93,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
             filePath = "provider/user_life.hpp"
             timestampString = "448213294.180621"
             startingColumnNumber = "9223372036854775807"
@@ -80,6 +101,15 @@
             startingLineNumber = "167"
             endingLineNumber = "167"
             landmarkName = "uint8tToBool(const std::vector&lt;uint8_t&gt; &amp;src, std::vector&lt;bool&gt; &amp;dst )"
+=======
+            filePath = "src/run_puzzle.cpp"
+            timestampString = "447955772.768695"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "main(int argc, char *argv[])"
+>>>>>>> 56c91d81595801efa1c7c883907ba5a6e7fca8eb
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,6 +119,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
             filePath = "provider/user_life.hpp"
             timestampString = "448213294.180621"
             startingColumnNumber = "9223372036854775807"
@@ -177,6 +208,14 @@
             endingLineNumber = "51"
             landmarkName = "Execute( puzzler::ILog *log, const puzzler::LifeInput *input, puzzler::LifeOutput *output )"
             landmarkType = "7">
+=======
+            filePath = "include/puzzler/puzzles/matrix_exponent.hpp"
+            timestampString = "447956153.409757"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144">
+>>>>>>> 56c91d81595801efa1c7c883907ba5a6e7fca8eb
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

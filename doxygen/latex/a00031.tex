@@ -1,0 +1,120 @@
+\hypertarget{a00031}{}\section{puzzler\+:\+:Stream Class Reference}
+\label{a00031}\index{puzzler\+::\+Stream@{puzzler\+::\+Stream}}
+
+
+{\ttfamily \#include $<$stream.\+hpp$>$}
+
+Inheritance diagram for puzzler\+:\+:Stream\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{a00031}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{a00031_a35913f703d06d47519dba26e89bc32e4}{$\sim$\+Stream} ()
+\item 
+virtual void \hyperlink{a00031_af265fbd2a09604565fa2df2f2227dba5}{Send} (size\+\_\+t cb\+Data, const void $\ast$p\+Data)=0
+\item 
+virtual void \hyperlink{a00031_a700b50890c0adb2af0800b43b1ac0d5f}{Recv} (size\+\_\+t cb\+Data, void $\ast$p\+Data)=0
+\item 
+virtual uint64\+\_\+t \hyperlink{a00031_ab5bcc5ea2ee81ac074bee05c5459af27}{Send\+Offset} () const =0
+\begin{DoxyCompactList}\small\item\em Return the current offset from some arbitrary starting point. \end{DoxyCompactList}\item 
+virtual uint64\+\_\+t \hyperlink{a00031_aa4ddc05c400ec1833c7beb8af9b0cbe4}{Recv\+Offset} () const =0
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00031_a723d56e05bbce43eb9a63c2db96acf65}{Stream} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 27 of file stream.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00031_a723d56e05bbce43eb9a63c2db96acf65}{}\index{puzzler\+::\+Stream@{puzzler\+::\+Stream}!Stream@{Stream}}
+\index{Stream@{Stream}!puzzler\+::\+Stream@{puzzler\+::\+Stream}}
+\subsubsection[{Stream}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+Stream\+::\+Stream (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{a00031_a723d56e05bbce43eb9a63c2db96acf65}
+
+
+Definition at line 34 of file stream.\+hpp.
+
+\hypertarget{a00031_a35913f703d06d47519dba26e89bc32e4}{}\index{puzzler\+::\+Stream@{puzzler\+::\+Stream}!````~Stream@{$\sim$\+Stream}}
+\index{````~Stream@{$\sim$\+Stream}!puzzler\+::\+Stream@{puzzler\+::\+Stream}}
+\subsubsection[{$\sim$\+Stream}]{\setlength{\rightskip}{0pt plus 5cm}virtual puzzler\+::\+Stream\+::$\sim$\+Stream (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{a00031_a35913f703d06d47519dba26e89bc32e4}
+
+
+Definition at line 37 of file stream.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00031_a700b50890c0adb2af0800b43b1ac0d5f}{}\index{puzzler\+::\+Stream@{puzzler\+::\+Stream}!Recv@{Recv}}
+\index{Recv@{Recv}!puzzler\+::\+Stream@{puzzler\+::\+Stream}}
+\subsubsection[{Recv}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+Stream\+::\+Recv (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{cb\+Data, }
+\item[{void $\ast$}]{p\+Data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00031_a700b50890c0adb2af0800b43b1ac0d5f}
+
+
+Implemented in \hyperlink{a00007_a28c190f98fc33a13b0b791e7b1213152}{puzzler\+::\+File\+In\+Stream}, \hyperlink{a00030_aad641058487bb26cf8555ab14a8d97a9}{puzzler\+::\+Stdout\+Stream}, and \hyperlink{a00029_a1fc5817613feb455300176f2c1c01796}{puzzler\+::\+Stdin\+Stream}.
+
+\hypertarget{a00031_aa4ddc05c400ec1833c7beb8af9b0cbe4}{}\index{puzzler\+::\+Stream@{puzzler\+::\+Stream}!Recv\+Offset@{Recv\+Offset}}
+\index{Recv\+Offset@{Recv\+Offset}!puzzler\+::\+Stream@{puzzler\+::\+Stream}}
+\subsubsection[{Recv\+Offset}]{\setlength{\rightskip}{0pt plus 5cm}virtual uint64\+\_\+t puzzler\+::\+Stream\+::\+Recv\+Offset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00031_aa4ddc05c400ec1833c7beb8af9b0cbe4}
+
+
+Implemented in \hyperlink{a00007_a61be8ee8fd10a704690f64bf3f87bbb7}{puzzler\+::\+File\+In\+Stream}, \hyperlink{a00029_aea1804e01face82dac1313265167c91b}{puzzler\+::\+Stdin\+Stream}, and \hyperlink{a00030_aea7a8080718b7038a1a4cb3e932edd8c}{puzzler\+::\+Stdout\+Stream}.
+
+\hypertarget{a00031_af265fbd2a09604565fa2df2f2227dba5}{}\index{puzzler\+::\+Stream@{puzzler\+::\+Stream}!Send@{Send}}
+\index{Send@{Send}!puzzler\+::\+Stream@{puzzler\+::\+Stream}}
+\subsubsection[{Send}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+Stream\+::\+Send (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{cb\+Data, }
+\item[{const void $\ast$}]{p\+Data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00031_af265fbd2a09604565fa2df2f2227dba5}
+
+
+Implemented in \hyperlink{a00007_a7a6810fd6cc188a04c1c848daced9aed}{puzzler\+::\+File\+In\+Stream}, \hyperlink{a00029_a14735ec3cb2d1d5fd461e88270216c13}{puzzler\+::\+Stdin\+Stream}, and \hyperlink{a00030_a49b08e73ea062862cd78a25ab00aee2a}{puzzler\+::\+Stdout\+Stream}.
+
+\hypertarget{a00031_ab5bcc5ea2ee81ac074bee05c5459af27}{}\index{puzzler\+::\+Stream@{puzzler\+::\+Stream}!Send\+Offset@{Send\+Offset}}
+\index{Send\+Offset@{Send\+Offset}!puzzler\+::\+Stream@{puzzler\+::\+Stream}}
+\subsubsection[{Send\+Offset}]{\setlength{\rightskip}{0pt plus 5cm}virtual uint64\+\_\+t puzzler\+::\+Stream\+::\+Send\+Offset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00031_ab5bcc5ea2ee81ac074bee05c5459af27}
+
+
+Return the current offset from some arbitrary starting point. 
+
+
+
+Implemented in \hyperlink{a00007_a53da1c9f93b83116a491ed3db5550802}{puzzler\+::\+File\+In\+Stream}, \hyperlink{a00029_ac56d6e48e8f0271afd00732b7763e0e2}{puzzler\+::\+Stdin\+Stream}, and \hyperlink{a00030_a9997749cd72a4fabc3510b4b46ae9df1}{puzzler\+::\+Stdout\+Stream}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/puzzler/core/\hyperlink{a00123}{stream.\+hpp}\end{DoxyCompactItemize}

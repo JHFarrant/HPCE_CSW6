@@ -1,0 +1,8 @@
+*~
+*.o
+*.exe
+*.lib
+*.a
+*.in
+*.ref
+*.got

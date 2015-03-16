@@ -1,0 +1,78 @@
+
+\begin{DoxyItemize}
+\item Issued\+: Sun 8th March
+\item Due\+: Sun 22nd March, 23\+:59
+\end{DoxyItemize}
+
+(First Do\+C exam open to E\+E\+E/\+E\+I\+E/\+M\+Sc is 24th March, A\+F\+A\+I\+C\+T)
+
+(Just realised I haven\textquotesingle{}t made the private repositories yet. To come...)
+
+\subsection*{Specification }
+
+You have been given the included code with the goal of making things faster. On enquiring which things, you were told \char`\"{}all the things\char`\"{}. Further deliberation on what a \char`\"{}thing\char`\"{} was resulted in the elaboration that it was an instance of {\ttfamily \hyperlink{a00026}{puzzler\+::\+Puzzle}}. Further tentative queries revealed that \char`\"{}faster\char`\"{} was determined by the wall-\/clock execution time of {\ttfamily \hyperlink{a00026_a702021085703421ec4997ef90cf41385}{puzzler\+::\+Puzzle\+::\+Execute}}, with an emphasis on larger scale factors, on an amazon G\+P\+U instance.
+
+At this point marketing got quite irate, and complained about developers not knowing how to do their job, and they had commissioned this wonderful enterprise framework, and did they have to do all the coding themselves? Sales then chimed in that they had similar problems having to hold the developers hand, and that they did V\+B\+A as part of their business masters, and it was easy. Oh, and that they had already sold a customer a version that contains more things; the spec should be ready on Friday 13th (and no, that is not ominous, it just happens to be a religious holiday for the customer), but it is only \char`\"{}small\char`\"{} stuff. Developers are all agile these days aren\textquotesingle{}t they?
+
+\subsection*{Meta-\/specification }
+
+The previous coursework was about deep diving on one problem, and (hopefully) trying out a number of alternative strategies. This coursework represents the other end of the spectrum, which is sadly the more common end\+: you haven\textquotesingle{}t got much time, either to analyse the problem or to do low-\/level optimisation, and the problem is actually a large number of sub-\/problems. So the goal here is to identify and capture as much of the low-\/hanging performance fruit as possible while not breaking anything.
+
+The code-\/base I\textquotesingle{}ve given you is somewhat baroque, (though not as convoluted as my original version, I took pity), and despite having some rather iffy O\+O\+P practises, actually has things quite reasonably isolated. You will probably encounter the problem that sometimes the reference solution starts to take a very long time at large scales, but the persistence framework gives you a way of dealing with that.
+
+Beyond that, there isn\textquotesingle{}t a lot more guidance, either in terms of what you should focus on, or how {\itshape exactly} it will be measured. Part of the assesment is in seeing whether you can work out what can be accelerated, and where you should spend your time. And in reacting to externally evolving specs and code -\/ the Friday 13th comment is true, though the change is minor (there aren\textquotesingle{}t another five problems), additive (all work done this week is needed and evaluated for the final assesment), and has a default fallback (a git pull will bring any submission back into correcness).
+
+The allocation of marks I\textquotesingle{}m using is as before\+:
+
+
+\begin{DoxyItemize}
+\item Performance\+: 33\%
+\begin{DoxyItemize}
+\item You are competing with each other here, so there is an element of judgement in terms of how much you think others are doing or are capable of.
+\end{DoxyItemize}
+\item Correctness\+: 33\%
+\begin{DoxyItemize}
+\item As far as I\textquotesingle{}m aware the Reference\+Execute is always correct, though slow.
+\end{DoxyItemize}
+\item Code style, insight, analysis\+: 33\%
+\begin{DoxyItemize}
+\item Can I understand your code (can you understand your code)? Are the methods and techniques employed appropriate?
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Deliverable format }
+
+
+\begin{DoxyItemize}
+\item As before, your repository should contain a readme.\+txt, readme.\+pdf, or \hyperlink{a00140}{readme.\+md} covering\+:
+\begin{DoxyItemize}
+\item What is the approach used to improve performance, in terms of algorithms, patterns, and optimisations.
+\item A description of any testing methodology or verification.
+\item A summary of how work was partitioned within the pair, including planning, analysis, design, and testing, as well as coding.
+\end{DoxyItemize}
+\item Anything in the {\ttfamily include} directory is not owned by you, and subject to change
+\begin{DoxyItemize}
+\item Changes will happen in an additive way (existing classes and A\+P\+Is will remain, new ones may be added)
+\item Bug-\/fixes to {\ttfamily include} stuff are still welcome.
+\end{DoxyItemize}
+\item The public entry point to your code is via {\ttfamily \hyperlink{a00028_a69b90f3718cbe855d87a1ea89a3ea3ac}{puzzler\+::\+Puzzle\+Registrar\+::\+User\+Register\+Puzzles}}, which must be compiled into the static library {\ttfamily lib/libpuzzler.\+a}.
+\begin{DoxyItemize}
+\item Clients will not directly include your code, they will only {\ttfamily \#include "puzzler/puzzles.\+h}, then access puzzles via the registrar. They will get access to the registrar implementation by linking against {\ttfamily lib/libpuzzler.\+a}.
+\item {\bfseries Note}\+: If you do something complicated in your building of libpuzzler, it should still be possible to build it by going into {\ttfamily lib} and calling {\ttfamily make all}.
+\end{DoxyItemize}
+\item The programs in {\ttfamily src} have no special meaning or status, they are just example programs
+\end{DoxyItemize}
+
+The reason for all this strange indirection is that I want to give maximum freedom for you to do strange things within your implementation (example definitions of \char`\"{}strange\char`\"{} include C\+Make) while still having a clean abstraction layer between your code and the client code.
+
+\subsection*{Notes }
+
+All the algorithms here are quite classic, though for the most part different enough to require some thought. Where it is possible to directly use an off-\/the-\/shelf implementation (partially true in most cases), you need to bear in mind that you\textquotesingle{}re trying to show-\/case your understanding and ability here. So if you\textquotesingle{}re relying on someone elses library, you need to\+:
+
+
+\begin{DoxyItemize}
+\item Correctly and clearly attribute it
+\item Be able to demonstrate you understand how and why it works
+\end{DoxyItemize}
+
+Make sure you spend a little bit of time thinking about how feasible it is to accelerate something -\/ in some cases you may be able to get linear speed-\/up in the processor count, in others less so. Sometimes the fundamental algorithmic complexity doesn\textquotesingle{}t look friendly, and can be improved in simple ways. 

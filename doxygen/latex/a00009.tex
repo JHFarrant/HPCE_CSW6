@@ -1,0 +1,108 @@
+\hypertarget{a00009}{}\section{puzzler\+:\+:Puzzle\+:\+:Input Class Reference}
+\label{a00009}\index{puzzler\+::\+Puzzle\+::\+Input@{puzzler\+::\+Puzzle\+::\+Input}}
+
+
+{\ttfamily \#include $<$puzzle.\+hpp$>$}
+
+Inheritance diagram for puzzler\+:\+:Puzzle\+:\+:Input\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.856354cm]{a00009}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{a00009_adfd750fef403bc49659f13f5721f3dad}{Persist} (\hyperlink{a00025}{Persist\+Context} \&ctxt) overridefinal
+\item 
+std\+::string \hyperlink{a00009_aedf5d18b850e3766e9248a439fb106c3}{Puzzle\+Name} () const 
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00009_a4641f0e6ae428c28fff73d36f519d5df}{Input} (const \hyperlink{a00026}{Puzzle} $\ast$puzzle, int scale)
+\item 
+\hyperlink{a00009_a2e489ff1925e029f7be03637a85d15a3}{Input} (std\+::string format, std\+::string puzzle\+Name, \hyperlink{a00025}{Persist\+Context} \&ctxt)
+\item 
+virtual void \hyperlink{a00009_aba0eb4c5656fc660e8746ca68f8f66e5}{Persist\+Impl} (\hyperlink{a00025}{Persist\+Context} \&ctxt)=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 16 of file puzzle.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00009_a4641f0e6ae428c28fff73d36f519d5df}{}\index{puzzler\+::\+Puzzle\+::\+Input@{puzzler\+::\+Puzzle\+::\+Input}!Input@{Input}}
+\index{Input@{Input}!puzzler\+::\+Puzzle\+::\+Input@{puzzler\+::\+Puzzle\+::\+Input}}
+\subsubsection[{Input}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+Puzzle\+::\+Input\+::\+Input (
+\begin{DoxyParamCaption}
+\item[{const {\bf Puzzle} $\ast$}]{puzzle, }
+\item[{int}]{scale}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{a00009_a4641f0e6ae428c28fff73d36f519d5df}
+
+
+Definition at line 23 of file puzzle.\+hpp.
+
+\hypertarget{a00009_a2e489ff1925e029f7be03637a85d15a3}{}\index{puzzler\+::\+Puzzle\+::\+Input@{puzzler\+::\+Puzzle\+::\+Input}!Input@{Input}}
+\index{Input@{Input}!puzzler\+::\+Puzzle\+::\+Input@{puzzler\+::\+Puzzle\+::\+Input}}
+\subsubsection[{Input}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+Puzzle\+::\+Input\+::\+Input (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{format, }
+\item[{std\+::string}]{puzzle\+Name, }
+\item[{{\bf Persist\+Context} \&}]{ctxt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{a00009_a2e489ff1925e029f7be03637a85d15a3}
+
+
+Definition at line 28 of file puzzle.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00009_adfd750fef403bc49659f13f5721f3dad}{}\index{puzzler\+::\+Puzzle\+::\+Input@{puzzler\+::\+Puzzle\+::\+Input}!Persist@{Persist}}
+\index{Persist@{Persist}!puzzler\+::\+Puzzle\+::\+Input@{puzzler\+::\+Puzzle\+::\+Input}}
+\subsubsection[{Persist}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+Puzzle\+::\+Input\+::\+Persist (
+\begin{DoxyParamCaption}
+\item[{{\bf Persist\+Context} \&}]{ctxt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{a00009_adfd750fef403bc49659f13f5721f3dad}
+
+
+Implements \hyperlink{a00024_ac592d97d3b63139e69b6090278a29993}{puzzler\+::\+Persistable}.
+
+
+
+Definition at line 40 of file puzzle.\+hpp.
+
+\hypertarget{a00009_aba0eb4c5656fc660e8746ca68f8f66e5}{}\index{puzzler\+::\+Puzzle\+::\+Input@{puzzler\+::\+Puzzle\+::\+Input}!Persist\+Impl@{Persist\+Impl}}
+\index{Persist\+Impl@{Persist\+Impl}!puzzler\+::\+Puzzle\+::\+Input@{puzzler\+::\+Puzzle\+::\+Input}}
+\subsubsection[{Persist\+Impl}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+Puzzle\+::\+Input\+::\+Persist\+Impl (
+\begin{DoxyParamCaption}
+\item[{{\bf Persist\+Context} \&}]{ctxt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{a00009_aba0eb4c5656fc660e8746ca68f8f66e5}
+
+
+Implemented in \hyperlink{a00003_a0dfeb0175d1af1f40424130478bc1acf}{puzzler\+::\+Circuit\+Sim\+Input}, \hyperlink{a00010_a61536a5ed7f7d36938c6018f009e90c7}{puzzler\+::\+Life\+Input}, \hyperlink{a00019_a78cdcb5ed6a8de32bde00116de526700}{puzzler\+::\+Option\+Explicit\+Input}, \hyperlink{a00032_aaf3078cb090dea965efbf7df66f2338f}{puzzler\+::\+String\+Search\+Input}, and \hyperlink{a00015_a589d72c775cc8dd4d33732bbaab5ed01}{puzzler\+::\+Matrix\+Exponent\+Input}.
+
+\hypertarget{a00009_aedf5d18b850e3766e9248a439fb106c3}{}\index{puzzler\+::\+Puzzle\+::\+Input@{puzzler\+::\+Puzzle\+::\+Input}!Puzzle\+Name@{Puzzle\+Name}}
+\index{Puzzle\+Name@{Puzzle\+Name}!puzzler\+::\+Puzzle\+::\+Input@{puzzler\+::\+Puzzle\+::\+Input}}
+\subsubsection[{Puzzle\+Name}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string puzzler\+::\+Puzzle\+::\+Input\+::\+Puzzle\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{a00009_aedf5d18b850e3766e9248a439fb106c3}
+
+
+Definition at line 50 of file puzzle.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/puzzler/core/\hyperlink{a00122}{puzzle.\+hpp}\end{DoxyCompactItemize}

@@ -1,0 +1,121 @@
+\hypertarget{a00023}{}\section{puzzler\+:\+:Puzzle\+:\+:Output Class Reference}
+\label{a00023}\index{puzzler\+::\+Puzzle\+::\+Output@{puzzler\+::\+Puzzle\+::\+Output}}
+
+
+{\ttfamily \#include $<$puzzle.\+hpp$>$}
+
+Inheritance diagram for puzzler\+:\+:Puzzle\+:\+:Output\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.759162cm]{a00023}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{a00023_a7ef0d1404547bc18629c25d5b9f18622}{Persist} (\hyperlink{a00025}{Persist\+Context} \&ctxt) overridefinal
+\item 
+virtual bool \hyperlink{a00023_aa848aae3197c2a224d72127f0541ce7f}{Equals} (const \hyperlink{a00023}{Output} $\ast$output) const =0
+\item 
+std\+::string \hyperlink{a00023_adda4e5589da3217b37e87b83901d9e24}{Puzzle\+Name} () const 
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00023_aa605318d3632c1b359c07745bdf17e83}{Output} (const \hyperlink{a00026}{Puzzle} $\ast$puzzle, const \hyperlink{a00009}{Input} $\ast$)
+\item 
+\hyperlink{a00023_aca4b37a236671244977db9b169e0e9ea}{Output} (std\+::string format, std\+::string puzzle\+Name, \hyperlink{a00025}{Persist\+Context} \&)
+\item 
+virtual void \hyperlink{a00023_a6f38b053870861fd4afe8819174c4d3d}{Persist\+Impl} (\hyperlink{a00025}{Persist\+Context} \&ctxt)=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 54 of file puzzle.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00023_aa605318d3632c1b359c07745bdf17e83}{}\index{puzzler\+::\+Puzzle\+::\+Output@{puzzler\+::\+Puzzle\+::\+Output}!Output@{Output}}
+\index{Output@{Output}!puzzler\+::\+Puzzle\+::\+Output@{puzzler\+::\+Puzzle\+::\+Output}}
+\subsubsection[{Output}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+Puzzle\+::\+Output\+::\+Output (
+\begin{DoxyParamCaption}
+\item[{const {\bf Puzzle} $\ast$}]{puzzle, }
+\item[{const {\bf Input} $\ast$}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{a00023_aa605318d3632c1b359c07745bdf17e83}
+
+
+Definition at line 61 of file puzzle.\+hpp.
+
+\hypertarget{a00023_aca4b37a236671244977db9b169e0e9ea}{}\index{puzzler\+::\+Puzzle\+::\+Output@{puzzler\+::\+Puzzle\+::\+Output}!Output@{Output}}
+\index{Output@{Output}!puzzler\+::\+Puzzle\+::\+Output@{puzzler\+::\+Puzzle\+::\+Output}}
+\subsubsection[{Output}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+Puzzle\+::\+Output\+::\+Output (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{format, }
+\item[{std\+::string}]{puzzle\+Name, }
+\item[{{\bf Persist\+Context} \&}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{a00023_aca4b37a236671244977db9b169e0e9ea}
+
+
+Definition at line 67 of file puzzle.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00023_aa848aae3197c2a224d72127f0541ce7f}{}\index{puzzler\+::\+Puzzle\+::\+Output@{puzzler\+::\+Puzzle\+::\+Output}!Equals@{Equals}}
+\index{Equals@{Equals}!puzzler\+::\+Puzzle\+::\+Output@{puzzler\+::\+Puzzle\+::\+Output}}
+\subsubsection[{Equals}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool puzzler\+::\+Puzzle\+::\+Output\+::\+Equals (
+\begin{DoxyParamCaption}
+\item[{const {\bf Output} $\ast$}]{output}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{a00023_aa848aae3197c2a224d72127f0541ce7f}
+
+
+Implemented in \hyperlink{a00016_a2bb02456a1fa4298038303a7ad0c3eee}{puzzler\+::\+Matrix\+Exponent\+Output}.
+
+\hypertarget{a00023_a7ef0d1404547bc18629c25d5b9f18622}{}\index{puzzler\+::\+Puzzle\+::\+Output@{puzzler\+::\+Puzzle\+::\+Output}!Persist@{Persist}}
+\index{Persist@{Persist}!puzzler\+::\+Puzzle\+::\+Output@{puzzler\+::\+Puzzle\+::\+Output}}
+\subsubsection[{Persist}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+Puzzle\+::\+Output\+::\+Persist (
+\begin{DoxyParamCaption}
+\item[{{\bf Persist\+Context} \&}]{ctxt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{a00023_a7ef0d1404547bc18629c25d5b9f18622}
+
+
+Implements \hyperlink{a00024_ac592d97d3b63139e69b6090278a29993}{puzzler\+::\+Persistable}.
+
+
+
+Definition at line 77 of file puzzle.\+hpp.
+
+\hypertarget{a00023_a6f38b053870861fd4afe8819174c4d3d}{}\index{puzzler\+::\+Puzzle\+::\+Output@{puzzler\+::\+Puzzle\+::\+Output}!Persist\+Impl@{Persist\+Impl}}
+\index{Persist\+Impl@{Persist\+Impl}!puzzler\+::\+Puzzle\+::\+Output@{puzzler\+::\+Puzzle\+::\+Output}}
+\subsubsection[{Persist\+Impl}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+Puzzle\+::\+Output\+::\+Persist\+Impl (
+\begin{DoxyParamCaption}
+\item[{{\bf Persist\+Context} \&}]{ctxt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{a00023_a6f38b053870861fd4afe8819174c4d3d}
+
+
+Implemented in \hyperlink{a00004_a1ef9b85e5ddb881cc9d96f569485e245}{puzzler\+::\+Circuit\+Sim\+Output}, \hyperlink{a00020_a244f42e70ed257838a657360d7b5c370}{puzzler\+::\+Option\+Explicit\+Output}, \hyperlink{a00011_ae48d78e050fda5544ba2be126df8e935}{puzzler\+::\+Life\+Output}, \hyperlink{a00033_a8f1f0863d806baa1a2f5828abc4798f0}{puzzler\+::\+String\+Search\+Output}, and \hyperlink{a00016_ab29a2f912c55c0c027d7fd2bf023c41c}{puzzler\+::\+Matrix\+Exponent\+Output}.
+
+\hypertarget{a00023_adda4e5589da3217b37e87b83901d9e24}{}\index{puzzler\+::\+Puzzle\+::\+Output@{puzzler\+::\+Puzzle\+::\+Output}!Puzzle\+Name@{Puzzle\+Name}}
+\index{Puzzle\+Name@{Puzzle\+Name}!puzzler\+::\+Puzzle\+::\+Output@{puzzler\+::\+Puzzle\+::\+Output}}
+\subsubsection[{Puzzle\+Name}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string puzzler\+::\+Puzzle\+::\+Output\+::\+Puzzle\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{a00023_adda4e5589da3217b37e87b83901d9e24}
+
+
+Definition at line 86 of file puzzle.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/puzzler/core/\hyperlink{a00122}{puzzle.\+hpp}\end{DoxyCompactItemize}

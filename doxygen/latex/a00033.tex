@@ -1,0 +1,110 @@
+\hypertarget{a00033}{}\section{puzzler\+:\+:String\+Search\+Output Class Reference}
+\label{a00033}\index{puzzler\+::\+String\+Search\+Output@{puzzler\+::\+String\+Search\+Output}}
+
+
+{\ttfamily \#include $<$string\+\_\+search.\+hpp$>$}
+
+Inheritance diagram for puzzler\+:\+:String\+Search\+Output\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{a00033}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00033_a2a80cb9e94563d5b9d6236ef138854f6}{String\+Search\+Output} (const \hyperlink{a00026}{Puzzle} $\ast$puzzle, const \hyperlink{a00009}{Puzzle\+::\+Input} $\ast$input)
+\item 
+\hyperlink{a00033_aeb630c277c2a959bbd960b3e95fcabb8}{String\+Search\+Output} (std\+::string format, std\+::string name, \hyperlink{a00025}{Persist\+Context} \&ctxt)
+\item 
+virtual bool \hyperlink{a00033_acccc0a6ac66b94b3c3b2177ed273a35a}{Equals} (const \hyperlink{a00023_aa605318d3632c1b359c07745bdf17e83}{Output} $\ast$output) const override
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ uint32\+\_\+t $>$ \hyperlink{a00033_aab47434ea6516a925dce019171a60049}{occurences}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{a00033_a8f1f0863d806baa1a2f5828abc4798f0}{Persist\+Impl} (\hyperlink{a00025}{Persist\+Context} \&conn)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 42 of file string\+\_\+search.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00033_a2a80cb9e94563d5b9d6236ef138854f6}{}\index{puzzler\+::\+String\+Search\+Output@{puzzler\+::\+String\+Search\+Output}!String\+Search\+Output@{String\+Search\+Output}}
+\index{String\+Search\+Output@{String\+Search\+Output}!puzzler\+::\+String\+Search\+Output@{puzzler\+::\+String\+Search\+Output}}
+\subsubsection[{String\+Search\+Output}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+String\+Search\+Output\+::\+String\+Search\+Output (
+\begin{DoxyParamCaption}
+\item[{const {\bf Puzzle} $\ast$}]{puzzle, }
+\item[{const {\bf Puzzle\+::\+Input} $\ast$}]{input}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00033_a2a80cb9e94563d5b9d6236ef138854f6}
+
+
+Definition at line 49 of file string\+\_\+search.\+hpp.
+
+\hypertarget{a00033_aeb630c277c2a959bbd960b3e95fcabb8}{}\index{puzzler\+::\+String\+Search\+Output@{puzzler\+::\+String\+Search\+Output}!String\+Search\+Output@{String\+Search\+Output}}
+\index{String\+Search\+Output@{String\+Search\+Output}!puzzler\+::\+String\+Search\+Output@{puzzler\+::\+String\+Search\+Output}}
+\subsubsection[{String\+Search\+Output}]{\setlength{\rightskip}{0pt plus 5cm}puzzler\+::\+String\+Search\+Output\+::\+String\+Search\+Output (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{format, }
+\item[{std\+::string}]{name, }
+\item[{{\bf Persist\+Context} \&}]{ctxt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{a00033_aeb630c277c2a959bbd960b3e95fcabb8}
+
+
+Definition at line 53 of file string\+\_\+search.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00033_acccc0a6ac66b94b3c3b2177ed273a35a}{}\index{puzzler\+::\+String\+Search\+Output@{puzzler\+::\+String\+Search\+Output}!Equals@{Equals}}
+\index{Equals@{Equals}!puzzler\+::\+String\+Search\+Output@{puzzler\+::\+String\+Search\+Output}}
+\subsubsection[{Equals}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool puzzler\+::\+String\+Search\+Output\+::\+Equals (
+\begin{DoxyParamCaption}
+\item[{const {\bf Output} $\ast$}]{output}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{a00033_acccc0a6ac66b94b3c3b2177ed273a35a}
+
+
+Definition at line 65 of file string\+\_\+search.\+hpp.
+
+\hypertarget{a00033_a8f1f0863d806baa1a2f5828abc4798f0}{}\index{puzzler\+::\+String\+Search\+Output@{puzzler\+::\+String\+Search\+Output}!Persist\+Impl@{Persist\+Impl}}
+\index{Persist\+Impl@{Persist\+Impl}!puzzler\+::\+String\+Search\+Output@{puzzler\+::\+String\+Search\+Output}}
+\subsubsection[{Persist\+Impl}]{\setlength{\rightskip}{0pt plus 5cm}virtual void puzzler\+::\+String\+Search\+Output\+::\+Persist\+Impl (
+\begin{DoxyParamCaption}
+\item[{{\bf Persist\+Context} \&}]{conn}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}\label{a00033_a8f1f0863d806baa1a2f5828abc4798f0}
+
+
+Implements \hyperlink{a00023_a6f38b053870861fd4afe8819174c4d3d}{puzzler\+::\+Puzzle\+::\+Output}.
+
+
+
+Definition at line 60 of file string\+\_\+search.\+hpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00033_aab47434ea6516a925dce019171a60049}{}\index{puzzler\+::\+String\+Search\+Output@{puzzler\+::\+String\+Search\+Output}!occurences@{occurences}}
+\index{occurences@{occurences}!puzzler\+::\+String\+Search\+Output@{puzzler\+::\+String\+Search\+Output}}
+\subsubsection[{occurences}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$uint32\+\_\+t$>$ puzzler\+::\+String\+Search\+Output\+::occurences}\label{a00033_aab47434ea6516a925dce019171a60049}
+
+
+Definition at line 46 of file string\+\_\+search.\+hpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/puzzler/puzzles/\hyperlink{a00133}{string\+\_\+search.\+hpp}\end{DoxyCompactItemize}
