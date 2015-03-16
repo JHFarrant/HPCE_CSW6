@@ -18,18 +18,18 @@ public:
 		       puzzler::LifeOutput *output
 		       ) const override {
     
-      //setup(log);
-      log->LogVerbose("About to start running iterations (total = %d)", input->steps);
       
       unsigned n=input->n;
-      std::vector<bool> state=input->state;
+      std::vector<uint8_t> state; // life state container
+      openCLsetupData setupData;
 
       
-      std::vector<uint8_t> state8;
+      boolToUint8t(input->state, state); // convert bool vector to uint8t vector
       
-      boolToUint8t(state, state8);
+      log->LogVerbose("About to start running iterations (total = %d)", input->steps);
+
       
-      
+      // print current state
       log->Log(puzzler::Log_Debug, [&](std::ostream &dst){
           dst<<"\n";
           for(unsigned y=0; y<n; y++){
@@ -40,24 +40,43 @@ public:
           }
 	     });
       
+      // OpenCL application setup
+      setup(&setupData);
+
+      // allocate space for buffers on the GPU's local memory
+      // Note: 1 byte elements here as the array type is uint8_t
+      size_t cbBuffer=n*n; // total bytes to allocate
+      cl::Buffer buffBefore(setupData.context, CL_MEM_READ_ONLY, cbBuffer);
+      cl::Buffer buffAfter(setupData.context, CL_MEM_WRITE_ONLY, cbBuffer);
+      
+      // create kernel instance
+      cl::Kernel kernel(setupData.program, "update_kernel");
+      
+      // bind parameters to the kernel to indicate what data
+      // they will contain
+      kernel.setArg(0, buffBefore);
+      kernel.setArg(1, buffAfter);
+      
+      // Create command queue to
+      // synchronise and co-ordinate openCL tasks
+      cl::CommandQueue queue(setupData.context, setupData.device);
+
+      
       for(unsigned i=0; i<input->steps; i++){
+          
+
+          
           log->LogVerbose("Starting iteration %d of %d\n", i, input->steps);
           
-           // std::vector<bool> next(n*n);
-            std::vector<uint8_t> next(n*n);
-          
+          std::vector<uint8_t> next(n*n); // next state container
           
           for(unsigned x=0; x<n; x++){
               for(unsigned y=0; y<n; y++){
-                  //next[y*n+x]=update(n, state, x, y);
-            
-                  //next[y*n+x]= kernel_update(n, state, x, y);
-                  kernel_update(n, (uint8_t *)&state8[0], x, y, (uint8_t *)&next[0]);
+                  kernel_update(n, (uint8_t *)&state[0], x, y, (uint8_t *)&next[0]);
               }
           }
           
-         // state=next;
-          state8=next;
+          state=next;
           
           
           // The weird form of log is so that there is little overhead
@@ -75,14 +94,14 @@ public:
       
       log->LogVerbose("Finished steps");
       
-      uint8tToBool(state8, output->state);
+      uint8tToBool(state, output->state);
       
       log->LogVerbose("Done");
       
   }
     
 protected:
-    void kernel_update(int n, const uint8_t * curr, int x, int y, uint8_t * next) const{
+    void kernel_update(unsigned n, const uint8_t * curr, unsigned x, unsigned y, uint8_t * next) const{
         int neighbours=0;
         for(int dx=-1;dx<=+1;dx++){
             for(int dy=-1;dy<=+1;dy++){
@@ -122,7 +141,6 @@ protected:
     /*Copies src to dst vector */
     void uint8tToBool(const std::vector<uint8_t> &src,  std::vector<bool> &dst ) const{
         for(unsigned it = 0; it < src.size(); it++){
-            //dst.push_back( (uint8_t)src.at(it) );
             dst.push_back((bool)src.at(it));
         }
     }

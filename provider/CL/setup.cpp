@@ -6,11 +6,12 @@
 #include <fstream>
 
 // OpenCL initialisation and application setup
-void setup(puzzler::ILog *log){
+void setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData){
     
     std::vector<cl::Platform> platforms;
     std::vector<cl::Device> devices;
     cl::Platform platform;
+    cl::Device device;
     
     // get list of OpenCL platforms
     cl::Platform::get(&platforms);
@@ -23,7 +24,7 @@ void setup(puzzler::ILog *log){
     // show platforms
     showPlatforms(&platforms);
     
-    // choose platform
+    // select platform
     platform=selectPlatform(&platforms);
     
     // get list of OpenCL compatible devices
@@ -34,11 +35,14 @@ void setup(puzzler::ILog *log){
     // show devices
     showDevices(&devices);
     
+    // select device
+    device=selectDevice(&devices);
+    
     // create context for kernels and memory buffers
     cl::Context context(devices);
     
     // Load kernel Code
-    std::string kernelSource=LoadSource("provider/kernels.cl");
+    std::string kernelSource=LoadSource("provider/CL/kernels.cl");
     
     // A vector of (data,length) pairs
     cl::Program::Sources sources;
@@ -46,7 +50,7 @@ void setup(puzzler::ILog *log){
     // push kernel
     sources.push_back(std::make_pair(kernelSource.c_str(), kernelSource.size()+1));
     
-    // collect everything into a program
+    // collect all kernel sources into a single program
     cl::Program program(context, sources);
     
     try{ // build program
@@ -62,6 +66,12 @@ void setup(puzzler::ILog *log){
         throw;
     }
     
+    // copy data
+    setupData->program = program;
+    setupData->context = context;
+    setupData->device = device;
+    
+
 }
 
 void showPlatforms(std::vector<cl::Platform> * platforms ){
@@ -85,7 +95,7 @@ void showDevices(std::vector<cl::Device> * devices){
     }
 }
 
-cl::Platform  selectPlatform(std::vector<cl::Platform> * platforms ){
+cl::Platform selectPlatform(std::vector<cl::Platform> * platforms ){
     int selectedPlatform=0;
     if(getenv("HPCE_SELECT_PLATFORM"))
         selectedPlatform=atoi(getenv("HPCE_SELECT_PLATFORM"));
