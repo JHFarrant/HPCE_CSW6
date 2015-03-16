@@ -1,5 +1,6 @@
 SHELL=/bin/bash
 
+
 # get OS name
 UNAME := $(shell uname)
 
@@ -26,7 +27,6 @@ bin/% : src/%.cpp lib/libpuzzler.a provider/CL/setup.cpp
 	$(CXX) $(CPPFLAGS) -o $@ $^ $(LDFLAGS) $(LDLIBS) -Llib -lpuzzler
 
 all : bin/execute_puzzle bin/create_puzzle_input bin/run_puzzle bin/compare_puzzle_output
-
 clean:
 	rm -rf lib/*
 	rm -rf bin/*

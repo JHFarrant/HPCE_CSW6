@@ -2,12 +2,10 @@
 #define user_life_hpp
 
 #include "puzzler/puzzles/life.hpp"
+
 #include "setup.h"
 
-
-class LifeProvider
-  : public puzzler::LifePuzzle
-{
+class LifeProvider: public puzzler::LifePuzzle{
 public:
   LifeProvider()
   {}
@@ -17,6 +15,7 @@ public:
 		       const puzzler::LifeInput *input,
 		       puzzler::LifeOutput *output
 		       ) const override {
+
     
       
       unsigned n=input->n;
@@ -39,7 +38,7 @@ public:
               }
               dst<<"\n";
           }
-	     });
+      });
       
       // OpenCL application setup
       setup(&setupData);
@@ -115,8 +114,9 @@ public:
       uint8tToBool(state, output->state);
       
       log->LogVerbose("Done");
-      
   }
+    
+  
     
 protected:
     void kernel_update(unsigned n, const uint8_t * curr, unsigned x, unsigned y, uint8_t * next) const{
