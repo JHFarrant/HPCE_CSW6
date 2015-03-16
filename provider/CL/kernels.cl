@@ -41,8 +41,8 @@ __kernel void update_kernel( __global const uchar * curr,  __global uchar * next
     uint n=get_global_size(0);
     
     uint neighbours=0;
-    for(uint dx=-1;dx<=+1;dx++){
-        for(uint dy=-1;dy<=+1;dy++){
+    for(int dx=-1;dx<=+1;dx++){
+        for(int dy=-1;dy<=+1;dy++){
             int ox=(n+x+dx)%n; // handle wrap-around
             int oy=(n+y+dy)%n;
             

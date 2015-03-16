@@ -23,7 +23,7 @@ public:
       std::vector<uint8_t> state; // life state container
       openCLsetupData setupData;
 
-      
+
       boolToUint8t(input->state, state); // convert bool vector to uint8t vector
       
       log->LogVerbose("About to start running iterations (total = %d)", input->steps);
@@ -61,6 +61,7 @@ public:
       // synchronise and co-ordinate openCL tasks
       cl::CommandQueue queue(setupData.context, setupData.device);
 
+      std::vector<uint8_t> next(n*n); // next state container
       
       for(unsigned i=0; i<input->steps; i++){
           
@@ -68,13 +69,30 @@ public:
           
           log->LogVerbose("Starting iteration %d of %d\n", i, input->steps);
           
-          std::vector<uint8_t> next(n*n); // next state container
+          // copy the current over to the GPU
+          cl::Event evCopiedState;
+          queue.enqueueWriteBuffer(buffBefore, CL_FALSE, 0, cbBuffer, &state[0], NULL, &evCopiedState);
           
-          for(unsigned x=0; x<n; x++){
+          
+          cl::NDRange offset(0, 0);               // Always start iterations at x=0, y=0
+          cl::NDRange globalSize(n, n);   // Global size must match the original loops
+          cl::NDRange localSize=cl::NullRange;    // We don't care about local size
+          
+          // execute kernel
+          std::vector<cl::Event> kernelDependencies(1, evCopiedState);
+          cl::Event evExecutedKernel;
+          queue.enqueueNDRangeKernel(kernel, offset, globalSize, localSize, &kernelDependencies, &evExecutedKernel);
+          
+         /* for(unsigned x=0; x<n; x++){
               for(unsigned y=0; y<n; y++){
                   kernel_update(n, (uint8_t *)&state[0], x, y, (uint8_t *)&next[0]);
               }
-          }
+          }*/
+          
+          
+          // write back results
+          std::vector<cl::Event> copyBackDependencies(1, evExecutedKernel);
+          queue.enqueueReadBuffer(buffAfter, CL_TRUE, 0, cbBuffer, &next[0], &copyBackDependencies);
           
           state=next;
           
