@@ -15,7 +15,8 @@ endif
 
 #for Linux
 ifeq ($(UNAME), Linux)
-	CPPFLAGS += -lOpenCL
+	#CPPFLAGS += -lOpenCL
+	LDLIBS = -lm  -lOpenCL
 endif
 
 
@@ -24,7 +25,7 @@ lib/libpuzzler.a : provider/*.cpp provider/*.hpp
 
 bin/% : src/%.cpp lib/libpuzzler.a provider/CL/setup.cpp
 	-mkdir -p bin
-	$(CXX) $(CPPFLAGS) -o $@ $^ $(LDFLAGS) $(LDLIBS) -Llib -lpuzzler
+	$(CXX)  $(CPPFLAGS) -o $@ $^ $(LDFLAGS) $(LDLIBS) -Llib -lpuzzler
 
 all : bin/execute_puzzle bin/create_puzzle_input bin/run_puzzle bin/compare_puzzle_output
 clean:

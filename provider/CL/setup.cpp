@@ -42,7 +42,7 @@ void setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData){
     cl::Context context(devices);
     
     // Load kernel Code
-    std::string kernelSource=LoadSource("/Users/David/Documents/Imperial/4thYear/HPCE/HPCE_CSW6/provider/CL/kernels.cl");
+    std::string kernelSource=LoadSource("provider/CL/kernels.cl");
     
     // A vector of (data,length) pairs
     cl::Program::Sources sources;
