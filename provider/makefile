@@ -1,12 +1,14 @@
 SHELL=/bin/bash
 
-CPPFLAGS += -std=c++11 -W -Wall  -g
+CPPFLAGS += -std=c++11 -W -Wall  -g 
 CPPFLAGS += -O3
-CPPFLAGS += -I ../include
+CPPFLAGS += -I ../include -I CL
 
-puzzles.o : *.hpp
+puzzles.o : *.hpp 
+#CL/*.cpp 
+# CL/setup.cpp 
 
-../lib/libpuzzler.a : puzzles.o
+../lib/libpuzzler.a : puzzles.o 
 	-mkdir -p ../lib
 	ar cr ../lib/libpuzzler.a puzzles.o
 

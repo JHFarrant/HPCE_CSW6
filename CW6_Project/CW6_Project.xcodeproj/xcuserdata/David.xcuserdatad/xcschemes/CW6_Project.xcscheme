@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "63C3D69F1AAF634300C1D94D"
-               BuildableName = "CW6"
-               BlueprintName = "CW6"
-               ReferencedContainer = "container:CW6.xcodeproj">
+               BlueprintIdentifier = "637CD1431AB75C640092A266"
+               BuildableName = "CW6_Project"
+               BlueprintName = "CW6_Project"
+               ReferencedContainer = "container:CW6_Project.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,15 +29,6 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "63C3D69F1AAF634300C1D94D"
-            BuildableName = "CW6"
-            BlueprintName = "CW6"
-            ReferencedContainer = "container:CW6.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -48,15 +39,24 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <PathRunnable
+         FilePath = "/Users/David/Documents/Imperial/4thYear/HPCE/HPCE_CSW6/bin/run_puzzle">
+      </PathRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "63C3D69F1AAF634300C1D94D"
-            BuildableName = "CW6"
-            BlueprintName = "CW6"
-            ReferencedContainer = "container:CW6.xcodeproj">
+            BlueprintIdentifier = "637CD1431AB75C640092A266"
+            BuildableName = "CW6_Project"
+            BlueprintName = "CW6_Project"
+            ReferencedContainer = "container:CW6_Project.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "life 50 4"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -66,15 +66,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "63C3D69F1AAF634300C1D94D"
-            BuildableName = "CW6"
-            BlueprintName = "CW6"
-            ReferencedContainer = "container:CW6.xcodeproj">
+            BlueprintIdentifier = "637CD1431AB75C640092A266"
+            BuildableName = "CW6_Project"
+            BlueprintName = "CW6_Project"
+            ReferencedContainer = "container:CW6_Project.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

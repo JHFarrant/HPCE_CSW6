@@ -6,130 +6,77 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		63C3D6A41AAF634300C1D94D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63C3D6A31AAF634300C1D94D /* main.cpp */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		63C3D69E1AAF634300C1D94D /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		63C3D6A01AAF634300C1D94D /* CW6 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CW6; sourceTree = BUILT_PRODUCTS_DIR; };
-		63C3D6A31AAF634300C1D94D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		63C3D6AA1AAF63DC00C1D94D /* provider */ = {isa = PBXFileReference; lastKnownFileType = folder; name = provider; path = ../provider; sourceTree = "<group>"; };
-		63C3D6AB1AAF63E400C1D94D /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../src; sourceTree = "<group>"; };
+		637CD1491AB75D7A0092A266 /* aws_bootstrap.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = aws_bootstrap.sh; path = ../aws_bootstrap.sh; sourceTree = "<group>"; };
+		637CD14A1AB75D7A0092A266 /* comparison_test.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = comparison_test.sh; path = ../comparison_test.sh; sourceTree = "<group>"; };
+		637CD14B1AB75D7A0092A266 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = ../makefile; sourceTree = "<group>"; };
+		637CD14C1AB75D7A0092A266 /* provider */ = {isa = PBXFileReference; lastKnownFileType = folder; name = provider; path = ../provider; sourceTree = "<group>"; };
+		637CD14D1AB75D7A0092A266 /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../src; sourceTree = "<group>"; };
+		637CD14E1AB761080092A266 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; name = include; path = ../include; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFrameworksBuildPhase section */
-		63C3D69D1AAF634300C1D94D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
 /* Begin PBXGroup section */
-		63C3D6971AAF634300C1D94D = {
+		637CD13E1AB75C640092A266 = {
 			isa = PBXGroup;
 			children = (
-				63C3D6AB1AAF63E400C1D94D /* src */,
-				63C3D6AA1AAF63DC00C1D94D /* provider */,
-				63C3D6A21AAF634300C1D94D /* CW6 */,
-				63C3D6A11AAF634300C1D94D /* Products */,
+				637CD14E1AB761080092A266 /* include */,
+				637CD1491AB75D7A0092A266 /* aws_bootstrap.sh */,
+				637CD14A1AB75D7A0092A266 /* comparison_test.sh */,
+				637CD14B1AB75D7A0092A266 /* makefile */,
+				637CD14C1AB75D7A0092A266 /* provider */,
+				637CD14D1AB75D7A0092A266 /* src */,
 			);
-			sourceTree = "<group>";
-		};
-		63C3D6A11AAF634300C1D94D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				63C3D6A01AAF634300C1D94D /* CW6 */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		63C3D6A21AAF634300C1D94D /* CW6 */ = {
-			isa = PBXGroup;
-			children = (
-				63C3D6A31AAF634300C1D94D /* main.cpp */,
-			);
-			path = CW6;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
-/* Begin PBXNativeTarget section */
-		63C3D69F1AAF634300C1D94D /* CW6 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 63C3D6A71AAF634300C1D94D /* Build configuration list for PBXNativeTarget "CW6" */;
+/* Begin PBXLegacyTarget section */
+		637CD1431AB75C640092A266 /* CW6_Project */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 637CD1461AB75C640092A266 /* Build configuration list for PBXLegacyTarget "CW6_Project" */;
 			buildPhases = (
-				63C3D69C1AAF634300C1D94D /* Sources */,
-				63C3D69D1AAF634300C1D94D /* Frameworks */,
-				63C3D69E1AAF634300C1D94D /* CopyFiles */,
 			);
-			buildRules = (
-			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/David/Documents/Imperial/4thYear/HPCE/HPCE_CSW6;
 			dependencies = (
 			);
-			name = CW6;
-			productName = CW6;
-			productReference = 63C3D6A01AAF634300C1D94D /* CW6 */;
-			productType = "com.apple.product-type.tool";
+			name = CW6_Project;
+			passBuildSettingsInEnvironment = 1;
+			productName = CW6_Project;
 		};
-/* End PBXNativeTarget section */
+/* End PBXLegacyTarget section */
 
 /* Begin PBXProject section */
-		63C3D6981AAF634300C1D94D /* Project object */ = {
+		637CD13F1AB75C640092A266 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = ICL;
+				ORGANIZATIONNAME = "Imperial College London";
 				TargetAttributes = {
-					63C3D69F1AAF634300C1D94D = {
+					637CD1431AB75C640092A266 = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
 				};
 			};
-			buildConfigurationList = 63C3D69B1AAF634300C1D94D /* Build configuration list for PBXProject "CW6" */;
+			buildConfigurationList = 637CD1421AB75C640092A266 /* Build configuration list for PBXProject "CW6_Project" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 63C3D6971AAF634300C1D94D;
-			productRefGroup = 63C3D6A11AAF634300C1D94D /* Products */;
+			mainGroup = 637CD13E1AB75C640092A266;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				63C3D69F1AAF634300C1D94D /* CW6 */,
+				637CD1431AB75C640092A266 /* CW6_Project */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXSourcesBuildPhase section */
-		63C3D69C1AAF634300C1D94D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				63C3D6A41AAF634300C1D94D /* main.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
 /* Begin XCBuildConfiguration section */
-		63C3D6A51AAF634300C1D94D /* Debug */ = {
+		637CD1441AB75C640092A266 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -169,7 +116,7 @@
 			};
 			name = Debug;
 		};
-		63C3D6A61AAF634300C1D94D /* Release */ = {
+		637CD1451AB75C640092A266 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -203,16 +150,23 @@
 			};
 			name = Release;
 		};
-		63C3D6A81AAF634300C1D94D /* Debug */ = {
+		637CD1471AB75C640092A266 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		63C3D6A91AAF634300C1D94D /* Release */ = {
+		637CD1481AB75C640092A266 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -220,24 +174,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		63C3D69B1AAF634300C1D94D /* Build configuration list for PBXProject "CW6" */ = {
+		637CD1421AB75C640092A266 /* Build configuration list for PBXProject "CW6_Project" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				63C3D6A51AAF634300C1D94D /* Debug */,
-				63C3D6A61AAF634300C1D94D /* Release */,
+				637CD1441AB75C640092A266 /* Debug */,
+				637CD1451AB75C640092A266 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		63C3D6A71AAF634300C1D94D /* Build configuration list for PBXNativeTarget "CW6" */ = {
+		637CD1461AB75C640092A266 /* Build configuration list for PBXLegacyTarget "CW6_Project" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				63C3D6A81AAF634300C1D94D /* Debug */,
-				63C3D6A91AAF634300C1D94D /* Release */,
+				637CD1471AB75C640092A266 /* Debug */,
+				637CD1481AB75C640092A266 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 63C3D6981AAF634300C1D94D /* Project object */;
+	rootObject = 637CD13F1AB75C640092A266 /* Project object */;
 }
