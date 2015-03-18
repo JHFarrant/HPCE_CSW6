@@ -5,7 +5,7 @@ SHELL=/bin/bash
 UNAME := $(shell uname)
 
 CPPFLAGS += -std=c++11 -W -Wall  -g 
-CPPFLAGS += -O3
+#CPPFLAGS += -O3
 CPPFLAGS += -I include 
 
 # for OSX

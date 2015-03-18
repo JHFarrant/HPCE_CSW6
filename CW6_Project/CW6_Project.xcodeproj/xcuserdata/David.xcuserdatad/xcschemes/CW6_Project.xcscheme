@@ -53,7 +53,15 @@
       </MacroExpansion>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "life 50 4"
+            argument = "life"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "4"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "4"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

@@ -30,7 +30,40 @@ __kernel void dilate_kernel(__global uint* in,__global uint* out, int w, int h)
     out[x] = max(max(max(cell_above,cell_below),max(cell_left,cell_right)),in[x]);
 }
 
-__kernel void update_kernel( __global const uchar * curr,  __global uchar * next)
+/* set bit for the given flag index*/
+
+void writeBit(uint i, __global uchar * state, bool f){
+    
+    // find word position
+    uint w = round((float)i/8.0);
+    
+    // find bit position
+    uint b = i%8;
+    
+    state[w] ^= (-f ^ state[w]) & (1 << b) ;
+    
+}
+
+// return bit for the given flag index
+bool findBit(uint i, __global const uchar * state ){
+    
+    // find word position
+    //uint w = (uint) round((uint)i/8);
+    
+    uint w = round((float)i/8.0);
+    
+    // find bit position
+    uint b = i%8;
+    
+    bool r = bool((state[w] >> b) & 1);
+    
+    return r;
+    
+}
+
+__kernel void update_kernel(
+    __global const uchar * curr,
+    __global uchar * next)
 {
     
     // get the x,y position within the entire global work group
@@ -47,29 +80,32 @@ __kernel void update_kernel( __global const uchar * curr,  __global uchar * next
     // x =0 and dx = -1  <=> ox = 0
     // same for oy. So ox and oy are always +ve. Therefore
     // only need to check for wrap around on the right side.
-    
+    printf("x = %d, y = %d, n = %d\n", x, y, n);
     
     uint neighbours=0;
     for(int dx=-1;dx<=+1;dx++){
+        
+        uint ox=(n+x+dx)%n; // handle wrap-around
+        
         for(int dy=-1;dy<=+1;dy++){
-            uint ox=(n+x+dx)%n; // handle wrap-around
             uint oy=(n+y+dy)%n;
-           /* uint ox = n+x+dx;
-            uint oy = n+y+dy;
+
+            printf("pos %d: ", oy*n+ox);
             
-            // perform wrap around
-            // if we reach the maximum co-ordinate we move back
-            // to 0
-            ox =  (ox == 2*n) ? 0:((ox > n-1) ? ox - n: ox);
-            oy =  (oy == 2*n) ? 0:((oy > n-1) ? oy - n: oy);*/
-            
-            
-            if(curr[oy*n+ox] && !(dx==0 && dy==0))
+            //if(curr[oy*n+ox] && !(dx==0 && dy==0))
+            if(findBit(oy*n+ox, curr) &&  !(dx==0 && dy==0)){
+                printf("neighbour found!");
                 neighbours++;
+                
+            }
+            
+            printf("\n");
         }
     }
     
-    if(curr[n*y+x]){
+    printf("\n");
+    
+    /*if(curr[n*y+x]){
         // alive
         if(neighbours<2 || neighbours >3)
             next[y*n+x] = false;
@@ -83,5 +119,33 @@ __kernel void update_kernel( __global const uchar * curr,  __global uchar * next
         
         else
             next[y*n+x] = false;
+    }*/
+    
+    if(findBit(n*y+x, curr)){
+        // alive
+        if(neighbours<2 || neighbours >3)
+            writeBit(y*n+x, next, 0);
+
+            //next[y*n+x] = false;
+            
+        else
+            writeBit(y*n+x, next, 1);
+            //next[y*n+x] = true;
+            
+    }else{
+        // dead
+        if(neighbours==3)
+            writeBit(y*n+x, next, 1);
+
+            //next[y*n+x] = true;
+        
+        else
+            writeBit(y*n+x, next, 0);
+            //next[y*n+x] = false;
     }
+    
+    
+    
+    
 }
+

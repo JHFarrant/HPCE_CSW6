@@ -6,6 +6,9 @@
 
 #include "puzzler/core/puzzle.hpp"
 
+#include <iostream>
+#include <fstream>
+
 namespace puzzler
 {
   class LifePuzzle;
@@ -79,14 +82,26 @@ namespace puzzler
 
     bool update(int n, const std::vector<bool> &curr, int x, int y) const
     {
+        
+    
       int neighbours=0;
+        
+         fprintf(stderr, "x = %d, y = %d, n = %d\n", x, y, n);
+        
       for(int dx=-1;dx<=+1;dx++){
         for(int dy=-1;dy<=+1;dy++){
-          int ox=(n+x+dx)%n; // handle wrap-around
-          int oy=(n+y+dy)%n;
+            int ox=(n+x+dx)%n; // handle wrap-around
+            int oy=(n+y+dy)%n;
+            
+            fprintf(stderr,"pos %d: ", oy*n+ox);
 
-          if(curr.at(oy*n+ox) && !(dx==0 && dy==0))
-            neighbours++;
+            if(curr.at(oy*n+ox) && !(dx==0 && dy==0)){
+                neighbours++;
+                fprintf(stderr,"neighbour found!");
+            }
+            
+            fprintf(stderr,"\n");
+
         }
       }
 
