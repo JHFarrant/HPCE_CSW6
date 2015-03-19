@@ -22,7 +22,7 @@ void setup(/*puzzler::ILog *log,*/ openCLsetupData *);
 void showPlatforms(std::vector<cl::Platform> * platforms );
 void showDevices(std::vector<cl::Device> * devices);
 cl::Platform  selectPlatform(std::vector<cl::Platform> * platforms );
-cl::Device selectDevice(std::vector<cl::Device> * devices);
+cl::Device selectDevice(std::vector<cl::Device> * devices, uint8_t *);
 std::string LoadSource(const char *fileName);
 std::vector<std::pair<cl::Device, unsigned>> createDevicesList(cl::Device device);
 cl::Program::Binaries createBinariesList(std::vector<char *> binaries);

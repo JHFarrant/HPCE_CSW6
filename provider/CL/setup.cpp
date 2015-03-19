@@ -11,10 +11,11 @@ void setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData){
     std::vector<cl::Platform> platforms;
     std::vector<cl::Device> devices;
     cl::Platform platform;
-    cl::Device device;
+    cl::Device device; // device object
+    uint8_t devId = 0; // device id
     std::ifstream fp;
-    
-    // get list of OpenCL platforms
+    std::ofstream out;    
+   // get list of OpenCL platforms
     cl::Platform::get(&platforms);
     
     fprintf(stderr, "-------------------------------------\nOPENCL initialisation\n\n");
@@ -37,7 +38,7 @@ void setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData){
     showDevices(&devices);
     
     // select device
-    device=selectDevice(&devices);
+    device=selectDevice(&devices, &devId);
     
     // create context for kernels and memory buffers
     cl::Context context(devices);
@@ -57,25 +58,29 @@ void setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData){
     // try to load from binary (check status, if unsuccessful, load and compile source)
     
     cl::Program * program = NULL;
-    fp.open("provider/CL/kernels.raw", std::ifstream::binary);
+    fp.open("provider/CL/kernels.bin", std::ifstream::binary);
     
     // Check if binary already exists
     if(fp.is_open()){
         // get compiled binary from runtime
-        cl::Program::Binaries binaries;
-        
-        /*
-        for(int  i =0; i < devices.size(); i++){
-            binarise.push_back();
-        }*/
-        
-        //cl::Program program(context, devices, binaries);
+        cl::Program::Binaries binaries(devices.size());
+        std::string bin;
+
+	// read binary into string
+	std::getline(fp, bin);
+
+	// copy to buffer
+	binaries.at(devId) =  std::pair<const char *, unsigned>(bin.c_str(), sizeof(bin));
+
+	// Create kernel program by also providing the binaries	
+        cl::Program program(context, devices, binaries);
         //cl::Program program();
         
     }else{ // Load kernel code and compile it
-        
+         fp.close();
+
          //Load kernel Code
-         std::string kernelSource=LoadSource("/Users/David/Documents/Imperial/4thYear/HPCE/HPCE_CSW6/provider/CL/kernels.cl");
+         std::string kernelSource=LoadSource("provider/CL/kernels.cl");
          
          // A vector of (data,length) pairs
          cl::Program::Sources sources;
@@ -84,23 +89,65 @@ void setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData){
          sources.push_back(std::make_pair(kernelSource.c_str(), kernelSource.size()+1));
          
          // collect all kernel sources into a single program
-        program = new cl::Program(context, sources);
-        
-         std::vector<char *> binaries(devices.size());
-         std::vector<size_t> binarySizes(devices.size());
-        
-         // save to binary format
-         //program->getInfo<size_t>(CL_PROGRAM_BINARY_SIZES, &binarySizes[0]);
-        
-        
-         program->getInfo<CL_PROGRAM_BINARY_SIZES>();
-        
-         //program->getInfo(CL_PROGRAM_BINARIES , &binaries[0]);
+         program = new cl::Program(context, sources);
 
-        
+	 program->build(devices);
+	        
+         std::vector<char *> binaries(1);
+         std::vector<size_t> binarySizes;;
+       
+	 cl_int r; 
+         // get the binary
+         r = program->getInfo<std::vector<size_t>>(CL_PROGRAM_BINARY_SIZES, &binarySizes); 
+
+	 if (r == CL_SUCCESS)
+		fprintf(stderr, "binary size success\n");
+
+	 else
+		fprintf(stderr, "binary size failure\n");
+
+	
+	 // need to allocate elements for the binaries vector
+	  binaries[0] = (char *)malloc(binarySizes[0]);
+
+	 r = program->getInfo<std::vector<char *>>(CL_PROGRAM_BINARIES, &binaries);
+
+	  if (r == CL_SUCCESS)
+                fprintf(stderr, "binary success\n");
+
+         else
+                fprintf(stderr, "binary failure\n");
+
+
+       
+
+	 //delete program;
+	
+	 fprintf(stderr, "There are %d binaries and device %d has %d bytes\n", binarySizes.size(), devId, binarySizes[devId]);
+	 
+	 //fprintf(stderr, "Device 0 : %s\n", binaries[0]);
+
+ 	 std::ofstream out;
+//	 std::ofstream fs("provider/CL/kernels.bin", std::ios::out);
+	 out.open("provider/CL/kernels.bin", std::ofstream::out);
+
+//	 out.open("open.raw", std::ofstream::out);
+
+	 //out << std::string(binaries[devId]);
+//	 out.close();
+//	 std::string str = std::string(binaries[devId]);
+	 //fs.write(str.c_str(), str.size());
+//         fs.write("hello", sizeof("hello"));
+
+         //fprintf(stderr, "file opened");
+
+	 out << binaries[devId];
+
+	 out.close();        
+//	fp.close();
     }
 
-    
+    fp.close();
     
    /* cl::Program * program = new cl::Program();
    
@@ -211,14 +258,16 @@ cl::Platform selectPlatform(std::vector<cl::Platform> * platforms ){
 }
 
 
-cl::Device selectDevice(std::vector<cl::Device> * devices){
+cl::Device selectDevice(std::vector<cl::Device> * devices, uint8_t * selectedDevice){
     
-    int selectedDevice=0;
+    //int selectedDevice=0;
+    
     if(getenv("HPCE_SELECT_DEVICE"))
-        selectedDevice=atoi(getenv("HPCE_SELECT_DEVICE"));
+	*selectedDevice = atoi(getenv("HPCE_SELECT_DEVICE"));
+       // selectedDevice=atoi(getenv("HPCE_SELECT_DEVICE"));
     
-    fprintf(stderr,"Choosing device %d \n", selectedDevice);
-    return devices->at(selectedDevice);
+    fprintf(stderr,"Choosing device %d \n", *selectedDevice);
+    return devices->at(*selectedDevice);
 }
 
 // To go in hpce::your_login, just above StepWorldV3OpenCL

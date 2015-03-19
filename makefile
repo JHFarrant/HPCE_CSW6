@@ -33,3 +33,4 @@ clean:
 	rm -rf provider/*.o
 	rm -rf lib/*
 	rm -rf bin/*
+	rm -rf provider/CL/*.raw provider/CL/*.bin
