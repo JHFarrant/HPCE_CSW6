@@ -12,6 +12,7 @@ void setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData){
     std::vector<cl::Device> devices;
     cl::Platform platform;
     cl::Device device;
+    std::ifstream fp;
     
     // get list of OpenCL platforms
     cl::Platform::get(&platforms);
@@ -42,7 +43,7 @@ void setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData){
     cl::Context context(devices);
     
     // Load kernel Code
-    std::string kernelSource=LoadSource("provider/CL/kernels.cl");
+   /* std::string kernelSource=LoadSource("provider/CL/kernels.cl");
     
     // A vector of (data,length) pairs
     cl::Program::Sources sources;
@@ -51,16 +52,120 @@ void setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData){
     sources.push_back(std::make_pair(kernelSource.c_str(), kernelSource.size()+1));
     
     // collect all kernel sources into a single program
-    cl::Program program(context, sources);
+    cl::Program program(context, sources);*/
+    
+    // try to load from binary (check status, if unsuccessful, load and compile source)
+    
+    cl::Program * program = NULL;
+    fp.open("provider/CL/kernels.raw", std::ifstream::binary);
+    
+    // Check if binary already exists
+    if(fp.is_open()){
+        // get compiled binary from runtime
+        cl::Program::Binaries binaries;
+        
+        /*
+        for(int  i =0; i < devices.size(); i++){
+            binarise.push_back();
+        }*/
+        
+        //cl::Program program(context, devices, binaries);
+        //cl::Program program();
+        
+    }else{ // Load kernel code and compile it
+        
+         //Load kernel Code
+         std::string kernelSource=LoadSource("/Users/David/Documents/Imperial/4thYear/HPCE/HPCE_CSW6/provider/CL/kernels.cl");
+         
+         // A vector of (data,length) pairs
+         cl::Program::Sources sources;
+         
+         // push kernel
+         sources.push_back(std::make_pair(kernelSource.c_str(), kernelSource.size()+1));
+         
+         // collect all kernel sources into a single program
+        program = new cl::Program(context, sources);
+        
+         std::vector<char *> binaries(devices.size());
+         std::vector<size_t> binarySizes(devices.size());
+        
+         // save to binary format
+         //program->getInfo<size_t>(CL_PROGRAM_BINARY_SIZES, &binarySizes[0]);
+        
+        
+         program->getInfo<CL_PROGRAM_BINARY_SIZES>();
+        
+         //program->getInfo(CL_PROGRAM_BINARIES , &binaries[0]);
+
+        
+    }
+
+    
+    
+   /* cl::Program * program = new cl::Program();
+   
+    
+    //program(context,  devices, );
+    
+    // Check if binaries already exist
+    std::vector<char *> binaries;
+    std::vector<size_t> binarySizes;
+    
+    //cl::Program::Binaries binaries;
+    //cl::Platform::getInfo(CL_PROGRAM_BINARIES , binaries);
+    
+    
+    program->getInfo(CL_PROGRAM_BINARY_SIZES, &binarySizes)
+    program->getInfo(CL_PROGRAM_BINARIES , &binaries);
+    delete program;
+    
+    // if there are no binaries, load and compile kernel code
+    if(binaries.size() == 0){
+        
+        // Load kernel Code
+        std::string kernelSource=LoadSource("provider/CL/kernels.cl");
+        
+        // A vector of (data,length) pairs
+        cl::Program::Sources sources;
+
+        // push kernel
+        sources.push_back(std::make_pair(kernelSource.c_str(), kernelSource.size()+1));
+
+        // collect all kernel sources into a single program
+        program = new cl::Program(context, sources);
+        
+        
+        
+    } else {
+        //program = cl::Program(context, devices, binaries);
+        
+       // cl::Program program(context, devices, binaries);
+        
+        // Load Binaries
+        program = new cl::Program(context, devices, createBinariesList(binaries));
+
+
+    }*/
+    
+    
+    
+    /*cl::Program::Binaries binaries(devices.size());
+
+    // get compiled binary from runtime
+    //cl::Program p =  cl::Program(context, devices, binaries);
+
+    cl::Program * program = new cl::Program(context, devices, binaries);
+    
+    */
     
     try{ // build program
-        program.build(devices);
+        program->build(devices);
         fprintf(stderr, "-------------------------------------\n");
     }catch(...){
         for(unsigned i=0;i<devices.size();i++){
             
             fprintf(stderr,"Log for device %s \n\n", (devices[i].getInfo<CL_DEVICE_NAME>()).c_str());
-            fprintf(stderr,"%s \n\n", program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(devices[i]).c_str());
+            fprintf(stderr,"%s \n\n", program->getBuildInfo<CL_PROGRAM_BUILD_LOG>(devices[i]).c_str());
 
         }
         throw;
@@ -133,4 +238,50 @@ std::string LoadSource(const char *fileName)
                        std::istreambuf_iterator<char>()
                        );
 }
+
+
+// returns a vector list of Devices with each pair in the form (device, sizeof(device))
+std::vector<std::pair<cl::Device, unsigned>> createDevicesList(cl::Device device){
+
+    std::vector<std::pair<cl::Device, unsigned>> devices;
+    devices.push_back(std::pair<cl::Device, unsigned>(device, sizeof(device)));
+    
+    
+    // although it's only one device, we'll still return it as a vector of devices
+    return devices;
+    
+}
+
+// Converts the given vector to a vector list of Binaries with each pair in the form
+// (binary, sizeof(Binary)). The vector will only contain 1 element which corresponds
+// to the previously selected Device
+cl::Program::Binaries createBinariesList(std::vector<char *> binaries){
+    
+    
+    cl::Program::Binaries binariesList;
+    
+    int selectedDevice=0;
+    if(getenv("HPCE_SELECT_DEVICE"))
+        selectedDevice=atoi(getenv("HPCE_SELECT_DEVICE"));
+
+    // get Device id
+    char * b = binaries[selectedDevice];
+    
+    binariesList.push_back(std::pair<const char *, unsigned>(b, sizeof(b)));
+    
+    
+    // although it's only one device, we'll still return it as a vector of devices
+    return binariesList;
+    
+}
+
+/*
+
+cl::Program::VECTOR_CLASS<Devices&> createBinariesList(){
+    
+    
+    
+    
+}*/
+
 

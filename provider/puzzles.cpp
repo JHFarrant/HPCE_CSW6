@@ -1,6 +1,7 @@
 #ifndef local_puzzles_hpp
 #define local_puzzles_hpp
 
+#include "opencl_functions.hpp"
 #include "user_circuit_sim.hpp"
 #include "user_string_search.hpp"
 #include "user_matrix_exponent.hpp"

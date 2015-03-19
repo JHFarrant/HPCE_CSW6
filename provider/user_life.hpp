@@ -50,7 +50,7 @@ public:
       cl::Buffer buffAfter(setupData.context, CL_MEM_READ_WRITE, cbBuffer);
       
       // create kernel instance
-      cl::Kernel kernel(setupData.program, "update_kernel");
+      cl::Kernel kernel( *(setupData.program), "update_kernel");
       
       
       // Create command queue to
@@ -106,6 +106,8 @@ public:
       
       // write back results
       queue.enqueueReadBuffer(buffBefore, CL_TRUE, 0, cbBuffer, &state[0]);
+      
+      delete setupData.program;
       
        //state=next;
       

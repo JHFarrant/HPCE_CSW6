@@ -35,7 +35,7 @@
  *
  *         cl
  *         cl_ext_device_fission
- *				#define USE_CL_DEVICE_FISSION
+ *              #define USE_CL_DEVICE_FISSION
  */
 
 /*! \mainpage
@@ -502,7 +502,7 @@ public:
         size_  = rhs.size_;
         empty_ = rhs.empty_;
 
-        if (!empty_) {	
+        if (!empty_) {  
             memcpy(&data_[0], &rhs.data_[0], size() * sizeof(T));
         }
     
@@ -923,10 +923,10 @@ struct GetInfoHelper<Func, CPP_TYPE> \
 #if defined(USE_CL_DEVICE_FISSION)
 #define __PARAM_NAME_DEVICE_FISSION(F) \
     F(cl_device_info, CL_DEVICE_PARENT_DEVICE_EXT, cl_device_id) \
-	F(cl_device_info, CL_DEVICE_PARTITION_TYPES_EXT, VECTOR_CLASS<cl_device_partition_property_ext>) \
-	F(cl_device_info, CL_DEVICE_AFFINITY_DOMAINS_EXT, VECTOR_CLASS<cl_device_partition_property_ext>) \
-	F(cl_device_info, CL_DEVICE_REFERENCE_COUNT_EXT , cl_uint) \
-	F(cl_device_info, CL_DEVICE_PARTITION_STYLE_EXT, VECTOR_CLASS<cl_device_partition_property_ext>)
+    F(cl_device_info, CL_DEVICE_PARTITION_TYPES_EXT, VECTOR_CLASS<cl_device_partition_property_ext>) \
+    F(cl_device_info, CL_DEVICE_AFFINITY_DOMAINS_EXT, VECTOR_CLASS<cl_device_partition_property_ext>) \
+    F(cl_device_info, CL_DEVICE_REFERENCE_COUNT_EXT , cl_uint) \
+    F(cl_device_info, CL_DEVICE_PARTITION_STYLE_EXT, VECTOR_CLASS<cl_device_partition_property_ext>)
 #endif // USE_CL_DEVICE_FISSION
 
 template <typename enum_type, cl_int Name>
@@ -1219,22 +1219,22 @@ public:
     }
 
 #if defined(USE_CL_DEVICE_FISSION)
-	cl_int createSubDevices(
-		const cl_device_partition_property_ext * properties,
-		VECTOR_CLASS<Device>* devices)
-	{
-		typedef CL_API_ENTRY cl_int 
-			( CL_API_CALL * PFN_clCreateSubDevicesEXT)(
-				cl_device_id /*in_device*/,
+    cl_int createSubDevices(
+        const cl_device_partition_property_ext * properties,
+        VECTOR_CLASS<Device>* devices)
+    {
+        typedef CL_API_ENTRY cl_int 
+            ( CL_API_CALL * PFN_clCreateSubDevicesEXT)(
+                cl_device_id /*in_device*/,
                 const cl_device_partition_property_ext * /* properties */,
                 cl_uint /*num_entries*/,
                 cl_device_id * /*out_devices*/,
                 cl_uint * /*num_devices*/ ) CL_EXT_SUFFIX__VERSION_1_1;
 
-		static PFN_clCreateSubDevicesEXT pfn_clCreateSubDevicesEXT = NULL;
-		__INIT_CL_EXT_FCN_PTR(clCreateSubDevicesEXT);
+        static PFN_clCreateSubDevicesEXT pfn_clCreateSubDevicesEXT = NULL;
+        __INIT_CL_EXT_FCN_PTR(clCreateSubDevicesEXT);
 
-		cl_uint n = 0;
+        cl_uint n = 0;
         cl_int err = pfn_clCreateSubDevicesEXT(object_, properties, 0, NULL, &n);
         if (err != CL_SUCCESS) {
             return detail::errHandler(err, __CREATE_SUB_DEVICES);
@@ -1248,7 +1248,7 @@ public:
 
         devices->assign(&ids[0], &ids[n]);
         return CL_SUCCESS;
- 	}
+    }
 #endif
 };
 
@@ -1601,7 +1601,7 @@ public:
 #if defined(CL_VERSION_1_1)
     cl_int setCallback(
         cl_int type,
-        void (CL_CALLBACK * pfn_notify)(cl_event, cl_int, void *),		
+        void (CL_CALLBACK * pfn_notify)(cl_event, cl_int, void *),      
         void * user_data = NULL)
     {
         return detail::errHandler(
@@ -1719,7 +1719,7 @@ public:
 
 #if defined(CL_VERSION_1_1)
     cl_int setDestructorCallback(
-        void (CL_CALLBACK * pfn_notify)(cl_mem, void *),		
+        void (CL_CALLBACK * pfn_notify)(cl_mem, void *),        
         void * user_data = NULL)
     {
         return detail::errHandler(
@@ -1791,7 +1791,7 @@ public:
         }
 
         return result;
-	}		
+    }       
 #endif
 };
 
@@ -3063,7 +3063,7 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *PFN_clEnqueueReleaseD3D10ObjectsKHR)(
      {
          static PFN_clEnqueueAcquireD3D10ObjectsKHR pfn_clEnqueueAcquireD3D10ObjectsKHR = NULL;
          __INIT_CL_EXT_FCN_PTR(clEnqueueAcquireD3D10ObjectsKHR);
-		
+        
          return detail::errHandler(
              pfn_clEnqueueAcquireD3D10ObjectsKHR(
                  object_,

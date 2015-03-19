@@ -1,0 +1,11 @@
+*~
+<<<<<<< HEAD
+*.o
+*.exe
+*.lib
+*.a
+*.in
+*.ref
+*.got
+=======
+>>>>>>> debdad2... Transfer from CVS.

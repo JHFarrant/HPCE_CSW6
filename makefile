@@ -5,7 +5,7 @@ SHELL=/bin/bash
 UNAME := $(shell uname)
 
 CPPFLAGS += -std=c++11 -W -Wall  -g 
-CPPFLAGS += -O3
+#CPPFLAGS += -O3
 CPPFLAGS += -I include 
 
 # for OSX
@@ -28,14 +28,8 @@ bin/% : src/%.cpp lib/libpuzzler.a provider/CL/setup.cpp
 	$(CXX)  $(CPPFLAGS) -o $@ $^ $(LDFLAGS) $(LDLIBS) -Llib -lpuzzler
 
 all : bin/execute_puzzle bin/create_puzzle_input bin/run_puzzle bin/compare_puzzle_output
+
 clean:
-<<<<<<< HEAD
-	rm bin/execute_puzzle bin/create_puzzle_input bin/run_puzzle bin/compare_puzzle_output
-	rm lib/libpuzzler.a
-=======
+	rm -rf provider/*.o
 	rm -rf lib/*
 	rm -rf bin/*
-	rm -rf provider/*.o
-
-
->>>>>>> 247f909... merged with Jack's code

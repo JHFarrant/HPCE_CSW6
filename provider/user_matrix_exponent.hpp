@@ -3,21 +3,10 @@
 //#define CL_USE_DEPRECATED_OPENCL_1_1_APIS
 
 #include "puzzler/puzzles/matrix_exponent.hpp"
-#include "cl.hpp"
+
 #include <fstream>
 
-struct openCLinstance {
-  cl::Kernel kernel_1;
-  cl::Kernel kernel_2;
-  cl::Kernel kernel_3;
-  cl::CommandQueue queue;
-  cl::Buffer buffer_1;
-  cl::Buffer buffer_2;
-  cl::Buffer buffer_3;
-  cl::Buffer buffer_4;
-  cl::Context context;
-  int selected_device;
-};
+
 
 
 class MatrixExponentProvider
@@ -38,11 +27,6 @@ public:
 	test_opencl(log,&opencl1);
 
     std::vector<uint32_t>  hash(input->steps);
-	  uint32_t test = 4294967296;
-      uint32_t test2 = test + 10;
-      uint64_t test3 = (test + test2)%2147483647;
-      uint32_t test4 = test3;
-      std::cerr<<test<<" "<<test2<<" "<<test3<<" "<<test4<<"\n";
 
       log->LogVerbose("Setting up A and identity");
       auto A=MatrixCreate(input->n, input->seed);
@@ -236,7 +220,7 @@ static void setup_opencl(puzzler::ILog *log,openCLinstance* opencl1, unsigned n)
 		
 		log->LogDebug("Compliling Kernels.");
 	
-		std::string kernelSource=LoadSource("provider/kernels.cl");
+		std::string kernelSource=LoadSource("provider/matrix_exponent_kernels.cl");
 		kernelSource += "__kernel void Add(__global float *x){ x[get_global_id(0)] += 0.125f; }\n";
 
 		cl::Program::Sources sources(1, std::make_pair(kernelSource.c_str(), kernelSource.size()+1));
