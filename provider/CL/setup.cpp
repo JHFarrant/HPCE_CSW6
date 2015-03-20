@@ -14,8 +14,10 @@ void setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData){
     cl::Device device; // device object
     uint8_t devId = 0; // device id
     std::ifstream fp;
-    std::ofstream out;    
-   // get list of OpenCL platforms
+    std::ofstream out;   
+
+ 
+    // get list of OpenCL platforms
     cl::Platform::get(&platforms);
     
     fprintf(stderr, "-------------------------------------\nOPENCL initialisation\n\n");
@@ -43,42 +45,63 @@ void setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData){
     // create context for kernels and memory buffers
     cl::Context context(devices);
     
-    // Load kernel Code
-   /* std::string kernelSource=LoadSource("provider/CL/kernels.cl");
     
-    // A vector of (data,length) pairs
-    cl::Program::Sources sources;
-    
-    // push kernel
-    sources.push_back(std::make_pair(kernelSource.c_str(), kernelSource.size()+1));
-    
-    // collect all kernel sources into a single program
-    cl::Program program(context, sources);*/
-    
-    // try to load from binary (check status, if unsuccessful, load and compile source)
-    
+    // try to load from binary (check status, if unsuccessful, load and compile source) 
     cl::Program * program = NULL;
-    fp.open("provider/CL/kernels.bin", std::ifstream::binary);
-    
+    fp.open("provider/CL/kernels.bin", std::ios::in | std::ios::binary);
+
     // Check if binary already exists
     if(fp.is_open()){
+
+
+	fprintf(stderr, "succesfully opened binary file\n");
+
         // get compiled binary from runtime
-        cl::Program::Binaries binaries(devices.size());
-        std::string bin;
+        cl::Program::Binaries binaries;
+	
+   	 // get length of file:
+    	fp.seekg (0, fp.end);
+    	int length = fp.tellg();
+    	fp.seekg (0, fp.beg);
 
-	// read binary into string
-	std::getline(fp, bin);
 
-	// copy to buffer
-	binaries.at(devId) =  std::pair<const char *, unsigned>(bin.c_str(), sizeof(bin));
+    	// allocate memory
+    	char * cb = new char [length];
+	fprintf(stderr,"allocating %d bytes\n", length);
+	
+	fp.read( cb, length);
+
+	fprintf(stderr, "%s", cb);
+	binaries.push_back(std::pair<const char *, unsigned>(cb, length));
+	fp.close();
+
+	
+	fprintf(stderr, "Copied to binaries buffer\n");
+
 
 	// Create kernel program by also providing the binaries	
-        cl::Program program(context, devices, binaries);
-        //cl::Program program();
-        
-    }else{ // Load kernel code and compile it
-         fp.close();
+        //cl::Program program(context, devices, binaries);
+        program = new cl::Program(context, devices, binaries);
+	// de-allocate mem
 
+	  try{ // build program
+        	program->build(devices);
+        	fprintf(stderr, "-------------------------------------\n");
+    	}catch(...){
+        	for(unsigned i=0;i<devices.size();i++){
+            
+            	fprintf(stderr,"Log for device %s \n\n", (devices[i].getInfo<CL_DEVICE_NAME>()).c_str());
+            	fprintf(stderr,"%s \n\n", program->getBuildInfo<CL_PROGRAM_BUILD_LOG>(devices[i]).c_str());
+
+       		 }	
+        	throw;
+    	}
+	delete cb;			
+   }
+
+    else{ // Load kernel code and compile it
+         fp.close();
+	 //fclose(fp);
          //Load kernel Code
          std::string kernelSource=LoadSource("provider/CL/kernels.cl");
          
@@ -95,8 +118,8 @@ void setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData){
 	        
          std::vector<char *> binaries(1);
          std::vector<size_t> binarySizes;;
-       
-	 cl_int r; 
+	 
+	cl_int r; 
          // get the binary
          r = program->getInfo<std::vector<size_t>>(CL_PROGRAM_BINARY_SIZES, &binarySizes); 
 
@@ -125,98 +148,21 @@ void setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData){
 	
 	 fprintf(stderr, "There are %d binaries and device %d has %d bytes\n", binarySizes.size(), devId, binarySizes[devId]);
 	 
-	 //fprintf(stderr, "Device 0 : %s\n", binaries[0]);
 
  	 std::ofstream out;
-//	 std::ofstream fs("provider/CL/kernels.bin", std::ios::out);
-	 out.open("provider/CL/kernels.bin", std::ofstream::out);
+	 //out.open("provider/CL/kernels.bin", std::ofstream::binary);
+         out.open("provider/CL/kernels.bin", std::ios::out | std::ios::binary);
+	 out.write(binaries[devId], binarySizes[devId]);
 
-//	 out.open("open.raw", std::ofstream::out);
+	 out.close();
 
-	 //out << std::string(binaries[devId]);
-//	 out.close();
-//	 std::string str = std::string(binaries[devId]);
-	 //fs.write(str.c_str(), str.size());
-//         fs.write("hello", sizeof("hello"));
 
-         //fprintf(stderr, "file opened");
-
-	 out << binaries[devId];
-
-	 out.close();        
-//	fp.close();
+	 // de-allocate binary buffers
+	      
     }
 
     fp.close();
-    
-   /* cl::Program * program = new cl::Program();
    
-    
-    //program(context,  devices, );
-    
-    // Check if binaries already exist
-    std::vector<char *> binaries;
-    std::vector<size_t> binarySizes;
-    
-    //cl::Program::Binaries binaries;
-    //cl::Platform::getInfo(CL_PROGRAM_BINARIES , binaries);
-    
-    
-    program->getInfo(CL_PROGRAM_BINARY_SIZES, &binarySizes)
-    program->getInfo(CL_PROGRAM_BINARIES , &binaries);
-    delete program;
-    
-    // if there are no binaries, load and compile kernel code
-    if(binaries.size() == 0){
-        
-        // Load kernel Code
-        std::string kernelSource=LoadSource("provider/CL/kernels.cl");
-        
-        // A vector of (data,length) pairs
-        cl::Program::Sources sources;
-
-        // push kernel
-        sources.push_back(std::make_pair(kernelSource.c_str(), kernelSource.size()+1));
-
-        // collect all kernel sources into a single program
-        program = new cl::Program(context, sources);
-        
-        
-        
-    } else {
-        //program = cl::Program(context, devices, binaries);
-        
-       // cl::Program program(context, devices, binaries);
-        
-        // Load Binaries
-        program = new cl::Program(context, devices, createBinariesList(binaries));
-
-
-    }*/
-    
-    
-    
-    /*cl::Program::Binaries binaries(devices.size());
-
-    // get compiled binary from runtime
-    //cl::Program p =  cl::Program(context, devices, binaries);
-
-    cl::Program * program = new cl::Program(context, devices, binaries);
-    
-    */
-    
-    try{ // build program
-        program->build(devices);
-        fprintf(stderr, "-------------------------------------\n");
-    }catch(...){
-        for(unsigned i=0;i<devices.size();i++){
-            
-            fprintf(stderr,"Log for device %s \n\n", (devices[i].getInfo<CL_DEVICE_NAME>()).c_str());
-            fprintf(stderr,"%s \n\n", program->getBuildInfo<CL_PROGRAM_BUILD_LOG>(devices[i]).c_str());
-
-        }
-        throw;
-    }
     
     // copy data
     setupData->program = program;
