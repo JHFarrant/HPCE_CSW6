@@ -41,7 +41,7 @@ public:
       });
       
       // OpenCL application setup
-      setup(&setupData);
+      setup(log,  &setupData, "user_life_kernels");
 
       // allocate space for buffers on the GPU's local memory
       // Note: 1 byte elements here as the array type is uint8_t
