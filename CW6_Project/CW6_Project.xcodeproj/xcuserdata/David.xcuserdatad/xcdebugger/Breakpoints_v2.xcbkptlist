@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
             endingLineNumber = "119"
-            landmarkName = "setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData)"
+            landmarkName = "setup(puzzler::ILog *log,openCLsetupData * setupData, const std::string&amp; kernelName)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "155"
             endingLineNumber = "155"
-            landmarkName = "setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData)"
+            landmarkName = "showPlatforms(puzzler::ILog *log, std::vector&lt;cl::Platform&gt; * platforms )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "158"
             endingLineNumber = "158"
-            landmarkName = "setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData)"
+            landmarkName = "showPlatforms(puzzler::ILog *log, std::vector&lt;cl::Platform&gt; * platforms )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -79,7 +79,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
             endingLineNumber = "60"
-            landmarkName = "setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData)"
+            landmarkName = "setup(puzzler::ILog *log,openCLsetupData * setupData, const std::string&amp; kernelName)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -95,7 +95,39 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
             endingLineNumber = "59"
-            landmarkName = "setup(/*puzzler::ILog *log,*/ openCLsetupData * setupData)"
+            landmarkName = "setup(puzzler::ILog *log,openCLsetupData * setupData, const std::string&amp; kernelName)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../src/run_puzzle.cpp"
+            timestampString = "448596832.564291"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "main(int argc, char *argv[])"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../provider/user_circuit_sim.hpp"
+            timestampString = "448645972.007929"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "Execute( puzzler::ILog *log, const puzzler::CircuitSimInput *input, puzzler::CircuitSimOutput *output )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

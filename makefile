@@ -4,12 +4,21 @@ SHELL=/bin/bash
 # get OS name
 UNAME := $(shell uname)
 
-CPPFLAGS += -std=c++11 -W -Wall  -g 
+CPPFLAGS += -I include -std=c++11 -W -Wall  -g 
 
-CPPFLAGS += -Wdeprecated-declarations
-CPPFLAGS += -O3
+#CPPFLAGS += -O3
 
-CPPFLAGS += -I include 
+
+#TBB_DIR =tbb43_20150209oss
+TBB_DIR =/usr/local/Cellar/tbb/4.3-20141023
+
+TBB_INC_DIR = $(TBB_DIR)/include
+#TBB_LIB_DIR = $(TBB_DIR)/lib/intel64/gcc4.4
+TBB_LIB_DIR = $(TBB_DIR)/lib
+
+
+CPPFLAGS += -ltbb -I $(TBB_INC_DIR)
+LDFLAGS += -L $(TBB_LIB_DIR)
 
 
 # for OSX
@@ -33,6 +42,8 @@ bin/% : src/%.cpp lib/libpuzzler.a provider/CL/setup.cpp
 
 all : bin/execute_puzzle bin/create_puzzle_input bin/run_puzzle bin/compare_puzzle_output
 
+br : 
+	rm -rf provider/CL/*.bin
 clean:
 	rm -rf provider/*.o
 	rm -rf lib/*

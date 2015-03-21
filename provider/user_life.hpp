@@ -121,40 +121,6 @@ public:
   
     
 protected:
-    void kernel_update(unsigned n, const uint8_t * curr, unsigned x, unsigned y, uint8_t * next) const{
-        int neighbours=0;
-        for(int dx=-1;dx<=+1;dx++){
-            for(int dy=-1;dy<=+1;dy++){
-                int ox=(n+x+dx)%n; // handle wrap-around
-                int oy=(n+y+dy)%n;
-                
-                // this checks if there's a neighbour in our new destination
-                // with no bias added
-                if(curr[oy*n+ox] && !(dx==0 && dy==0))
-                    neighbours++;
-            }
-            
-            // always positive and max value is n-1+n+1=2*n
-            //if(n+x+dx) > n - 1 => x + dx
-        }
-        
-        if(curr[n*y+x]){
-            // alive
-            if(neighbours<2 || neighbours >3)
-                next[y*n+x] = false;
- 
-            else
-                next[y*n+x] = true;
-        }else{
-            // dead
-            if(neighbours==3)
-                next[y*n+x] = true;
-                
-            else
-                next[y*n+x] = false;
-        }
-    }
-
     /*Copies src to dst vector */
     void boolToUint8t(const std::vector<bool> &src,  std::vector<uint8_t> &dst ) const{
         for(unsigned it = 0; it < src.size(); it++){

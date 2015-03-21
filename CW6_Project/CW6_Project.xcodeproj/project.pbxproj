@@ -157,7 +157,9 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				OTHER_CFLAGS = "";
+				"OTHER_CFLAGS[arch=*]" = "-I/usr/local/Cellar/tbb/4.3-20141023/include";
 				OTHER_LDFLAGS = "";
+				"OTHER_LDFLAGS[arch=*]" = "-L/usr/local/Cellar/tbb/4.3-20141023/lib      ";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -190,6 +192,7 @@
 				637CD1481AB75C640092A266 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

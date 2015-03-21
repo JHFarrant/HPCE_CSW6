@@ -56,15 +56,15 @@ void setup(puzzler::ILog *log,openCLsetupData * setupData, const std::string& ke
     if(finp.is_open()){
 
 
-	log->LogInfo( "\nsuccesfully opened binary file\n");
+        log->LogInfo( "\nsuccesfully opened binary file\n");
 
         // get compiled binaries from runtime
-	// Note even if we want the binary of only one device,
+        // Note even if we want the binary of only one device,
         // our vector still needs to have devices.size() elements
-	// for it to be correctly interpreted
+        // for it to be correctly interpreted
         cl::Program::Binaries binaries(devices.size());
 	
-   	 // get length of file:
+        // get length of file:
     	finp.seekg (0, finp.end);
     	int length = finp.tellg();
     	finp.seekg (0, finp.beg);
@@ -72,71 +72,71 @@ void setup(puzzler::ILog *log,openCLsetupData * setupData, const std::string& ke
 
     	// allocate memory for binary of interest
     	char * cb = new char [length];
-	log->LogInfo("\nallocating %d bytes\n", length);
+        log->LogInfo("\nallocating %d bytes\n", length);
 	
-	// read binary into buffer
-	finp.read(cb, length);
+        // read binary into buffer
+        finp.read(cb, length);
 
-	// add to binaries vector
-	binaries[devId] = std::pair<const char *, unsigned>(cb, length);
+        // add to binaries vector
+        binaries.at(devId) = std::pair<const char *, unsigned>(cb, length);
 
-	// close binary file
-	finp.close();
+        // close binary file
+        finp.close();
 	
-	log->LogInfo( "\nCopied to binary to  binaries vector\n");
+        log->LogInfo( "\nCopied to binary to  binaries vector\n");
 
-	// Create kernel program by also providing the binaries	
+        // Create kernel program by also providing the binaries
         program = new cl::Program(context, devices, binaries);
 
-	// build program
+        // build program
         buildProgram(log, program, devices);
 
-	// Binary has been copied to program. Can de-allocate buffer now
-	delete cb;			
+        // Binary has been copied to program. Can de-allocate buffer now
+        delete cb;
    }
 
     else{ // Load kernel code and compile it
-         finp.close();
+        finp.close();
 
-         //Load kernel Code
-         std::string kernelSource=LoadSource("provider/CL/" + kernelName + ".cl");
+        //Load kernel Code
+        std::string kernelSource=LoadSource("provider/CL/" + kernelName + ".cl");
          
-         // A vector of (data,length) pairs
-         cl::Program::Sources sources;
+        // A vector of (data,length) pairs
+        cl::Program::Sources sources;
          
-         // push kernel
-         sources.push_back(std::make_pair(kernelSource.c_str(), kernelSource.size()+1));
+        // push kernel
+        sources.push_back(std::make_pair(kernelSource.c_str(), kernelSource.size()+1));
          
-         // collect all kernel sources into a single program
-         program = new cl::Program(context, sources);
+        // collect all kernel sources into a single program
+        program = new cl::Program(context, sources);
 
-	 // after building the program, the binary will be valid 
-         buildProgram(log, program, devices);	        
+        // after building the program, the binary will be valid
+        buildProgram(log, program, devices);
 
-         std::vector<char *> binaries(devices.size());
-         std::vector<size_t> binarySizes;;
+        std::vector<char *> binaries(devices.size());
+        std::vector<size_t> binarySizes;;
 	 
-         // get the binary sizes for all OpenCL devices
-         program->getInfo<std::vector<size_t>>(CL_PROGRAM_BINARY_SIZES, &binarySizes); 
+        // get the binary sizes for all OpenCL devices
+        program->getInfo<std::vector<size_t>>(CL_PROGRAM_BINARY_SIZES, &binarySizes);
 
-	 // Now  allocate memory for binaries
-	 for(unsigned i = 0; i < binarySizes.size(); i++)
-		binaries[i] = new char[binarySizes[i]];
+        // Now  allocate memory for binaries
+        for(unsigned i = 0; i < binarySizes.size(); i++)
+            binaries.at(i) = new char[binarySizes[i]];
 
-	 // get the binaries for all OpenCL devices
-	 program->getInfo<std::vector<char *>>(CL_PROGRAM_BINARIES, &binaries);
+        // get the binaries for all OpenCL devices
+        program->getInfo<std::vector<char *>>(CL_PROGRAM_BINARIES, &binaries);
 
-	 log->LogInfo( "There are %d binaries and device %d has %d bytes\n", binarySizes.size(), devId, binarySizes[devId]);
+        log->LogInfo( "There are %d binaries and device %d has %d bytes\n", binarySizes.size(), devId, binarySizes[devId]);
 	 
-	 // write only the binary of interest to output
- 	 std::ofstream out;
-         fout.open(fname, std::ios::out | std::ios::binary);
-	 fout.write(binaries[devId], binarySizes[devId]);
-	 fout.close();
+        // write only the binary of interest to output
+        std::ofstream out;
+        fout.open(fname, std::ios::out | std::ios::binary);
+        fout.write(binaries.at(devId), binarySizes.at(devId));
+        fout.close();
 
-	 // de-allocate binary buffers
-	 for(unsigned i = 0; i < binarySizes.size(); i++)
-		delete binaries[i];
+        // de-allocate binary buffers
+        for(unsigned i = 0; i < binarySizes.size(); i++)
+            delete binaries[i];
 
          
     }
