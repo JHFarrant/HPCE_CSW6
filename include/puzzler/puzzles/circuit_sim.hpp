@@ -99,14 +99,12 @@ namespace puzzler
     bool calcSrc(unsigned src, const std::vector<bool> &state, const CircuitSimInput *input) const
     {
       if(src < input->flipFlopCount){
-          return state.at(src);
-      }
-        
-      else{
-          unsigned nandSrc=src - input->flipFlopCount;
-          bool a=calcSrc(input->nandGateInputs.at(nandSrc).first, state, input);
-          bool b=calcSrc(input->nandGateInputs.at(nandSrc).second, state, input);
-          return !(a&&b);
+	return state.at(src);
+      }else{
+	unsigned nandSrc=src - input->flipFlopCount;
+	bool a=calcSrc(input->nandGateInputs.at(nandSrc).first, state, input);
+	bool b=calcSrc(input->nandGateInputs.at(nandSrc).second, state, input);
+	return !(a&&b);
       }
     }
 
@@ -114,7 +112,7 @@ namespace puzzler
     {
       std::vector<bool> res(state.size());
       for(unsigned i=0; i<res.size(); i++){
-        res[i]=calcSrc(input->flipFlopInputs[i], state, input);
+	res[i]=calcSrc(input->flipFlopInputs[i], state, input);
       }
       return res;
     }
@@ -136,13 +134,13 @@ namespace puzzler
       log->LogVerbose("About to start running clock cycles (total = %d", pInput->clockCycles);
       std::vector<bool> state=pInput->inputState;
       for(unsigned i=0; i<pInput->clockCycles; i++){
-	  log->LogVerbose("Starting iteration %d of %d\n", i, pInput->clockCycles);
+	log->LogVerbose("Starting iteration %d of %d\n", i, pInput->clockCycles);
 
-	  state=next(state, pInput);
+	state=next(state, pInput);
 
-	  // The weird form of log is so that there is little overhead
-	  // if logging is disabled
-	  log->Log(Log_Debug,[&](std::ostream &dst) {
+	// The weird form of log is so that there is little overhead
+	// if logging is disabled
+	log->Log(Log_Debug,[&](std::ostream &dst) {
 	    for(unsigned i=0; i<state.size(); i++){
 	      dst<<state[i];
 	    }

@@ -85,7 +85,7 @@ void setup(puzzler::ILog *log,openCLsetupData * setupData, const std::string& ke
 	
         log->LogInfo( "\nCopied to binary to  binaries vector\n");
 
-        // Create kernel program by also providing the binaries
+        // Create kernel program based on the binaries
         program = new cl::Program(context, devices, binaries);
 
         // build program
@@ -95,7 +95,9 @@ void setup(puzzler::ILog *log,openCLsetupData * setupData, const std::string& ke
         delete cb;
    }
 
-    else{ // Load kernel code and compile it
+    else{
+        
+        // Load kernel code and compile it
         finp.close();
 
         //Load kernel Code

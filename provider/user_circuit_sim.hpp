@@ -4,6 +4,9 @@
 #include "puzzler/puzzles/circuit_sim.hpp"
 #include "tbb/task_group.h"
 #include "tbb/parallel_for.h"
+#include <thread>
+
+
 //#define K 10
 
 
@@ -36,21 +39,51 @@ public:
           
           std::vector<bool> res(N);
           
-           for(unsigned j=0; j<N; j++){
+          /*for(unsigned j=0; j<N; j++){
               unsigned int h = input->flipFlopInputs[j]/input->flipFlopCount;
               
               res[j]=calcSrc(N,input->flipFlopInputs[j], state, input);
-          }
+          }*/
 
-           //state=next(state, input);
+          /*
+          std::vector<bool> tmpS(state);
+
+          std::thread left( // Spawn the left thread in parallel
+                           
+               [&](){ for(unsigned j=0; j<N/2; j++){
+                        res[j]=calcSrc(N,input->flipFlopInputs[j], tmpS, input);
+                      }
+               }
+          );
+          
+          for(unsigned j=N/2; j<N; j++){
+                res[j]=calcSrc(N,input->flipFlopInputs[j], state, input);
+          }
+          
+          // wait for the left to finish
+          left.join();*/
+
+          
+          //tbb::parallel_for<unsigned>(0, N,
+          
+          auto l = [&](unsigned j){
+              
+              std::vector<bool> tmpS(state);
+              
+              //const std::vector<std::pair<int32_t,int32_t> > &nandGateInputs(input->nandGateInputs);
+              res[j]=calcSrc(N,input->flipFlopInputs[j], state, input->nandGateInputs, N);
+
+           };
+          
+          tbb::parallel_for(0u, (unsigned)N, l);
           
           
           /*
-          tbb::parallel_for<unsigned>(0, state.size(), [&](unsigned j){
-              res[j]=calcSrc(input->flipFlopInputs[j], state, input);
-          });*/
-          
+          for(unsigned j=0; j<N; j++){
+              res[j]=calcSrc(N,input->flipFlopInputs[j], state, input->nandGateInputs, N);
+          }*/
 
+          
           state=res;
           
           // The weird form of log is so that there is little overhead
@@ -69,7 +102,7 @@ public:
   }
     
 private:
-    bool calcSrc(unsigned int h, unsigned src, const std::vector<bool> &state, const puzzler::CircuitSimInput *input) const
+   /* bool calcSrc(unsigned int h, unsigned src, const std::vector<bool> &state, const puzzler::CircuitSimInput *input) const
     {
         if(src < input->flipFlopCount){
             return state.at(src);
@@ -99,8 +132,9 @@ private:
             // wait for both tasks to complete
             return !(a&&b);
         }
-    }
+    }*/
     
+    /*
     std::vector<bool> next(const std::vector<bool> &state, const puzzler::CircuitSimInput *input) const
     {
         std::vector<bool> res(state.size());
@@ -110,9 +144,50 @@ private:
             res[i]=calcSrc(h,input->flipFlopInputs[i], state, input);
         }
         return res;
+    }*/
+
+    bool calcSrc(unsigned int h, unsigned src, const std::vector<bool> &state,
+                 const std::vector<std::pair<int32_t,int32_t> > &nandGateInputs,
+                 unsigned int ffcount) const {
+        
+        if(src < ffcount){
+            return state.at(src);
+        }
+        
+        else{
+            size_t m = h/2;
+            
+            unsigned nandSrc=src - ffcount;
+            bool a, b;
+            
+            if(m < 100){
+                a=calcSrc(m, nandGateInputs.at(nandSrc).first, state, nandGateInputs, ffcount);
+                b=calcSrc(m, nandGateInputs.at(nandSrc).second, state, nandGateInputs, ffcount);
+            } else {
+                
+                
+                tbb::task_group g;
+                
+                // spawn tasks
+                g.run([&]{
+                    a=calcSrc(m, nandGateInputs.at(nandSrc).first, state , nandGateInputs, ffcount);
+                });
+                
+                g.run([&]{
+                    b=calcSrc(m, nandGateInputs.at(nandSrc).second, state, nandGateInputs, ffcount);
+                });
+                
+                g.wait();
+            }
+            
+            // wait for both tasks to complete
+            return !(a&&b);
+        }
     }
 
-
 };
+
+
+
 
 #endif
