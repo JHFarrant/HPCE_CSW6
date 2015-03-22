@@ -7,9 +7,6 @@
 #include <thread>
 
 
-//#define K 10
-
-
 class CircuitSimProvider
   : public puzzler::CircuitSimPuzzle
 {
@@ -29,8 +26,6 @@ public:
       log->LogVerbose("About to start running clock cycles (total = %d", input->clockCycles);
       std::vector<bool> state=input->inputState;
       const int N = state.size();
-      //std::vector<bool> res(state.size());
-      
       
       
       // update the state every clock
@@ -39,49 +34,10 @@ public:
           
           std::vector<bool> res(N);
           
-          /*for(unsigned j=0; j<N; j++){
-              unsigned int h = input->flipFlopInputs[j]/input->flipFlopCount;
-              
+          
+          for(unsigned j=0; j<N; j++)
               res[j]=calcSrc(N,input->flipFlopInputs[j], state, input);
-          }*/
-
-          /*
-          std::vector<bool> tmpS(state);
-
-          std::thread left( // Spawn the left thread in parallel
-                           
-               [&](){ for(unsigned j=0; j<N/2; j++){
-                        res[j]=calcSrc(N,input->flipFlopInputs[j], tmpS, input);
-                      }
-               }
-          );
           
-          for(unsigned j=N/2; j<N; j++){
-                res[j]=calcSrc(N,input->flipFlopInputs[j], state, input);
-          }
-          
-          // wait for the left to finish
-          left.join();*/
-
-          
-          //tbb::parallel_for<unsigned>(0, N,
-          /*
-          auto l = [&](unsigned j){
-              
-              std::vector<bool> tmpS(state);
-              
-              //const std::vector<std::pair<int32_t,int32_t> > &nandGateInputs(input->nandGateInputs);
-              res[j]=calcSrc(N,input->flipFlopInputs[j], state, input->nandGateInputs, N);
-
-           };
-          */
-          
-          
-          
-          for(unsigned j=0; j<N; j++){
-              //res[j]=calcSrc(N,input->flipFlopInputs[j], state, input->nandGateInputs, N);
-              res[j]=calcSrc(N,input->flipFlopInputs[j], state, input);
-          }
 
           
           state=res;
@@ -134,58 +90,7 @@ private:
         }
     }
     
-    /*
-    std::vector<bool> next(const std::vector<bool> &state, const puzzler::CircuitSimInput *input) const
-    {
-        std::vector<bool> res(state.size());
-        for(unsigned i=0; i<res.size(); i++){
-            unsigned int h = input->flipFlopInputs[i]/input->flipFlopCount;
-            
-            res[i]=calcSrc(h,input->flipFlopInputs[i], state, input);
-        }
-        return res;
-    }*/
-
-    /*
-    bool calcSrc(unsigned int h, unsigned src, const std::vector<bool> &state,
-                 const std::vector<std::pair<int32_t,int32_t> > &nandGateInputs,
-                 unsigned int ffcount) const {
-        
-        if(src < ffcount){
-            return state.at(src);
-        }
-        
-        else{
-            size_t m = h/2;
-            
-            unsigned nandSrc=src - ffcount;
-            bool a, b;
-            
-            if(m < 1000){
-                a=calcSrc(m, nandGateInputs.at(nandSrc).first, state, nandGateInputs, ffcount);
-                b=calcSrc(m, nandGateInputs.at(nandSrc).second, state, nandGateInputs, ffcount);
-            } else {
-                
-                
-                tbb::task_group g;
-                
-                // spawn tasks
-                g.run([&]{
-                    a=calcSrc(m, nandGateInputs.at(nandSrc).first, state , nandGateInputs, ffcount);
-                });
-                
-                g.run([&]{
-                    b=calcSrc(m, nandGateInputs.at(nandSrc).second, state, nandGateInputs, ffcount);
-                });
-                
-                g.wait();
-            }
-            
-            // wait for both tasks to complete
-            return !(a&&b);
-        }
-    }*/
-
+   
 };
 
 
