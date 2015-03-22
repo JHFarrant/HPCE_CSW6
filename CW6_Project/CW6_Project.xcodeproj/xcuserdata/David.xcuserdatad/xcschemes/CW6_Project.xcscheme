@@ -53,7 +53,7 @@
       </MacroExpansion>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "circuit_sim 5000 4"
+            argument = "option_explicit 5000 4"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

@@ -65,7 +65,7 @@ public:
 
           
           //tbb::parallel_for<unsigned>(0, N,
-          
+          /*
           auto l = [&](unsigned j){
               
               std::vector<bool> tmpS(state);
@@ -74,14 +74,14 @@ public:
               res[j]=calcSrc(N,input->flipFlopInputs[j], state, input->nandGateInputs, N);
 
            };
+          */
           
-          tbb::parallel_for(0u, (unsigned)N, l);
           
           
-          /*
           for(unsigned j=0; j<N; j++){
-              res[j]=calcSrc(N,input->flipFlopInputs[j], state, input->nandGateInputs, N);
-          }*/
+              //res[j]=calcSrc(N,input->flipFlopInputs[j], state, input->nandGateInputs, N);
+              res[j]=calcSrc(N,input->flipFlopInputs[j], state, input);
+          }
 
           
           state=res;
@@ -102,7 +102,7 @@ public:
   }
     
 private:
-   /* bool calcSrc(unsigned int h, unsigned src, const std::vector<bool> &state, const puzzler::CircuitSimInput *input) const
+    bool calcSrc(unsigned int h, unsigned src, const std::vector<bool> &state, const puzzler::CircuitSimInput *input) const
     {
         if(src < input->flipFlopCount){
             return state.at(src);
@@ -114,7 +114,7 @@ private:
             unsigned nandSrc=src - input->flipFlopCount;
             bool a, b;
             
-            if(m < 100){
+            if(m < 0.6*input->flipFlopCount){
                 a=calcSrc(m, input->nandGateInputs.at(nandSrc).first, state, input);
                 b=calcSrc(m, input->nandGateInputs.at(nandSrc).second, state, input);
             } else {
@@ -132,7 +132,7 @@ private:
             // wait for both tasks to complete
             return !(a&&b);
         }
-    }*/
+    }
     
     /*
     std::vector<bool> next(const std::vector<bool> &state, const puzzler::CircuitSimInput *input) const
@@ -146,6 +146,7 @@ private:
         return res;
     }*/
 
+    /*
     bool calcSrc(unsigned int h, unsigned src, const std::vector<bool> &state,
                  const std::vector<std::pair<int32_t,int32_t> > &nandGateInputs,
                  unsigned int ffcount) const {
@@ -160,7 +161,7 @@ private:
             unsigned nandSrc=src - ffcount;
             bool a, b;
             
-            if(m < 100){
+            if(m < 1000){
                 a=calcSrc(m, nandGateInputs.at(nandSrc).first, state, nandGateInputs, ffcount);
                 b=calcSrc(m, nandGateInputs.at(nandSrc).second, state, nandGateInputs, ffcount);
             } else {
@@ -183,7 +184,7 @@ private:
             // wait for both tasks to complete
             return !(a&&b);
         }
-    }
+    }*/
 
 };
 
