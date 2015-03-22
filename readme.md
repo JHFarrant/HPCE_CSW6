@@ -9,11 +9,9 @@ HPCE 2014 CW6
 Planning
 ====
 
-Aim 
-----
-
 We knew from the coursework specifications that we had to speed up the
-execution time of the execute() method of all instances of puzzle 
+execution time of the puzzler::Puzzle::Execute() method of all the puzzle
+instances.
 
 The first step before implementing any code involved profiling these
 functions to determine which ones were the slowest. 
@@ -28,12 +26,12 @@ allowing time to try to speed up each of them (we didn't ignore the fact that
 some might already fast but could easily be made faster)
 
 Splitting the work
-------------------
+==================
 
 As previously mentioned, we prioritised the work based on the puzzles that gave 
 the worst scaling performance. It was no suprise that these puzzles would be the 
-most time consuming to re-implement. That's another reason why we wanted to do
-these first.
+most time consuming to re-implement. That's another reason why we wanted to 
+work on these first.
 
 It was found that the life puzzle had the second worst scaling performance so
 David started working on it while Jack worked on matrix exponent. We decided
@@ -43,12 +41,11 @@ be improved.
 From there, any person that finished one puzzle could move on to the next 
 available one.
 
-
 Performance analysis
 ===================================
 
 The Xcode instruments tool showed the total time spent in all the function calls
-in a program of choice and also showed the most called functions. This helped us
+in a program and also showed the most called functions. This helped us
 quickly pinpoint which parts had to be sped up and saved us a lot of time.
 
 
@@ -179,14 +176,15 @@ Median bits (JacK)
 Conclusion
 ==========
 
-From our observations, we belive that the ideal solution would
-have different implementations of the programs in different languages
+Based on our results, we belive that the ideal solution would
+have several implementations of the programs in different languages
 and choose the most appropriate one based on the scale.
 
-If time prevailed, we would've tried doing so by implementing everything
-both in OpenCL and TBB.
+If time prevailed, we would've tried doing so by implementing all
+the puzzle execute function in OpenCL and TBB.
 
-It should be worth noting that the fact that we put ourselves in the shoes
-of real developers in industry influenced our decision making. (i.e  we took
-into account the cost of having specialised hardware just to run a program like
-median_bits for example for super large scales that will rarely be attempted)
+It should be worth noting that in this entire project we put ourselves in
+the shoes of real developers in industry and this influenced our decision 
+making. (i.e  we took into account the cost of having specialised hardware
+just to  run a program like median_bits for example for super large scales 
+that will rarely be attempted)
