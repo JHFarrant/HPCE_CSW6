@@ -44,17 +44,17 @@ public:
       // OpenCL application setup
       setup(log,  &setupData, "user_life_kernels");
       
-      unsigned int lx, ly;
+      /* unsigned int lx, ly;
       determineLocalSizes(n, lx, ly);
       lx = 1;
-      ly = 1;
+      ly = 1;*/
 
       // allocate space for buffers on the GPU's local memory
       // Note: 1 byte elements here as the array type is uint8_t
       size_t cbBuffer=n*n; // total bytes to allocate
       cl::Buffer buffBefore(setupData.context, CL_MEM_READ_WRITE, cbBuffer);
       cl::Buffer buffAfter(setupData.context, CL_MEM_READ_WRITE, cbBuffer);
-      cl::Buffer local(setupData.context, CL_MEM_READ_WRITE, lx*ly);
+      //cl::Buffer local(setupData.context, CL_MEM_READ_WRITE, lx*ly);
       
       // create kernel instance
       cl::Kernel kernel( *(setupData.program), "update_kernel");
@@ -73,9 +73,9 @@ public:
       // Set up iteration space
       cl::NDRange offset(0, 0);               // Always start iterations at x=0, y=0
       cl::NDRange globalSize(n, n);   // Global size must match the original loops
-      cl::NDRange localSize(lx, ly);
+      //cl::NDRange localSize(lx, ly);
       
-      //cl::NDRange localSize=cl::NullRange;    // We don't care about local size
+      cl::NDRange localSize=cl::NullRange;    // We don't care about local size
       
       for(unsigned i=0; i<input->steps; i++){
           
@@ -87,7 +87,7 @@ public:
           // they will contain
           kernel.setArg(0, buffBefore);
           kernel.setArg(1, buffAfter);
-          kernel.setArg(2, local);
+         // kernel.setArg(2, local);
 
 
           

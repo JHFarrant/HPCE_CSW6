@@ -6,14 +6,16 @@ UNAME := $(shell uname)
 
 CPPFLAGS += -I include -std=c++11 -W -Wall  -g 
 
-#CPPFLAGS += -O3
+CPPFLAGS += -O3
 
 
-TBB_DIR =tbb43_20150209oss
+#TBB_DIR =tbb43_20150209oss
 #TBB_DIR =/usr/local/Cellar/tbb/4.3-20141023
 
-TBB_INC_DIR = $(TBB_DIR)/include
-TBB_LIB_DIR = $(TBB_DIR)/lib/intel64/gcc4.4
+#TBB_INC_DIR = $(TBB_DIR)/include
+TBB_INC_DIR = usr/include
+TBB_LIB_DIR = usr/lib
+#TBB_LIB_DIR = $(TBB_DIR)/lib/intel64/gcc4.4
 #TBB_LIB_DIR = $(TBB_DIR)/lib
 
 
@@ -39,7 +41,7 @@ bin/% : src/%.cpp lib/libpuzzler.a provider/CL/setup.cpp
 	-mkdir -p bin
 	$(CXX)  $(CPPFLAGS) -o $@ $^ $(LDFLAGS) $(LDLIBS) -Llib -lpuzzler
 
-all : bin/execute_puzzle bin/create_puzzle_input bin/run_puzzle bin/compare_puzzle_output
+all :  clean bin/execute_puzzle bin/create_puzzle_input bin/run_puzzle bin/compare_puzzle_output
 
 br : 
 	rm -rf provider/CL/*.bin
@@ -50,7 +52,7 @@ clean:
 	rm -rf provider/CL/*.raw provider/CL/*.bini
 
 
-marker: Makefile
-	@touch $@
-	$(MAKE) clean
-	$(MAKE)
+#marker: Makefile
+#	@touch $@
+#	$(MAKE) clean
+#	$(MAKE)

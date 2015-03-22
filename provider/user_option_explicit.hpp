@@ -49,7 +49,6 @@ public:
       VUs[0] = vU;
       VDs[0] = vD;
       
-    
       tbb::parallel_for<unsigned>(1, n,[&](unsigned i){
           vU=vU*u;
           vD=vD*d;
@@ -66,8 +65,6 @@ public:
       for(int t=n-1; t>=0; t--){
           
           std::vector<double> tmp=state;
- 
-
           tbb::parallel_for<unsigned>(0, n, [&](unsigned i){
               double vCU=wU*state[n+i+1]+wM*state[n+i]+wD*state[n+i-1];
               double vCD=wU*state[n-i+1]+wM*state[n-i]+wD*state[n-i-1];

@@ -28,17 +28,14 @@ public:
       const int N = state.size();
       
       
-      // update the state every clock
+      // update the state every clock cycle
       for(unsigned i=0; i<input->clockCycles; i++){
           log->LogVerbose("Starting iteration %d of %d\n", i, input->clockCycles);
           
           std::vector<bool> res(N);
           
-          
           for(unsigned j=0; j<N; j++)
               res[j]=calcSrc(N,input->flipFlopInputs[j], state, input);
-          
-
           
           state=res;
           
