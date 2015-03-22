@@ -49,7 +49,7 @@ void setup(puzzler::ILog *log,openCLsetupData * setupData, const std::string& ke
     // try to load from binary (check status, if unsuccessful, load and compile source) 
     cl::Program * program = NULL;
 
-    std::string fname = "provider/CL/" + kernelName + ".bin";	
+    std::string fname = "/Users/David/Documents/Imperial/4thYear/HPCE/HPCE_CSW6/provider/CL/" + kernelName + ".bin";
     finp.open(fname, std::ios::in | std::ios::binary);
 
     // Check if binary already exists
@@ -101,7 +101,7 @@ void setup(puzzler::ILog *log,openCLsetupData * setupData, const std::string& ke
         finp.close();
 
         //Load kernel Code
-        std::string kernelSource=LoadSource("provider/CL/" + kernelName + ".cl");
+        std::string kernelSource=LoadSource("/Users/David/Documents/Imperial/4thYear/HPCE/HPCE_CSW6/provider/CL/" + kernelName + ".cl");
          
         // A vector of (data,length) pairs
         cl::Program::Sources sources;
