@@ -4,6 +4,7 @@
 #include "puzzler/puzzles/life.hpp"
 
 #include "setup.h"
+#define LOCAL_SIZE 0.25 // proportion of Global size 
 
 class LifeProvider: public puzzler::LifePuzzle{
 public:
@@ -42,12 +43,18 @@ public:
       
       // OpenCL application setup
       setup(log,  &setupData, "user_life_kernels");
+      
+      unsigned int lx, ly;
+      determineLocalSizes(n, lx, ly);
+      lx = 1;
+      ly = 1;
 
       // allocate space for buffers on the GPU's local memory
       // Note: 1 byte elements here as the array type is uint8_t
       size_t cbBuffer=n*n; // total bytes to allocate
       cl::Buffer buffBefore(setupData.context, CL_MEM_READ_WRITE, cbBuffer);
       cl::Buffer buffAfter(setupData.context, CL_MEM_READ_WRITE, cbBuffer);
+      cl::Buffer local(setupData.context, CL_MEM_READ_WRITE, lx*ly);
       
       // create kernel instance
       cl::Kernel kernel( *(setupData.program), "update_kernel");
@@ -66,7 +73,9 @@ public:
       // Set up iteration space
       cl::NDRange offset(0, 0);               // Always start iterations at x=0, y=0
       cl::NDRange globalSize(n, n);   // Global size must match the original loops
-      cl::NDRange localSize=cl::NullRange;    // We don't care about local size
+      cl::NDRange localSize(lx, ly);
+      
+      //cl::NDRange localSize=cl::NullRange;    // We don't care about local size
       
       for(unsigned i=0; i<input->steps; i++){
           
@@ -78,6 +87,9 @@ public:
           // they will contain
           kernel.setArg(0, buffBefore);
           kernel.setArg(1, buffAfter);
+          kernel.setArg(2, local);
+
+
           
           // execute kernel
           queue.enqueueNDRangeKernel(kernel, offset, globalSize, localSize);
@@ -135,6 +147,69 @@ protected:
             dst.push_back((bool)src.at(it));
         }
     }
+    
+    // x = number of lines horizontally
+    // y = numbers of lines vertically
+    void determineLocalSizes(unsigned int n, unsigned int& x, unsigned int& y) const{
+        
+        
+        // we want a local size of dim x dim
+        // but n might not be a multiple of dim
+        // so we need to find the nearest divisor.
+        // if the nearest is n, then we consider n to be a prime number.
+        unsigned int dim = LOCAL_SIZE*n;
+        unsigned i = dim;
+        
+        
+        // find nearest larger divisor
+
+        while( i <= n){
+            if(n%i == 0)
+                break;
+            
+            i++;
+        }
+        
+        if(i == n){
+            
+            // find nearest smaller divisor
+            i = dim;
+            while( i >= 1){
+                if(n%i == 0)
+                    break;
+                
+                i--;
+            }
+            
+        } else if(i == 1){
+            x = n;
+            y = 1;
+            
+        } else {
+            x = i;
+            y = i;
+        }
+    }
+    
+    /*
+    bool IsPrime(unsigned int n){
+        if(n < 2)
+            return false;
+        
+        else{
+            unsigned int p = 2;
+            while(p < n){
+                
+                if (n % p == 0)
+                    return false;
+                
+                p++;
+                
+            }
+        }
+        return true;
+        
+    }*/
     
 
 };

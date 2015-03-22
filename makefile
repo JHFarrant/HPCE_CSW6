@@ -1,5 +1,5 @@
 SHELL=/bin/bash
-
+include marker
 
 # get OS name
 UNAME := $(shell uname)
@@ -43,8 +43,14 @@ all : bin/execute_puzzle bin/create_puzzle_input bin/run_puzzle bin/compare_puzz
 
 br : 
 	rm -rf provider/CL/*.bin
-clean:
+clean: 
 	rm -rf provider/*.o
 	rm -rf lib/*
 	rm -rf bin/*
-	rm -rf provider/CL/*.raw provider/CL/*.bin
+	rm -rf provider/CL/*.raw provider/CL/*.bini
+
+
+marker: Makefile
+	@touch $@
+	$(MAKE) clean
+	$(MAKE)
