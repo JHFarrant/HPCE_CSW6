@@ -85,36 +85,108 @@ The time_execute.sh script was used to specifically time the execution of only
 one version of a puzzle. For example, if we want to time the reference version 
 of circuit_sim for a scale of 1000, it will run the following command:
 
-time(./bin/create_puzzle_input life 1000 0 | ./bin/execute_puzzle 1 0  > /dev/null)
+    time(./bin/create_puzzle_input circuit_sim 1000 0 | ./bin/execute_puzzle 1 0  > /dev/null)
 
-Design
+Design 
 =======
 
-The general approach used to improve performance was to look out for opportunities
-of parallelism (i.e for loops, recursion), redundant calculations. In the case of 
-for loops, we would try to parallelize them depending on whether they had loop
-carried dependencies or not.
+While different methods were used to design the different programs, the 
+general approach used to improve performance was to mainly look out for
+opportunities of parallelism (i.e for loops, recursion) and redundant 
+calculations. In the case of for loops, we would try to parallelize them 
+depending on whether they had loop carried dependencies or not.
 
-Life
+General Optimizations
+=====================
+
+Some optimizations that we did for all the OpenCL programs were generating
+and caching compiled binaries of the kernels.
+
+We also added logic to run either the reference version or our own version
+of the puzzle functions depending on the scale as we observed that OpenCL
+and TBB started to do well only from a certain scale due to startup costs.
+We know that this is machine dependent picked some safe values based on 
+extensive testing on various machines.
+
+Life (David)
 ----
 
-This was implemented in OpenCL.
+This was re-implemented in OpenCL. The `LifePuzzle::update()` function was 
+exported into a kernel file.
 
-Matrix exponent
+The Optimizations done were the following:
+
+- Changing the type of the state variable from a vector of `bool` to 
+a vector of `uint8_t`. This is not only because we can only send primitive 
+data types to the GPU but also due to the fact that vectors of bool are
+special types of vectors that prevents us to create a pointer to their
+first element, which is how we normally send buffers to the GPU.
+
+Also , as only 1 bit is used in the flags, I used the smallest data size
+possible for each which is uint8_t.
+
+- Transferring and retrieving the state data only once to the GPU. As the
+output state was always directly being fed back to the input, to reduce
+communication cost, we copied the state into GPU buffers once and ran the kernel
+there the number of times required after which the result would only be sent back
+
+- In the update kernel, some of the destination co-ordinates ox and oy get
+re-comptued unnecessarily so I made sure that these are calculated only once.
+
+I recorded a speedup of 150+ for a scale of 5000 on a GTX Titan.
+
+Matrix exponent (Jack)
 ---------------
 
 
-String Search
+String Search (Jack)
 -------------
 
-Circuit sim 
+Circuit sim  (David)
 -----------
 
-This was implemented in TBB.
+This was implemented in TBB not only because it didn't scale as badly as
+the others but also because it has a lot of branches (recursions) which I
+don't think the GPU would've performed well at. 
 
-Option explicit 
+I turned the recursive function calls inside `calcSrc()` into child tasks 
+and set a bound on when the splitting should occur to limit the amount 
+of task overhead. The bound is a dynamic number: it's a proportion of the 
+scale (~60%). 
+
+To determine if should split, I compare the bound with a number
+which starts of as the scale and is subsequently divided by 2 in each 
+recursive call. This number is meant to sort of represent the depth of the 
+recursion tree.
+
+Option explicit (David)
 ---------------
 
-This was implemented in TBB.
-median bits
+This was implemented in TBB. All the computational part was in the reference
+execute function, no other functions. The improvements were the following:
+
+- The `vU` and `vD` coefficients were recomputed several times, in total n^2 + n 
+times in the entire program. So I computed them once and saved them in two 
+buffers named `VUs` and `VDs`
+
+- I added turned some loops into parallel_for where I could.
+
+
+Median bits (JacK)
 -----------
+
+
+Conclusion
+==========
+
+From our observations, we belive that the ideal solution would
+have different implementations of the programs in different languages
+and choose the most appropriate one based on the scale.
+
+If time prevailed, we would've tried doing so by implementing everything
+both in OpenCL and TBB.
+
+It should be worth noting that the fact that we put ourselves in the shoes
+of real developers in industry influenced our decision making. (i.e  we took
+into account the cost of having specialised hardware just to run a program like
+median_bits for example for super large scales that will rarely be attempted)
