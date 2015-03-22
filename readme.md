@@ -10,7 +10,7 @@ Planning
 ====
 
 We knew from the coursework specifications that we had to speed up the
-execution time of the puzzler::Puzzle::Execute() method of all the puzzle
+execution time of the `puzzler::Puzzle::Execute()` method of all the puzzle
 instances.
 
 The first step before implementing any code involved profiling these
@@ -33,8 +33,8 @@ the worst scaling performance. It was no suprise that these puzzles would be the
 most time consuming to re-implement. That's another reason why we wanted to 
 work on these first.
 
-It was found that the life puzzle had the second worst scaling performance so
-David started working on it while Jack worked on matrix exponent. We decided
+It was found that the `life_puzzle` had the second worst scaling performance so
+David started working on it while Jack worked on `matrix_exponent`. We decided
 to implement both in OpenCL as there was a big window for scaling that could 
 be improved.
 
@@ -66,7 +66,7 @@ The last two were for OpenCL of course.
 Verification
 ------------
 
-We verified our programs by running the run_puzzle program which executes 
+We verified our programs by running the `run_puzzle` program which executes 
 both the reference and the user versions and compares them. 
 
 As well as looking at the puzzles printout on the console, debugging 
@@ -75,7 +75,7 @@ was done on Xcode.
 Timing
 -------
 
-We timed the puzzles by changing the run_puzzle C++ program to use std::clock
+We timed the puzzles by changing the `run_puzzle` C++ program to use `std::clock`
 and output the time difference but also with the unix time command.
 
 The time_execute.sh script was used to specifically time the execution of only
@@ -169,7 +169,7 @@ buffers named `VUs` and `VDs`
 - I added turned some loops into parallel_for where I could.
 
 
-Median bits (JacK)
+Median bits (Jack)
 -----------
 
 
