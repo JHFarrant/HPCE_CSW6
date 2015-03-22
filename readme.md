@@ -1,144 +1,120 @@
 HPCE 2014 CW6
 =============
 
+- by David Fofana (df611) and Jack Farrant
 - Issued: Sun 8th March
 - Due: Sun 22nd March, 23:59
 
-(First DoC exam open to EEE/EIE/MSc is 24th March, AFAICT)
 
-(Just realised I haven't made the private repositories yet. To come...)
+Planning
+====
 
-Specification
+Aim 
+----
+
+We knew from the coursework specifications that we had to speed up the
+execution time of the execute() method of all instances of puzzle 
+
+The first step before implementing any code involved profiling these
+functions to determine which ones were the slowest. 
+
+Our initial tests showed that the matrix exponent puzzle had the worst scaling
+performance (starts becoming slow for a scale of 700 on intel i7 2.7GHz dual
+core CPU) and option explicit had the best (starts becoming slow at
+a scale of 10000 on the same machine)
+
+We thus narrowed our aim to making the slowest programs faster first while
+allowing time to try to speed up each of them (we didn't ignore the fact that
+some might already fast but could easily be made faster)
+
+Splitting the work
+------------------
+
+As previously mentioned, we prioritised the work based on the puzzles that gave 
+the worst scaling performance. It was no suprise that these puzzles would be the 
+most time consuming to re-implement. That's another reason why we wanted to do
+these first.
+
+It was found that the life puzzle had the second worst scaling performance so
+David started working on it while Jack worked on matrix exponent. We decided
+to implement both in OpenCL as there was a big window for scaling that could 
+be improved.
+
+From there, any person that finished one puzzle could move on to the next 
+available one.
+
+
+Performance analysis
+===================================
+
+The Xcode instruments tool showed the total time spent in all the function calls
+in a program of choice and also showed the most called functions. This helped us
+quickly pinpoint which parts had to be sped up and saved us a lot of time.
+
+
+Testing methodology
+===================
+
+Testing the programs always involved checking first if they gave the correct 
+output for different scales after which they were timed. The tests were 
+performed on 4 different machines: 
+
+- David's MacBook Pro (Intel core 2 duo i7 @ 2.7GhZ , No GPU)
+- AWS micro instance
+- DoC Graphic workstation with NVIDIA GTX Titan graphics card
+- AWS GPU instance
+
+The last two were for OpenCL of course.
+
+Verification
+------------
+
+We verified our programs by running the run_puzzle program which executes 
+both the reference and the user versions and compares them. 
+
+As well as looking at the puzzles printout on the console, debugging 
+was done on Xcode. 
+
+Timing
+-------
+
+We timed the puzzles by changing the run_puzzle C++ program to use std::clock
+and output the time difference but also with the unix time command.
+
+The time_execute.sh script was used to specifically time the execution of only
+one version of a puzzle. For example, if we want to time the reference version 
+of circuit_sim for a scale of 1000, it will run the following command:
+
+time(./bin/create_puzzle_input life 1000 0 | ./bin/execute_puzzle 1 0  > /dev/null)
+
+Design
+=======
+
+The general approach used to improve performance was to look out for opportunities
+of parallelism (i.e for loops, recursion), redundant calculations. In the case of 
+for loops, we would try to parallelize them depending on whether they had loop
+carried dependencies or not.
+
+Life
+----
+
+This was implemented in OpenCL.
+
+Matrix exponent
+---------------
+
+
+String Search
 -------------
 
-You have been given the included code with the
-goal of making things faster. On enquiring which
-things, you were told "all the things". Further
-deliberation on what a "thing" was resulted in
-the elaboration that it was an instance of
-`puzzler::Puzzle`. Further tentative queries
-revealed that "faster" was determined by the
-wall-clock execution time of `puzzler::Puzzle::Execute`,
-with an emphasis on larger scale factors, on an
-amazon GPU instance.
+Circuit sim 
+-----------
 
-At this point marketing got quite irate, and
-complained about developers not knowing how to
-do their job, and they had commissioned this wonderful
-enterprise framework, and did they have to do
-all the coding themselves? Sales then chimed
-in that they had similar problems having to
-hold the developers hand, and that they did
-VBA as part of their business masters, and it was
-easy. Oh, and that they had already sold a customer
-a version that contains more things; the spec should
-be ready on Friday 13th (and no, that is not ominous,
-it just happens to be a religious holiday for the
-customer), but it is only "small" stuff. Developers
-are all agile these days aren't they?
+This was implemented in TBB.
 
-Meta-specification
-------------------
+Option explicit 
+---------------
 
-The previous coursework was about deep diving on one
-problem, and (hopefully) trying out a number of alternative
-strategies. This coursework represents the other end
-of the spectrum, which is sadly the more common end: you
-haven't got much time, either to analyse the problem or
-to do low-level optimisation, and the problem is actually
-a large number of sub-problems. So the goal here is to
-identify and capture as much of the low-hanging performance
-fruit as possible while not breaking anything.
-
-The code-base I've given you is somewhat baroque,
-(though not as convoluted as my original version,
-I took pity), and despite having some rather iffy
-OOP practises, actually has things quite reasonably
-isolated. You will probably encounter the problem
-that sometimes the reference solution starts to take
-a very long time at large scales, but the persistence
-framework gives you a way of dealing with that.
-
-Beyond that, there isn't a lot more guidance, either
-in terms of what you should focus on, or how
-_exactly_ it will be measured. Part of the assesment
-is in seeing whether you can work out what can be
-accelerated, and where you should spend your time.
-And in reacting to externally evolving specs and
-code - the Friday 13th comment is true, though the
-change is minor (there aren't another five problems),
-additive (all work done this week is needed and
-evaluated for the final assesment), and has a default
-fallback (a git pull will bring any submission back
-into correcness).
-
-The allocation of marks I'm using is as before:
-
-- Performance: 33%
-
-  - You are competing with each other here, so there is an element of
-    judgement in terms of how much you think others are doing or are
-    capable of.
-
-- Correctness: 33%
-
-  - As far as I'm aware the ReferenceExecute is always correct, though slow.
-
-- Code style, insight, analysis: 33%
-
-  - Can I understand your code (can you understand your code)? Are the methods
-    and techniques employed appropriate?
-
-Deliverable format
-------------------
-
-- As before, your repository should contain a readme.txt, readme.pdf, or readme.md covering:
-
-    - What is the approach used to improve performance, in terms of algorithms, patterns, and optimisations.
-
-    - A description of any testing methodology or verification.
-
-    - A summary of how work was partitioned within the pair, including planning, analysis, design, and testing, as well as coding.
-
-- Anything in the `include` directory is not owned by you, and subject to change
-  
-  - Changes will happen in an additive way (existing classes and APIs will remain, new ones may be added)
-  
-  - Bug-fixes to `include` stuff are still welcome.
-
-- The public entry point to your code is via `puzzler::PuzzleRegistrar::UserRegisterPuzzles`,
-    which must be compiled into the static library `lib/libpuzzler.a`.
-    
-    - Clients will not directly include your code, they will only `#include "puzzler/puzzles.h`,
-      then access puzzles via the registrar. They will get access to the registrar implementation
-      by linking against `lib/libpuzzler.a`.
-    
-    - **Note**: If you do something complicated in your building of libpuzzler, it should still be
-      possible to build it by going into `lib` and calling `make all`.
-      
-- The programs in `src` have no special meaning or status, they are just example programs 
-
-The reason for all this strange indirection is that I want to give
-maximum freedom for you to do strange things within your implementation
-(example definitions of "strange" include CMake) while still having a clean
-abstraction layer between your code and the client code.
-
-Notes
------
-
-All the algorithms here are quite classic, though for the most
-part different enough to require some thought. Where it is possible
-to directly use an off-the-shelf implementation (partially true in
-most cases), you need to bear in mind that you're trying to
-show-case your understanding and ability here. So if you're
-relying on someone elses library, you need to:
-
-- Correctly and clearly attribute it
-- Be able to demonstrate you understand how and why it works
-
-Make sure you spend a little bit of time thinking about how
-feasible it is to accelerate something - in some cases you
-may be able to get linear speed-up in the processor count,
-in others less so. Sometimes the fundamental algorithmic
-complexity doesn't look friendly, and can be improved in
-simple ways.
+This was implemented in TBB.
+median bits
+-----------
